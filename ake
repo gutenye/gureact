@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+build() {
+  rm dist/* 2>/dev/null
+  babel src -d dist
+}
+
+test() {
+  (cd test && ./ake)
+}
+
+
+case "$1" in
+  "" ) build ;;
+  b | build ) build ;;
+  t | test ) test ;;
+esac
