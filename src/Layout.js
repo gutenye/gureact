@@ -1,13 +1,49 @@
 import React, {Component} from "react"
 
 export default class Layout extends Component {
+  static defaultProps = {
+    topHeight: 64,
+    sideWidth: 224,
+    topClassName: "",
+    sideClassName: "",
+    mainClassName: "",
+    topStyle: {},
+    sideStyle: {},
+    mainStyle: {},
+  }
+
   render() {
-    var {props: {top, side, main}} = this
+    var {props: {top, side, main, topHeight, sideWidth, topClassName, topStyle, sideClassName, sideStyle, mainClassName, mainStyle}} = this
+    s.top = Object.assign(s.top, {
+      height: topHeight,
+    })
+    s.side = Object.assign(s.side, {
+      width: sideWidth,
+      top: topHeight,
+    })
+    if (top && side) {
+      s.main = Object.assign(s.main, {
+        marginTop: topHeight,
+        marginLeft: sideWidth,
+      })
+      // continue
+    } else if (top) {
+      s.main = Object.assign(s.main, {
+        marginTop: topHeight,
+      })
+    } else if (side) {
+      s.side = Object.assign(s.side, {
+        top: 0,
+      })
+      s.main = Object.assign(s.main, {
+        marginLeft: sideWidth,
+      })
+    }
     return (
       <div>
-        <header style={s.top}>{top}</header>
-        <aside style={s.side}>{side}</aside>
-        <main style={s.main}>{main}</main>
+        {top && <header className={topClassName} style={{...s.top, ...topStyle}}>{top}</header>}
+        {side && <aside className={sideClassName} style={{...s.side, ...sideStyle}}>{side}</aside>}
+        <main className={mainClassName} style={{...s.main, ...mainStyle}}>{main}</main>
       </div>
     )
   }
@@ -17,22 +53,22 @@ const s = {
   top: {
     backgroundColor: "white",
     position: "fixed",
-    height: "64px",
     top: 0,
     left: 0,
     right: 0,
+    // height: "64px"
   },
 
   side: {
     position: "fixed",
-    width: "224px",
     height: "100%",
-    top: "64px",
     left: 0,
+    // width: "224px"
+    // top: "64px"
   },
 
   main: {
-    marginLeft: "224px",
-    marginTop: "64px",
+    // marginTop: "64px"
+    // marginLeft: "224px"
   },
 }
