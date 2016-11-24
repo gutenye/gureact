@@ -8,14 +8,13 @@
     "test": "test"
   },
   "scripts": {
-    "prepublish": "./ake build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "./ake build"
+  },
+  "eslintConfig": {
+    "extends": "@gutenye/react-app"
   },
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "react": "^15.2.1"
-  },
   "devDependencies": {
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
@@ -27,7 +26,27 @@
     "babel-preset-stage-0": "^6.5.0",
     "react": "^15.2.1",
     "react-dom": "",
-    "webpack": "",
-    "webpack-dev-server": ""
+    "webpack": "^2.1.0-beta",
+    "webpack-dev-server": "^2.1.0-beta"
+  },
+  "babel": {
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ]
+  },
+  "dependencies": {
+    "aphrodite": "^1.1.0",
+    "classnames": "^2.2.5",
+    "react-jss": "^4.2.0"
   }
 }

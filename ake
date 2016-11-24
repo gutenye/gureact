@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+export PATH="node_modules/.bin:$PATH"
+
+main() {
+  webpack-dev-server --inline --hot
+}
+
 build() {
   rm dist/* 2>/dev/null
   babel src -d dist
@@ -9,9 +15,8 @@ test() {
   (cd test && ./ake)
 }
 
-
 case "$1" in
-  "" ) build ;;
+  "" ) main ;;
   b | build ) build ;;
   t | test ) test ;;
 esac

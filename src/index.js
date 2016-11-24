@@ -1,9 +1,2 @@
-import Layout from "./Layout"
-
-export {
-  Layout,
-}
-
-export default {
-  Layout,
-}
+export * from './Layout'
+export * from './DeviceViewer'
