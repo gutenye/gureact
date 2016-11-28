@@ -45,6 +45,7 @@
     ]
   },
   "dependencies": {
+    "aphrodisiac": "^0.4.0",
     "aphrodite": "^1.1.0",
     "classnames": "^2.2.5",
     "react-jss": "^4.2.0"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import injectStyles from 'react-jss'
+import { StyleSheet, css } from 'aphrodisiac'
 import cx from 'classnames'
 
 /*
@@ -10,18 +10,19 @@ import cx from 'classnames'
  */
 class Device extends Component {
   render() {
-    const {props: {className, device, landscape, src, sheet: {classes:s}}} = this
-    pd(landscape, cx(landscape))
+    const {props: {className, device, landscape, src}} = this
     return (
-      <div className={cx(s.Device, device, {landscape}, className)}>
-        <iframe className={s.iframe} src={src} />
+      <div className={cx(css(className), css(s.Device), device, {landscape})}>
+        <iframe className={css(s.iframe)} src={src} />
       </div>
     )
   }
 }
 
-const styles = {
+const s = StyleSheet.create({
   Device: {
+    // position: 'relative', // tmp for DeviceViewer position: 'absolute'
+
     '&.phone': {
       width: 360,
       height: 600,
@@ -81,7 +82,7 @@ const styles = {
       background: '#fff',
     },
 
-    '&.phone.landscape):after, &.tablet.landscape:after': {
+    '&.phone.landscape:after, &.tablet.landscape:after': {
       top: '50%',
       right: '-76px',
       bottom: 'auto',
@@ -124,8 +125,6 @@ const styles = {
     'background-color': '#fff',
     border: '0',
   },
-}
-
-Device = injectStyles(styles)(Device)
+})
 
 export default Device

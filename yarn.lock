@@ -49,6 +49,13 @@ anymatch@^1.3.0:
     arrify "^1.0.0"
     micromatch "^2.1.5"
 
+aphrodisiac:
+  version "0.4.0"
+  resolved "http://registry.npm.taobao.org/aphrodisiac/download/aphrodisiac-0.4.0.tgz#4e4c825ca3c4d07291c0d8f9d95c853d86fcf5c8"
+  dependencies:
+    jss "^5.5.4"
+    jss-preset-default "^0.4.0"
+
 aphrodite:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/aphrodite/download/aphrodite-1.1.0.tgz#1da36afb9401adf13483e29aa7cae58ee0767605"
@@ -1973,7 +1980,7 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.3.6"
 
-jss-camel-case@^2.0.1:
+jss-camel-case@^2.0.0, jss-camel-case@^2.0.1:
   version "2.0.2"
   resolved "http://registry.npm.taobao.org/jss-camel-case/download/jss-camel-case-2.0.2.tgz#62776f1480c4a2d4270745ab6ec6cb9f29a1e4e5"
 
@@ -1983,7 +1990,7 @@ jss-compose@^1.1.0:
   dependencies:
     warning "^3.0.0"
 
-jss-default-unit@^4.1.0:
+jss-default-unit@^4.0.1, jss-default-unit@^4.1.0:
   version "4.1.3"
   resolved "http://registry.npm.taobao.org/jss-default-unit/download/jss-default-unit-4.1.3.tgz#301ace90cf4c2c06aca7198de1c7b86152bb3585"
 
@@ -1991,17 +1998,28 @@ jss-expand@^1.6.0:
   version "1.6.0"
   resolved "http://registry.npm.taobao.org/jss-expand/download/jss-expand-1.6.0.tgz#a7b3eb0de911326eff8cecb6884b3662f405303b"
 
-jss-extend@^2.0.4:
+jss-extend@^2.0.1, jss-extend@^2.0.4:
   version "2.0.6"
   resolved "http://registry.npm.taobao.org/jss-extend/download/jss-extend-2.0.6.tgz#fc99e334b4e3feb96ce3382dcd22792ab00496b0"
   dependencies:
     warning "^3.0.0"
 
-jss-nested@^2.5.0:
+jss-nested@^2.4.0, jss-nested@^2.5.0:
   version "2.5.0"
   resolved "http://registry.npm.taobao.org/jss-nested/download/jss-nested-2.5.0.tgz#d1a5ec778bcc3352616c8917abbed0b80ef1286f"
   dependencies:
     warning "^3.0.0"
+
+jss-preset-default@^0.4.0:
+  version "0.4.0"
+  resolved "http://registry.npm.taobao.org/jss-preset-default/download/jss-preset-default-0.4.0.tgz#503e814e8c87456cdd81fbe4f3f5e2fdcbfb5dad"
+  dependencies:
+    jss-camel-case "^2.0.0"
+    jss-default-unit "^4.0.1"
+    jss-extend "^2.0.1"
+    jss-nested "^2.4.0"
+    jss-props-sort "^2.0.0"
+    jss-vendor-prefixer "^3.0.0"
 
 jss-preset-default@^0.9.0:
   version "0.9.0"
@@ -2026,7 +2044,7 @@ jss-vendor-prefixer@^3.0.0:
   dependencies:
     css-vendor "^0.3.8"
 
-jss@^5.5.6:
+jss@^5.5.4, jss@^5.5.6:
   version "5.5.6"
   resolved "http://registry.npm.taobao.org/jss/download/jss-5.5.6.tgz#30107928dc6f608f6b8e3e70e0577edc8a94e216"
   dependencies:

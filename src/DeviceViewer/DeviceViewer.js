@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import Device from './Device'
-import injectStyles from 'react-jss'
+import { StyleSheet, css } from 'aphrodisiac'
 import cx from 'classnames'
 
 class DeviceViewer extends Component {
   render() {
-    const {props: {src, sheet: {classes:s}}} = this
-    pd(s)
+    const {props: {src}} = this
     return (
-      <div className={s.DeviceViewer}>
-        <div className={s.views}>
-          <Device className={s.view} device='laptop' src={src} />
+      <div className={css(s.DeviceViewer)}>
+        <div className={css(s.views)}>
+          <div className={cx(css(s.view), 'laptop')}><Device device='laptop' src={src} /></div>
           <Device className={s.view} device='tablet' src={src} landscape />
           <Device className={s.view} device='phone' src={src} />
         </div>
@@ -19,7 +18,7 @@ class DeviceViewer extends Component {
   }
 }
 
-const styles = {
+const s = StyleSheet.create({
   DeviceViewer: {
     display: 'flex',
     'align-items': 'center',
@@ -68,7 +67,6 @@ const styles = {
       'transform': 'translate3d(800px, 110px, 0) scale(0.5)',
     }
   },
+})
 
-}
-
-export default injectStyles(styles)(DeviceViewer)
+export default DeviceViewer
