@@ -7,8 +7,8 @@ main() {
 }
 
 build() {
-  rm dist/* 2>/dev/null
-  babel src -d dist
+  rm build/* 2>/dev/null
+  babel src -d build
 }
 
 test() {
