@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 
 /**
- * import IconHome from './home.svg'
- *
- * <Icon src={IconHome} />
+ * <Icon src={require('./home.svg')} />
  **/
 class Icon extends Component {
   render() {
