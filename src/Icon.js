@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 /**
  * import IconHome from './home.svg'
  *
- * <Icon href={IconHome} />
+ * <Icon src={IconHome} />
  **/
 class Icon extends Component {
   render() {
-    const {props: {href}} = this
+    const {props: {src}} = this
     return (
       <svg className='icon'>
-        <use xlinkHref={href} />
+        <use xlinkHref={src} />
       </svg>
     )
   }
