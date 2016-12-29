@@ -1,17 +1,15 @@
-import React, {Component} from "react"
-import {render} from "react-dom"
-import {Layout} from "../src"
+import React from "react"
+import { render } from "react-dom"
 
-class App extends Component {
+const pages = [
+  require('./Grid').default
+]
+
+class App extends React.Component {
   render() {
-    var top = <div>Top</div>
-    var side = <div>Side</div>
-    var main = <div style={{height: "1000px"}}>main</div>
     return (
       <div>
-        {/* <Layout top={top} side={side} main={main} /> */}
-        {/*<Layout top={top} main={main} />*/}
-        <Layout side={side} main={main} />
+        {pages.map((v, i) => React.createElement(v, {key: i}))}
       </div>
     )
   }
