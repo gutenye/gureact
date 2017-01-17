@@ -29,6 +29,18 @@ Object.keys(_DeviceViewer).forEach(function (key) {
   });
 });
 
+var _Grid = require('./Grid/Grid');
+
+Object.keys(_Grid).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Grid[key];
+    }
+  });
+});
+
 var _Icon = require('./Icon');
 
 var _Icon2 = _interopRequireDefault(_Icon);
