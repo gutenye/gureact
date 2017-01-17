@@ -2,7 +2,8 @@ import React from "react"
 import { render } from "react-dom"
 
 const pages = [
-  require('./Grid').default
+  //require('./Grid').default
+  require('./DeviceViewer').default
 ]
 
 class App extends React.Component {
