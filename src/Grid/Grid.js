@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+// <Col w={1} md={1/2} lg={1/3}>
 export class Col extends React.Component {
   render() {
     const {props: {children}, props} = this
@@ -12,13 +13,18 @@ export class Col extends React.Component {
   }
 }
 
+// 1/3 -> 33.3333
+function toPrecent(value) {
+  return (value * 100).toPrecision(4)
+}
+
 const _Col = styled.div`
   display: inline-block;
-  width: ${({w}) => w}%;
+  width: ${p => toPrecent(p.w || 1)}%;
   box-sizing: border-box;
   padding: 0 12px;
   @media (min-width: 426px) {
-    width: ${({sm}) => sm}%;
+    ${p => p.sm ? `width: ${p.sm}%;` : ''}
   }
 `
 
