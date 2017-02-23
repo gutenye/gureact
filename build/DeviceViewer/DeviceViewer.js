@@ -60,15 +60,11 @@ var DeviceViewer = (_temp = _class = function (_Component) {
           phonePos = _props.phonePos;
 
       return _react2.default.createElement(
-        Root,
-        null,
-        _react2.default.createElement(
-          RootInner,
-          { scale: scale },
-          _react2.default.createElement(Device2, { device: 'laptop', src: src, pos: laptopPos }),
-          _react2.default.createElement(Device2, { device: 'tablet', landscape: true, pos: tabletPos, src: src }),
-          _react2.default.createElement(Device2, { device: 'phone', pos: phonePos, src: src })
-        )
+        RootInner,
+        { scale: scale },
+        _react2.default.createElement(Device2, { device: 'laptop', src: src, pos: laptopPos }),
+        _react2.default.createElement(Device2, { device: 'tablet', landscape: true, pos: tabletPos, src: src }),
+        _react2.default.createElement(Device2, { device: 'phone', pos: phonePos, src: src })
       );
     }
   }]);

@@ -19,13 +19,11 @@ class DeviceViewer extends Component {
   render() {
     const {src, scale, laptopPos, tabletPos, phonePos} = this.props
     return (
-      <Root>
         <RootInner scale={scale}>
           <Device2 device='laptop' src={src} pos={laptopPos} />
           <Device2 device='tablet' landscape pos={tabletPos} src={src} />
           <Device2 device='phone' pos={phonePos} src={src} />
         </RootInner>
-      </Root>
     )
   }
 }
