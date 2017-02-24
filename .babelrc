@@ -1,10 +1,11 @@
 {
   "presets": [
-    "es2015",
-    "stage-0",
+    ["env", {"targets": {"browsers": ["last 2 versions"]}}],
     "react"
   ],
   "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties",
     "transform-decorators-legacy"
   ]
 }

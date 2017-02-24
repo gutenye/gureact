@@ -11,6 +11,11 @@ build() {
   babel src -d build
 }
 
+watch() {
+  rm build/* 2>/dev/null
+  babel src -w -d build
+}
+
 test() {
   (cd test && ./ake)
 }
@@ -19,4 +24,5 @@ case "$1" in
   "" ) main ;;
   b | build ) build ;;
   t | test ) test ;;
+  w | watch ) watch ;;
 esac

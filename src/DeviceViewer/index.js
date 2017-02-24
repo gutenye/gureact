@@ -1,1 +1,1 @@
-export DeviceViewer from './DeviceViewer'
+export { default as DeviceViewer } from './DeviceViewer'

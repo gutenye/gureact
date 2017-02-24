@@ -6,9 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "scripts": {
-    "prepublish": "./ake build"
-  },
   "eslintConfig": {
     "extends": "@gutenye/react-app"
   },
