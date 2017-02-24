@@ -4,11 +4,12 @@ import { Upload } from 'antd'
 import { MdCreate, MdVisibility } from 'react-icons/lib/md'
 
 //
-// <ImageUpload size />
+// <ImageUpload size>upload
 //
 class ImageUpload extends React.Component {
   state = {
-    imageUrl: null
+    //imageUrl: null
+    imageUrl: true
   }
 
   render() {
@@ -32,7 +33,7 @@ class ImageUpload extends React.Component {
                 <MdVisibility />
               </div>
             </div> :
-            <span className='trigger'>upload image</span>
+            <span className='trigger'>{this.props.children}</span>
           }
         </Upload>
       </Root>
