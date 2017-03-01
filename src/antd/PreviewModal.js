@@ -1,26 +1,29 @@
-import React from 'react'
+import { React } from './vendor'
 import { injectGlobal } from 'styled-components'
 import { Modal } from 'antd'
 
 injectGlobal`
-  .ImageModal {
+  .PreviewModal {
     .ant-modal-body {
       padding: 0;
-      line-height: 0;      /* remove a whitespace bug */
+      img {
+        vertical-align: bottom;
+      }
     }
   }
 `
 
+// PreviewModal: without padding and footer
 //
-// <ImageModal visible onCancel width />
+// <PreviewModal width visible onCancel />
 //   <img />
-// <ImageModal>
+// <PreviewModal>
 //
-class ImageModal extends React.Component {
+class PreviewModal extends React.Component {
   render() {
     return (
       <Modal
-        className='ImageModal'
+        className='PreviewModal'
         footer={null}
         {...this.props}
       >
@@ -30,4 +33,4 @@ class ImageModal extends React.Component {
   }
 }
 
-export default ImageModal
+export default PreviewModal
