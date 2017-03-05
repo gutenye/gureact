@@ -3,7 +3,7 @@
 export PATH="node_modules/.bin:$PATH"
 
 main() {
-  webpack-dev-server --inline --hot
+  (cd test && webpack-dev-server --inline)
 }
 
 build() {
@@ -16,13 +16,8 @@ watch() {
   babel src -w -d build
 }
 
-test() {
-  (cd test && ./ake)
-}
-
 case "$1" in
   "" ) main ;;
   b | build ) build ;;
-  t | test ) test ;;
   w | watch ) watch ;;
 esac

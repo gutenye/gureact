@@ -1,4 +1,4 @@
-import { React } from './vendor'
+import React from './vendor'
 import { injectGlobal } from 'styled-components'
 import { Modal } from 'antd'
 

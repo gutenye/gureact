@@ -2,19 +2,19 @@ module.exports = {
   entry: "./App",
 
   output: {
-    path: `${__dirname}/dist`,
+    path: `${__dirname}/build`,
     filename: "app.js",
   },
 
   module: {
-    loaders: [
-      { test: /\.js$/, loader: "babel", include: /App.js|gureact/ },
-      //{ test: /\.js$/, loader: "babel", include: /App.js/ },
+    rules: [
+      { test: /\.js$/, use: "babel-loader", include: /App.js|gureact/ },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
     ]
   },
 
   devServer: {
-    port: 3003,
+    port: 3011,
     host: "0.0.0.0",
     historyApiFallback: true,
   },

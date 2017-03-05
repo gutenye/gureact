@@ -1,4 +1,4 @@
-import { React, styled, NavLink } from './vendor'
+import React, { styled, NavLink } from './vendor'
 import { isEmpty } from 'lodash'
 import { MdDelete } from './icons'
 import { Input, Button } from 'antd'

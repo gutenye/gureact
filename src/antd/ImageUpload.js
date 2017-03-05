@@ -1,4 +1,4 @@
-import { React, styled } from './vendor'
+import React, { styled } from './vendor'
 import { Upload } from 'antd'
 import { MdCreate, MdVisibility } from 'react-icons/lib/md'
 import PreviewModal from './PreviewModal'

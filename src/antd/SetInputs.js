@@ -1,4 +1,4 @@
-import { React } from './vendor'
+import React from './vendor'
 import { InputNumber } from 'antd'
 import { compose, withState, withProps } from 'recompose'
 import { set } from 'lodash'

@@ -1,4 +1,4 @@
-import { React } from './vendor'
+import React from './vendor'
 import { Select } from 'antd'
 import { isPlainObject } from 'lodash'
 
