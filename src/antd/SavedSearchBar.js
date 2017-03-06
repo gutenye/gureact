@@ -1,12 +1,9 @@
 import React, { styled, NavLink } from './vendor'
 import { isEmpty } from 'lodash'
 import { MdDelete } from './icons'
-import { Input, Button } from 'antd'
+import { Input } from 'gureact/antd'
+import { Button } from 'antd'
 import SelectWithOptions from './SelectWithOptions'
-const a = {
-  Input,
-  SelectWithOptions
-}
 
 function stringQuerier(obj) {
   obj.parseQuery = (a) => a
@@ -21,8 +18,8 @@ function arrayQuerier(obj) {
 }
 
 const ITEMS = {
-  input: stringQuerier(a.Input),
-  tags: arrayQuerier(a.SelectWithOptions),
+  input: stringQuerier(Input),
+  tags: arrayQuerier(SelectWithOptions),
 }
 const NAME = {
   zh: {
@@ -54,26 +51,32 @@ class SavedSearchBar extends React.Component {
     locale: 'en'
   }
 
+  // state: {
+  //   activeKey: root custom <index>
+  //   isRoot, isCustom, isSaved,
+  //   query: fork props.savedSearchs[index].query
+  // }
+  state = {
+    ...this.getState(),
+  }
+
   render() {
-    const {locale, match, savedSearchs, items, location} = this.props
-    const activeKey = this.activeKey()
-    const isCustom = activeKey === 'custom'
-    const isSaved = activeKey !== 'root' && activeKey !== 'custom'
+    const {locale, match, savedSearchs, items} = this.props
+    const {query, isCustom, isSaved} = this.state
     const name = NAME[locale]
-    const query = isSaved ? savedSearchs[activeKey].query : location.query
     return (
       <Root>
         <div className='tabbar'>
-          <NavLink to={match.url} exact isActive={() => activeKey === 'root'}>{name.all}</NavLink>
+          <NavLink to={match.url} exact isActive={this.isActive('root')}>{name.all}</NavLink>
           {savedSearchs.map((v,index) =>
-          <NavLink to={`${match.url}?saved=${index}`} isActive={() => activeKey === index} key={index}>{v.name}</NavLink>
+          <NavLink to={`${match.url}?saved=${index}`} isActive={this.isActive(index)} key={index}>{v.name}</NavLink>
           )}
           {isCustom && <a className='active'>{name.customSearch}</a>}
         </div>
         <div className='searcharea'>
           {items.map(({type, field, ...rest}) => {
             const Item = ITEMS[type]
-            return <Item defaultValue={query[field] ? Item.parseQuery(query[field]) : null} key={field} {...rest} />
+            return <Item value={query[field]} onChange={this.onChange(field)} key={field} {...rest} />
           })}
           {isCustom &&
             <Button onClick={this.saveSearch}>{name.saveSearch}</Button>
@@ -86,19 +89,43 @@ class SavedSearchBar extends React.Component {
     )
   }
 
-  // -> 'root' 'custom' <index>
-  activeKey = () => {
-    const {location} = this.props
-    if (isEmpty(location.query))
-      return 'root'
-    else if ('saved' in location.query)
-      return parseInt(location.query.saved, 10)
-    else
-      return 'custom'
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.getState(nextProps))
+  }
+
+  getState(props) {
+    const {location, savedSearchs, items} = props || this.props
+    var activeKey, isRoot = false, isCustom = false, isSaved = false
+    if (isEmpty(location.query)) {
+      activeKey = 'root'
+      isRoot = true
+    } else if ('saved' in location.query) {
+      activeKey = parseInt(location.query.saved, 10)
+      isSaved = true
+    } else {
+      activeKey = 'custom'
+      isCustom = true
+    }
+
+    var query = isSaved ? savedSearchs[activeKey].query : location.query
+    items.forEach(item => {
+      query[item.field] = ITEMS[item.type].parseQuery(query[item.field] || '')
+    })
+
+    return {query, activeKey, isRoot, isCustom, isSaved}
+  }
+
+  isActive = (key) => () => {
+    return this.state.activeKey === key
+  }
+
+  onChange = (field) => (value) => {
+    const {query} = this.state
+    query[field] = value
+    this.setState({query})
   }
 
   saveSearch = () => {
-
   }
 
   deleteSearch = () => {

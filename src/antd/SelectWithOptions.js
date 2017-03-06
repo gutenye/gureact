@@ -5,19 +5,19 @@ import { isPlainObject } from 'lodash'
 //
 // <SelectWithOptions
 //   options = [value], [{name}]
-//   key = 'name'*
+//   field = 'name'*
 //   tokenSeparators = [',']
 //
 class SelectWithOptions extends React.Component {
   static defaultProps = {
-    key: 'name',
+    field: 'name',
     tokenSeparators: [','],
   }
 
   render() {
-    var {options, key, ...rest} = this.props
+    var {options, field, ...rest} = this.props
     if (isPlainObject(options[0]))
-      options = options.map(v => v[key])
+      options = options.map(v => v[field])
     return (
       <Select {...rest}>
         {options.map(v =>
