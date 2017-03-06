@@ -3,6 +3,10 @@ import { MdMenu } from '../icons'
 import ButtonLink from '../../ButtonLink'
 
 class Header extends React.Component {
+  static defaultProps = {
+    actions: [],
+  }
+
   render() {
     const {title, actions, openDrawer} = this.props
     return (

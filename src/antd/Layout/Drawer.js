@@ -1,10 +1,10 @@
-import React, { styled, tablet, desktop, tabletOnly, Link, mobileOnly } from '../vendor'
+import React, { withRouter, styled, tablet, desktop, tabletOnly, Link, mobileOnly } from '../vendor'
 import { Menu, Button } from 'antd'
 
 const isTablet = window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches
 const menuMode = isTablet ? 'vertical' : 'inline'
-pd(1, isTablet, menuMode)
 
+@withRouter
 class Drawer extends React.Component {
   render() {
     const {appName, menu, isOpen} = this.props
@@ -21,7 +21,6 @@ class Drawer extends React.Component {
               </Menu.SubMenu>
             )}
           </Menu>
-          <Button onClick={this.logout}>登出</Button>
         </div>
       </Root>
     )
