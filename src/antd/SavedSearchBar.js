@@ -1,7 +1,7 @@
 import React, { styled, NavLink } from './vendor'
 import { isEmpty } from 'lodash'
-import { Input } from 'gureact/antd'
 import { Button } from 'antd'
+import Input from './Input'
 import SelectWithOptions from './SelectWithOptions'
 import MdDelete from 'react-icons/md/delete'
 
