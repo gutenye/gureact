@@ -1,9 +1,9 @@
 import React, { styled, NavLink } from './vendor'
 import { isEmpty } from 'lodash'
-import { MdDelete } from './icons'
 import { Input } from 'gureact/antd'
 import { Button } from 'antd'
 import SelectWithOptions from './SelectWithOptions'
+import MdDelete from 'react-icons/md/delete'
 
 function stringQuerier(obj) {
   obj.parseQuery = (a) => a
@@ -82,7 +82,7 @@ class SavedSearchBar extends React.Component {
             <Button onClick={this.saveSearch}>{name.saveSearch}</Button>
           }
           {isSaved &&
-            <MdDelete onClick={this.deleteSearch} />
+            <MdDelete button small gray onClick={this.deleteSearch} />
           }
         </div>
       </Root>

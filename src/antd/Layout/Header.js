@@ -1,5 +1,5 @@
 import React, { styled, tablet, desktop } from '../vendor'
-import { MdMenu } from '../icons'
+import MdMenu from 'react-icons/md/menu'
 import ButtonLink from '../../ButtonLink'
 
 class Header extends React.Component {
