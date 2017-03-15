@@ -1,0 +1,11 @@
+stages:
+  - build
+variables:
+  GIT_SSL_NO_VERIFY: "1"
+
+mirror:
+  stage: build
+  script:
+    - git-push git@code.aliyun.com:gutenye/gureact.git
+  image: ilyasemenov/gitlab-ci-git-push
+
