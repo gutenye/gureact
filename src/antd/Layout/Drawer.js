@@ -41,8 +41,10 @@ const Root = styled.aside`
   left: 0;
   z-index: 20;
   height: 100%;
+  
   .drawer {
     height: 100%;
+    background-color: white;
   }
 
   ${mobileOnly} {

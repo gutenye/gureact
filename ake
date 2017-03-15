@@ -2,7 +2,7 @@
 
 export PATH="node_modules/.bin:$PATH"
 
-main() {
+test() {
   (cd test && webpack-dev-server --inline)
 }
 
@@ -17,7 +17,7 @@ watch() {
 }
 
 case "$1" in
-  "" ) main ;;
+  test ) test ;;
   b | build ) build ;;
   w | watch ) watch ;;
 esac

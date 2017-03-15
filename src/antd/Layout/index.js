@@ -3,13 +3,18 @@ import { ThemeProvider } from 'styled-components'
 import { merge } from 'lodash'
 import Header from './Header'
 import Drawer from './Drawer'
+import { Content, Left, Right } from './Content'
 
 // <Layout
+//   STYLE: inner
 //   header = {
 //     actions: [{title, to, primary}]
 //   drawer = {
 //     appName,
 //     menu: [{title, icon, children: [{title, to}]}]
+//
+// body { background-color: rgb(235, 238, 240); }
+//
 const theme = {
   primary: {
     background: '#3B5999',
@@ -33,18 +38,20 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { drawer, header } = this.props
+    const { drawer, header, inner } = this.props
     const { drawerIsOpen } = this.state
     return (
       <ThemeProvider theme={v => merge(theme, v)}>
         <Root>
           <Drawer isOpen={drawerIsOpen} closeDrawer={this.closeDrawer} {...drawer} />
-          <Right>
-            <Header openDrawer={this.openDrawer} {...header} />
-            <Content>
-              {this.props.children}
-            </Content>
-          </Right>
+          <DrawerRight>
+            <Header openDrawer={this.openDrawer} header={header} />
+            <HeaderDown>
+              <HeaderDownInner inner={inner}>
+                {this.props.children}
+              </HeaderDownInner>
+            </HeaderDown>
+          </DrawerRight>
         </Root>
       </ThemeProvider>
     )
@@ -61,7 +68,7 @@ class Layout extends React.Component {
 
 const Root = styled.div``
 
-const Right = styled.div`
+const DrawerRight = styled.div`
   ${tablet} {
     margin-left: ${p => p.theme.drawer.tabletWidth};
   }
@@ -71,8 +78,28 @@ const Right = styled.div`
   }
 `
 
-const Content = styled.div`
-  margin-top: ${p => p.theme.header.height};
+// use padding-top, for margin can be collapsed.
+const HeaderDown = styled.div`
+  padding-top: ${p => p.theme.header.height};
 `
+
+const HeaderDownInner = styled.div`
+  ${p => p.inner && `
+    background-color: white;
+    margin-top: 24px;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    ${desktop} {
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+  `}
+`
+
+Layout.Header = Header
+Layout.Content = Content
+Layout.Left = Left
+Layout.Right = Right
 
 export default Layout

@@ -6,7 +6,7 @@ import { isPlainObject } from 'lodash'
 // <SelectWithOptions
 //   options = [value], [{name}]
 //   field = 'name'*
-//   tokenSeparators = [',']
+//   onSearch
 //
 class SelectWithOptions extends React.Component {
   static defaultProps = {
@@ -15,16 +15,21 @@ class SelectWithOptions extends React.Component {
   }
 
   render() {
-    var {options, field, ...rest} = this.props
+    var {options, field, onChange, onSearch, ...rest} = this.props
     if (isPlainObject(options[0]))
       options = options.map(v => v[field])
     return (
-      <Select {...rest}>
+      <Select onChange={this.onChange} {...rest}>
         {options.map(v =>
         <Select.Option key={v} value={v}>{v}</Select.Option>
         )}
       </Select>
     )
+  }
+
+  onChange = (value) => {
+    this.props.onChange(value)
+    this.props.onSearch(value)
   }
 }
 

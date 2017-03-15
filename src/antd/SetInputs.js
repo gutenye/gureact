@@ -1,9 +1,10 @@
 import React from './vendor'
 import { InputNumber } from 'antd'
-import { compose, withState, withProps } from 'recompose'
+import { compose, withState, withProps, lifecycle } from 'recompose'
 import { set } from 'lodash'
 
-// record, field
+// <SetNumber record field />
+
 const AddUpdateObject = compose(
   withState('value', 'setValue', props => props.record[props.field]),
   withProps(props => ({
@@ -13,7 +14,12 @@ const AddUpdateObject = compose(
         props.onChange(value)
       props.setValue(value)
     }
-  }))
+  })),
+  lifecycle({
+    componentWillReceiveProps(next) {
+      this.setState({value: next.record[next.field]})
+    }
+  })
 )
 
 export const SetNumber = AddUpdateObject(props => <InputNumber {...props} />)
