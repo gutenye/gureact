@@ -1,4 +1,4 @@
-import { simple2complex } from './TreeSelect'
+import { simple2complex } from '../TreeSelect'
 
 
 const simple = [
@@ -11,11 +11,14 @@ const simple = [
 const complex = [
   { label: 'China', value: 'China', key: 'China', children: [
     { label: 'Zhejiang', value: 'China.Zhejiang', key: 'China.Zhejiang', children: [
-      { label: 'Yiwu', value: 'China.Zhejiang.Yiwu', key: 'China.zhejiang.Yiwu' },
-      { label: 'Hangzhou', value: 'China.Zhejiang.Hangzhou', key: 'China.zhejiang.Hangzhou' },
+      { label: 'Yiwu', value: 'China.Zhejiang.Yiwu', key: 'China.Zhejiang.Yiwu' },
+      { label: 'Hangzhou', value: 'China.Zhejiang.Hangzhou', key: 'China.Zhejiang.Hangzhou' },
     ]},
     { label: 'Shanghai', value: 'China.Shanghai', key: 'China.Shanghai' }
   ]}
 ]
 
-simple2complex(simple, complex)
+test("simple", () => {
+  const left = simple2complex(simple)
+  expect(left).toEqual(complex)
+})

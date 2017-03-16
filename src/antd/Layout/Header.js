@@ -3,6 +3,7 @@ import { MdMenu } from 'react-icons'
 import { Button } from 'gureact'
 import { isString } from 'lodash'
 import { app } from 'states'
+import Breadcrumb from '../Breadcrumb'
 
 // <Header header openDrawer
 //
@@ -19,11 +20,13 @@ import { app } from 'states'
 class Header extends React.Component {
   render() {
     const {header, openDrawer} = this.props
-    const {title, actions} = {actions: [], ...header}
+    const {title, actions} = {title: '', actions: [], ...header}
     return (
       <Root>
         <MdMenu className='icon-menu' onClick={openDrawer} />
-        <div className='title'>{title}</div>
+        <div className='title'>
+          <Breadcrumb items={title} />
+        </div>
         <div className='actions'>
           {actions.map(({title, action, ...rest}) =>
           <Button key={title} action={this.getAction(action)} {...rest}>{title}</Button>

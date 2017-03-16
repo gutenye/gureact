@@ -3,7 +3,7 @@ import { isEmpty, remove, maxBy } from 'lodash'
 import { Dropdown, Menu, Modal } from 'antd'
 import { FormModal } from 'gureact/antd'
 import { MdMoreVert } from 'react-icons'
-import INPUTS from './inputs'
+import { INPUTS } from './Inputs'
 
 //
 // /posts?saved=:index
@@ -94,16 +94,6 @@ class SavedSearchBar extends React.Component {
     return values
   }
 
-  // {tags: ['a', 'b']} -> {tags: 'a,b'}
-  toQueries() {
-    var query = {}
-    this.props.items.forEach(item => {
-      const value = this.state.values[item.field]
-      if (!isEmpty(value))
-        query[item.field] = INPUTS[item.type].toQuery(value)
-    })
-    return query
-  }
 
   isActive = (id) => () => {
     return this.state.id === id
@@ -113,6 +103,21 @@ class SavedSearchBar extends React.Component {
     const {values} = this.state
     values[field] = value
     this.setState({values})
+  }
+
+  onSearch = () => {
+    this.props.history.push({query: this.toQueries()})
+  }
+
+  // {tags: ['a', 'b']} -> {tags: 'a,b'}
+  toQueries() {
+    var query = {}
+    this.props.items.forEach(item => {
+      const value = this.state.values[item.field]
+      if (!isEmpty(value))
+        query[item.field] = INPUTS[item.type].toQuery(value)
+    })
+    return query
   }
 
   onMenuClick = (e) => {
@@ -152,9 +157,6 @@ class SavedSearchBar extends React.Component {
     return maxBy([{id: 0}, ...savedSearchs], 'id').id + 1
   }
 
-  onSearch = () => {
-    this.props.history.push({query: this.toQueries()})
-  }
 }
 
 const Root = styled.div`

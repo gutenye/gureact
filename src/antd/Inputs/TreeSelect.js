@@ -1,20 +1,43 @@
-import React, { compose, withProps } from 'gureact/antd/vendor'
+import React from 'react'
 import { TreeSelect } from 'antd'
 
-/* support simple data: [
+/*
+  onSearch(value)
+  treeNodeLabelProp: 'value',
+  showSearch: true,
+  allowClear: true,
+  treeDefaultExpandAll: true,
+
+  support simple data: [
     { name: 'China', children: [
       { name: 'Zhejiang', children: [{name: 'Yiwu'}, {name: 'Hangzhou'}] },
       { name: 'Shanghai' },
+*/
+export default class GuTreeSelect extends React.Component {
+  static defaultProps = {
+    treeNodeLabelProp: 'value',
+    showSearch: true,
+    allowClear: true,
+    treeDefaultExpandAll: true,
+  }
 
+  render() {
+    const {options, onChange, onSearch, ...rest} = this.props
+    rest.treeData = simple2complex(options)
+    rest.onChange = (value, label, extra) => {
+      onChange(value, label, extra)
+      if (onSearch)
+        onSearch(value)
+    }
+    return <TreeSelect {...rest} />
+  }
+}
+
+/*
   complex data: [
     { label: 'China', value: 'China', key: 'China', children: [
       { label: 'Zhejiang', value: 'China.Zhejiang', key: 'China.Zhejiang'
 */
-
-export default compose(
-  withProps((props) => ({treeData: simple2complex(props.treeData)}))
-)(TreeSelect)
-
 export function simple2complex(data) {
   return mapChildren(data, null)
 }

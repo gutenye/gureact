@@ -1,7 +1,7 @@
 import React, { styled } from './vendor'
 import ReactDOM from 'react-dom'
 import { Form, Modal as Modal_, Button } from 'antd'
-import INPUTS from './inputs'
+import { INPUTS } from './Inputs'
 
 // FormModal.open({
 //   items: [

@@ -1,14 +1,14 @@
-import React from './vendor'
+import React from '../vendor'
 import { Select } from 'antd'
 import { isPlainObject } from 'lodash'
 
 //
-// <SelectWithOptions
+// <Select
 //   options = [value], [{name}]
 //   field = 'name'*
 //   onSearch
 //
-class SelectWithOptions extends React.Component {
+class CustomSelect extends React.Component {
   static defaultProps = {
     field: 'name',
     tokenSeparators: [','],
@@ -29,8 +29,9 @@ class SelectWithOptions extends React.Component {
 
   onChange = (value) => {
     this.props.onChange(value)
-    this.props.onSearch(value)
+    if (this.props.onSearch)
+      this.props.onSearch(value)
   }
 }
 
-export default SelectWithOptions
+export default CustomSelect
