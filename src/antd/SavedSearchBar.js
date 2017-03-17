@@ -1,5 +1,5 @@
 import React, { styled, NavLink, withRouter } from './vendor'
-import { isEmpty, remove, maxBy } from 'lodash'
+import { isEmpty, remove, maxBy, difference } from 'lodash'
 import { Dropdown, Menu, Modal } from 'antd'
 import { FormModal } from 'gureact/antd'
 import { MdMoreVert } from 'react-icons'
@@ -65,7 +65,8 @@ class SavedSearchBar extends React.Component {
   getState(props) {
     const {location, savedSearchs, items} = props || this.props
     var id, isRoot = false, isCustom = false, isSaved = false
-    if (isEmpty(location.query)) {
+    const diffs = difference(Object.keys(location.query), ['page', 'limit'])
+    if (diffs.length === 0) {
       id = 'root'
       isRoot = true
     } else if ('saved' in location.query) {
