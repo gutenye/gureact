@@ -5,6 +5,7 @@ import TreeSelect from './TreeSelect'
 import Input from './Input'
 import Select from './Select'
 import Textarea from './Textarea'
+import InputTree from './InputTree'
 
 /*
 Goals
@@ -18,6 +19,14 @@ Goals
 can not use recompose, hoc makes form.getFieldDecorator()(<Input />) not working.
 */
 
+export {
+  Input,
+  Textarea,
+  Select,
+  TreeSelect,
+  InputTree,
+}
+
 // - add onSearch
 // - trim white space
 // - serialize and deserialize to url query
@@ -30,11 +39,5 @@ export const INPUTS = {
   'TreeSelect': stringQuerier(TreeSelect),
 }
 
-export {
-  Input,
-  Textarea,
-  Select,
-  TreeSelect,
-}
 
 export const SetInputNumber = addUpdateViaRecord(InputNumber)
