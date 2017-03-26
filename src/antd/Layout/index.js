@@ -1,6 +1,5 @@
-import React, { styled, tablet, desktop } from '../vendor'
+import React, { styled, tablet, desktop, _ } from '../vendor'
 import { ThemeProvider } from 'styled-components'
-import { merge } from 'lodash'
 import Header from './Header'
 import Drawer from './Drawer'
 import { Content, Left, Right } from './Content'
@@ -41,7 +40,7 @@ class Layout extends React.Component {
     const { drawer, header, inner } = this.props
     const { drawerIsOpen } = this.state
     return (
-      <ThemeProvider theme={v => merge(theme, v)}>
+      <ThemeProvider theme={v => _.merge(theme, v)}>
         <Root>
           <Drawer isOpen={drawerIsOpen} closeDrawer={this.closeDrawer} {...drawer} />
           <DrawerRight>

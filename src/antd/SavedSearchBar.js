@@ -1,5 +1,4 @@
-import React, { styled, NavLink, withRouter } from './vendor'
-import { isEmpty, remove, maxBy, difference } from 'lodash'
+import React, { styled, NavLink, withRouter, _ } from './vendor'
 import { Dropdown, Menu, Modal } from 'antd'
 import { FormModal } from 'gureact/antd'
 import { MdMoreVert } from 'react-icons'
@@ -65,7 +64,7 @@ class SavedSearchBar extends React.Component {
   getState(props) {
     const {location, savedSearchs, items} = props || this.props
     var id, isRoot = false, isCustom = false, isSaved = false
-    const diffs = difference(Object.keys(location.query), ['page', 'limit'])
+    const diffs = _.difference(Object.keys(location.query), ['page', 'limit'])
     if (diffs.length === 0) {
       id = 'root'
       isRoot = true
@@ -115,7 +114,7 @@ class SavedSearchBar extends React.Component {
     var query = {}
     this.props.items.forEach(item => {
       const value = this.state.values[item.field]
-      if (!isEmpty(value))
+      if (!_.isEmpty(value))
         query[item.field] = INPUTS[item.type].toQuery(value)
     })
     return query
@@ -147,7 +146,7 @@ class SavedSearchBar extends React.Component {
     Modal.confirm({
       title: t.confirmDelete,
       onOk: () => {
-        remove(this.props.savedSearchs, {id: this.state.id})
+        _.remove(this.props.savedSearchs, {id: this.state.id})
         this.props.onUpdate(this.props.savedSearchs)
       }
     })
@@ -155,7 +154,7 @@ class SavedSearchBar extends React.Component {
 
   genId = () => {
     const {savedSearchs} = this.props
-    return maxBy([{id: 0}, ...savedSearchs], 'id').id + 1
+    return _.maxBy([{id: 0}, ...savedSearchs], 'id').id + 1
   }
 
 }

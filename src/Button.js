@@ -1,7 +1,4 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { Link as Link_ } from 'react-router-dom'
-import { omit, isString } from 'lodash'
+import React, { styled, css, _, Link as Link_ } from './vendor'
 
 // <Button
 //   action: link | fn
@@ -9,7 +6,7 @@ import { omit, isString } from 'lodash'
 class Button extends React.Component {
   render() {
     const {action, children, ...rest} = this.props
-    if (isString(action)) {
+    if (_.isString(action)) {
       return <Link to={action} {...rest}>{children}</Link>
     } else {
       return <Root onClick={action} {...rest}>{children}</Root>
@@ -34,7 +31,7 @@ const shared = css`
   `}
 `
 
-const Link = styled(p => <Link_ {...omit(p, 'primary')}>{p.children}</Link_>)`
+const Link = styled(p => <Link_ {..._.omit(p, 'primary')}>{p.children}</Link_>)`
   ${shared}
 `
 

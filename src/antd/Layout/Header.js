@@ -1,7 +1,6 @@
-import React, { styled, tablet, desktop } from '../vendor'
+import React, { styled, tablet, desktop, _ } from '../vendor'
 import { MdMenu } from 'react-icons'
 import { Button } from 'gureact'
-import { isString } from 'lodash'
 import { app } from 'states'
 import Breadcrumb from '../Breadcrumb'
 
@@ -38,7 +37,7 @@ class Header extends React.Component {
 
   getAction = (action) => {
     // '/posts'
-    if (isString(action) && action.startsWith('/')) {
+    if (_.isString(action) && action.startsWith('/')) {
       return action
     // 'save' | fn
     } else {

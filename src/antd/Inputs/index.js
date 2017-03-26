@@ -6,6 +6,8 @@ import Input from './Input'
 import Select from './Select'
 import Textarea from './Textarea'
 import InputTree from './InputTree'
+import Tags from './Tags'
+import ImageUpload from './ImageUpload'
 
 /*
 Goals
@@ -25,6 +27,8 @@ export {
   Select,
   TreeSelect,
   InputTree,
+  Tags,
+  ImageUpload
 }
 
 // - add onSearch
@@ -33,11 +37,13 @@ export {
 export const INPUTS = {
   'Input': stringQuerier(Input),
   'Textarea': stringQuerier(Textarea),
-  'Tags': arrayQuerier((props) => <Select tags {...props} />),
+  'Tags': arrayQuerier(Tags),
   'AutoComplete': stringQuerier(AutoComplete),
   'InputNumber': numberQuerier(InputNumber),
   'TreeSelect': stringQuerier(TreeSelect),
+  'Select': stringQuerier(Select),
+  'InputTree': stringQuerier(InputTree),
+  'ImageUpload': stringQuerier(ImageUpload),
 }
-
 
 export const SetInputNumber = addUpdateViaRecord(InputNumber)

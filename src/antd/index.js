@@ -1,4 +1,3 @@
-export { default as ImageUpload } from './ImageUpload'
 export { default as PreviewModal } from './PreviewModal'
 export { default as SavedSearchBar } from './SavedSearchBar'
 export { default as Layout } from './Layout'

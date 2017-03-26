@@ -2,7 +2,7 @@ import React from '../vendor'
 import { Input, TreeSelect } from 'gureact/antd'
 
 // <InputTree value onChange options
-class InputTree extends React.Component {
+class AntdInputTree extends React.Component {
   render() {
     const {value, onChange, options, defaultValue, placeholder } = this.props
     return (
@@ -18,4 +18,4 @@ class InputTree extends React.Component {
   }
 }
 
-export default InputTree
+export default AntdInputTree

@@ -1,16 +1,23 @@
-import React, { styled } from './vendor'
+import React, { styled } from '../vendor'
 import { Upload } from 'antd'
 import { MdCreate, MdVisibility } from 'react-icons'
-import PreviewModal from './PreviewModal'
+import PreviewModal from '../PreviewModal'
 
-// <ImageUpload> Upload Image
-//    value onUpload(response)
+// <ImageUpload>
+//    children: 'Upload Image'
+//    value onChange(value) valueExtractor(response)    // by default value is response.path
 //    action: '/upload'
 //    ---
 //    name: 'file'*
-//    onChange(info)
+//    onUpload(info)
 //
 class ImageUpload extends React.Component {
+  static defaultProps = {
+    onChange: () => {},
+    valueExtractor: (response) => response.path,
+    onUpload: () => {},
+  }
+
   state = {
     isPreviewOpen: false,
   }
@@ -23,8 +30,9 @@ class ImageUpload extends React.Component {
       showUploadList: false,
       onChange: (info) => {
         if (info.file.status === 'done') {
-          this.props.onUpload(info.file.response)
+          this.props.onChange(this.props.valueExtractor(info.file.response))
         }
+        this.props.onUpload(info)
       }
     }
     return (
@@ -35,7 +43,7 @@ class ImageUpload extends React.Component {
             <img className='thumb' src={value} alt='' />
             <div className='overlay'>
               <MdVisibility onClick={this.openPreview} />
-              <Upload {...uploadProps} {...this.props}>
+              <Upload {...uploadProps}>
                 <MdCreate />
               </Upload>
             </div>

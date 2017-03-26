@@ -1,19 +1,15 @@
-import React from 'react'
+import React, { _ } from '../vendor'
 import { TreeSelect } from 'antd'
 
 /*
+  treeData: {China: {Zhejiang: {Yiwu: 1, Hangzhou: 1}, Shanghai: 1}}
   onSearch(value)
   treeNodeLabelProp: 'value',
   showSearch: true,
   allowClear: true,
   treeDefaultExpandAll: true,
-
-  support simple data: [
-    { name: 'China', children: [
-      { name: 'Zhejiang', children: [{name: 'Yiwu'}, {name: 'Hangzhou'}] },
-      { name: 'Shanghai' },
 */
-export default class GuTreeSelect extends React.Component {
+class AntdTreeSelect extends React.Component {
   static defaultProps = {
     treeNodeLabelProp: 'value',
     showSearch: true,
@@ -34,21 +30,25 @@ export default class GuTreeSelect extends React.Component {
 }
 
 /*
-  complex data: [
+  {China: {Zhejiang: {Yiwu: 1, Hangzhou: 1}, Shanghai: 1}}
+  ->
+  [
     { label: 'China', value: 'China', key: 'China', children: [
       { label: 'Zhejiang', value: 'China.Zhejiang', key: 'China.Zhejiang'
 */
 export function simple2complex(data) {
-  return mapChildren(data, null)
+  return mapChildren(data, '')
 }
 
 // I'm recursive
-function mapChildren(children, parent) {
-  return children.map(v => {
-    const value = parent ? `${parent.value}.${v.name}` : v.name
-    const ret = {label: v.name, value, key: value }
-    if (v.children)
-      ret.children = mapChildren(v.children, ret)
-    return ret
+function mapChildren(a, parent) {
+  return _.map(a, (v,k) => {
+    const value = `${parent}${k}`
+    if (v === 1)
+      return {label: k, value, key: value}
+    else
+      return {label: k, value, key: value, children: mapChildren(v, `${value}.`)}
   })
 }
+
+export default AntdTreeSelect

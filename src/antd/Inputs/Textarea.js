@@ -1,8 +1,10 @@
 import { Input } from 'antd'
 import { compose, defaultProps } from 'recompose'
 
-export default compose(
+const AntdTextarea = compose(
   defaultProps({
     type: 'textarea'
   })
 )(Input)
+
+export default AntdTextarea

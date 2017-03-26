@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input } from 'antd'
 
-export default class GuInput extends React.Component {
+class AntdInput extends React.Component {
   render() {
     const {onChange, onSearch, ...rest} = this.props
     if (onChange)
@@ -15,3 +15,5 @@ export default class GuInput extends React.Component {
     return <Input {...rest} />
   }
 }
+
+export default  AntdInput

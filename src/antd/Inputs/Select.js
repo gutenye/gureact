@@ -1,6 +1,5 @@
-import React from '../vendor'
+import React, { _ } from '../vendor'
 import { Select } from 'antd'
-import { isPlainObject } from 'lodash'
 
 //
 // <Select
@@ -8,15 +7,16 @@ import { isPlainObject } from 'lodash'
 //   field = 'name'*
 //   onSearch
 //
-class CustomSelect extends React.Component {
+class AntdSelect extends React.Component {
   static defaultProps = {
+    options: [],
     field: 'name',
     tokenSeparators: [','],
   }
 
   render() {
     var {options, field, onChange, onSearch, ...rest} = this.props
-    if (isPlainObject(options[0]))
+    if (_.isPlainObject(options[0]))
       options = options.map(v => v[field])
     return (
       <Select onChange={this.onChange} {...rest}>
@@ -34,4 +34,4 @@ class CustomSelect extends React.Component {
   }
 }
 
-export default CustomSelect
+export default AntdSelect
