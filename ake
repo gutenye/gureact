@@ -18,8 +18,8 @@ watch() {
 
 publish() {
   version=$1
-  git tag $version
   git commit -am "publish $version"
+  git tag $version
   git push --tags
 }
 
