@@ -12,5 +12,3 @@ import {Layout} from "gureact"
 ```
 $ npm install gureact
 ```
-
-
