@@ -48,7 +48,7 @@ class ImageUpload extends React.Component {
               </Upload>
             </div>
           </div> :
-          <Upload className='empty' {...uploadProps} {...this.props}>{this.props.children}</Upload>
+          <Upload className='empty' {...uploadProps}>{this.props.children}</Upload>
           }
         </div>
         <PreviewModal width='512' visible={isPreviewOpen} onCancel={this.closePreview}>

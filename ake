@@ -16,8 +16,16 @@ watch() {
   babel src -w -d build
 }
 
+publish() {
+  version=$1
+  git tag $version
+  git commit -am "publish $version"
+  git push --tags
+}
+
 case "$1" in
   test ) test ;;
   b | build ) build ;;
   w | watch ) watch ;;
+  publish ) shift 1; publish "$@" ;;
 esac
