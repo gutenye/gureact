@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Device from './Device'
 
@@ -8,7 +8,7 @@ import Device from './Device'
 // tabletPos='180px, 230px'
 // phonePos='600px, 210px'
 
-class DeviceViewer extends Component {
+class DeviceViewer extends React.Component {
   static defaultProps = {
     scale: '1.0',
     laptopPos: '0px, 40px',
@@ -17,13 +17,13 @@ class DeviceViewer extends Component {
   }
 
   render() {
-    const {src, scale, laptopPos, tabletPos, phonePos} = this.props
+    const { src, scale, laptopPos, tabletPos, phonePos } = this.props
     return (
-        <RootInner scale={scale}>
-          <Device2 device='laptop' src={src} pos={laptopPos} />
-          <Device2 device='tablet' landscape pos={tabletPos} src={src} />
-          <Device2 device='phone' pos={phonePos} src={src} />
-        </RootInner>
+      <RootInner scale={scale}>
+        <DeviceStyled device="laptop" src={src} pos={laptopPos} />
+        <DeviceStyled device="tablet" landscape pos={tabletPos} src={src} />
+        <DeviceStyled device="phone" pos={phonePos} src={src} />
+      </RootInner>
     )
   }
 }
@@ -57,7 +57,7 @@ const RootInner = styled.div`
   }
 `
 
-const Device2 = styled(Device)`
+const DeviceStyled = styled(Device)`
   position: absolute;
   transform-origin: left top;
 

@@ -1,4 +1,6 @@
-import React, { styled, tablet, desktop, _ } from '../vendor'
+import React from 'react'
+import styled from 'styled-components'
+import { isString } from 'lodash'
 import { MdMenu } from 'react-icons'
 import { Button } from 'gureact'
 import { app } from 'states'
@@ -18,28 +20,30 @@ import Breadcrumb from '../Breadcrumb'
 //     }
 class Header extends React.Component {
   render() {
-    const {header, openDrawer} = this.props
-    const {title, actions} = {title: '', actions: [], ...header}
+    const { header, openDrawer } = this.props
+    const { title, actions } = { title: '', actions: [], ...header }
     return (
       <Root>
-        <MdMenu className='icon-menu' onClick={openDrawer} />
-        <div className='title'>
+        <MdMenu className="icon-menu" onClick={openDrawer} />
+        <div className="title">
           <Breadcrumb items={title} />
         </div>
-        <div className='actions'>
-          {actions.map(({title, action, ...rest}) =>
-          <Button key={title} action={this.getAction(action)} {...rest}>{title}</Button>
+        <div className="actions">
+          {actions.map(({ title, action, ...rest }) =>
+            <Button key={title} action={this.getAction(action)} {...rest}>
+              {title}
+            </Button>
           )}
         </div>
       </Root>
     )
   }
 
-  getAction = (action) => {
+  getAction = action => {
     // '/posts'
-    if (_.isString(action) && action.startsWith('/')) {
+    if (isString(action) && action.startsWith('/')) {
       return action
-    // 'save' | fn
+      // 'save' | fn
     } else {
       return () => {
         const method = this.props.header.methods[action] || action // call it later so that you can change methods later
@@ -61,16 +65,16 @@ const Root = styled.div`
   z-index: 10;
   border-bottom: 1px solid #ebeef0;
 
-  ${tablet} {
+  ${s.tabletMin} {
     left: ${p => p.theme.drawer.tabletWidth};
   }
 
-  ${desktop} {
+  ${s.desktopMin} {
     left: ${p => p.theme.drawer.desktopWidth};
   }
 
   > .icon-menu {
-    ${tablet} {
+    ${s.tabletMin} {
       display: none;
     }
   }

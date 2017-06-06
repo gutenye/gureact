@@ -1,4 +1,4 @@
-import React from '../vendor'
+import React from 'react'
 import Select from './Select'
 
 class AntdTags extends React.Component {

@@ -1,6 +1,7 @@
-import React, { styled } from './vendor'
+import React from 'react'
+import styled from 'styled-components'
 import ReactDOM from 'react-dom'
-import { Form, Modal as Modal_, Button } from 'antd'
+import { Form, Modal, Button } from 'antd'
 import { INPUTS } from './Inputs'
 
 // FormModal.open({
@@ -11,28 +12,30 @@ import { INPUTS } from './Inputs'
 @Form.create()
 class FormModal extends React.Component {
   render() {
-    const {close, items, form} = this.props
+    const { close, items, form } = this.props
     return (
-      <Modal visible footer={null} onCancel={close}>
-        <Form style={{marginTop: 30}} onSubmit={this.onSubmit}>
-          {items.map(({type, field, rules, ...rest}) => {
+      <ModalStyled visible footer={null} onCancel={close}>
+        <Form style={{ marginTop: 30 }} onSubmit={this.onSubmit}>
+          {items.map(({ type, field, rules, ...rest }) => {
             const INPUT = INPUTS[type]
             return (
               <Form.Item key={field}>
-                {form.getFieldDecorator(field, {rules: rules || []})(<INPUT autoComplete='off' {...rest} />)}
+                {form.getFieldDecorator(field, { rules: rules || [] })(
+                  <INPUT autoComplete="off" {...rest} />
+                )}
               </Form.Item>
             )
           })}
-          <Form.Item className='actions'>
+          <Form.Item className="actions">
             <Button onClick={close}>{t.cancel}</Button>
-            <Button type='primary' htmlType='submit'>{t.save}</Button>
+            <Button type="primary" htmlType="submit">{t.save}</Button>
           </Form.Item>
         </Form>
-      </Modal>
+      </ModalStyled>
     )
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault()
     this.props.form.validateFields((errors, values) => {
       if (errors) return
@@ -47,20 +50,20 @@ class FormModal extends React.Component {
 }
 
 FormModal.open = function(options) {
-  let div = document.createElement('div');
-  document.body.appendChild(div);
+  let div = document.createElement('div')
+  document.body.appendChild(div)
 
   function close() {
-    const unmountResult = ReactDOM.unmountComponentAtNode(div);
+    const unmountResult = ReactDOM.unmountComponentAtNode(div)
     if (unmountResult && div.parentNode) {
-      div.parentNode.removeChild(div);
+      div.parentNode.removeChild(div)
     }
   }
 
   ReactDOM.render(<FormModal {...options} close={close} />, div)
 }
 
-const Modal = styled(Modal_)`
+const ModalStyled = styled(Modal)`
   .actions {
     display: flex;
     justify-content: flex-end;
@@ -75,7 +78,7 @@ const TRANSLATIONS = {
   zh: {
     save: '保存',
     cancel: '取消',
-  }
+  },
 }
 const t = TRANSLATIONS[window.locale]
 

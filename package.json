@@ -1,7 +1,7 @@
 {
   "name": "gureact",
   "version": "1.0.5",
-  "main": "src/index.js",
+  "main": "",
   "eslintConfig": {
     "extends": "@gutenye/react-app"
   },

@@ -1,22 +1,32 @@
-import React, { withRouter, styled, tablet, desktop, tabletOnly, Link, mobileOnly } from '../vendor'
+import React from 'react'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import s from '../../theme'
 import { Menu, Button } from 'antd'
 
-const isTablet = window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches
+const isTablet = window.matchMedia('(min-width: 768px) and (max-width: 1023px)')
+  .matches
 const menuMode = isTablet ? 'vertical' : 'inline'
 
 @withRouter
 class Drawer extends React.Component {
   render() {
-    const {appName, menu, isOpen} = this.props
+    const { appName, menu, isOpen } = this.props
     return (
       <Root {...this.props} onClick={this.onRootClick}>
-        <div className='drawer' onClick={this.onDrawerClick}>
-          <Link className='logo' to='/'>{appName}</Link>
+        <div className="drawer" onClick={this.onDrawerClick}>
+          <Link className="logo" to="/">{appName}</Link>
           <Menu mode={menuMode}>
             {menu.map(v =>
-              <Menu.SubMenu key={v.title} title={<span>{v.icon}<Title>{v.title}</Title></span>}>
+              <Menu.SubMenu
+                key={v.title}
+                title={<span>{v.icon}<Title>{v.title}</Title></span>}
+              >
                 {v.children.map(c =>
-                  <Menu.Item key={c.title}><Link to={c.to}>{c.title}</Link></Menu.Item>
+                  <Menu.Item key={c.title}>
+                    <Link to={c.to}>{c.title}</Link>
+                  </Menu.Item>
                 )}
               </Menu.SubMenu>
             )}
@@ -30,7 +40,7 @@ class Drawer extends React.Component {
     this.props.closeDrawer()
   }
 
-  onDrawerClick = (e) => {
+  onDrawerClick = e => {
     e.stopPropagation()
   }
 }
@@ -47,10 +57,10 @@ const Root = styled.aside`
     background-color: white;
   }
 
-  ${mobileOnly} {
+  ${s.mobileOnly} {
     width: 100%;
     overflow: hidden;
-    pointer-events: ${p => p.isOpen ? 'auto' : 'none'};
+    pointer-events: ${p => (p.isOpen ? 'auto' : 'none')};
     contain: strict;
 
     ::before {
@@ -62,7 +72,7 @@ const Root = styled.aside`
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
       content: "";
-      opacity: ${p => p.isOpen ? 1 : 0};
+      opacity: ${p => (p.isOpen ? 1 : 0)};
       will-change: opacity;
     }
 
@@ -76,7 +86,7 @@ const Root = styled.aside`
       flex-direction: column;
       width: calc(100% - 56px);
       max-width: 280px;
-      transform: ${p => p.isOpen ? 'none' : 'translateX(calc(-100% - 20px))'};
+      transform: ${p => (p.isOpen ? 'none' : 'translateX(calc(-100% - 20px))')};
       will-change: transform;
       box-sizing: border-box;
       overflow: hidden;
@@ -85,12 +95,12 @@ const Root = styled.aside`
   }
 
   > .drawer {
-    ${tablet} {
+    ${s.tabletMin} {
       width: ${p => p.theme.drawer.tabletWidth};
       border-right: 1px solid #e4e4e4;
     }
 
-    ${desktop} {
+    ${s.desktopMin} {
       width: ${p => p.theme.drawer.desktopWidth};
     }
 
@@ -111,7 +121,7 @@ const Root = styled.aside`
 `
 
 const Title = styled.span`
-  ${tabletOnly} {
+  ${s.tabletOnly} {
     display: none;
   }
 `

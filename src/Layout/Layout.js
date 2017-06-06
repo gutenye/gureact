@@ -1,19 +1,33 @@
-import React, {Component} from "react"
+import React from 'react'
 
-export default class Layout extends Component {
+class Layout extends React.Component {
   static defaultProps = {
     topHeight: 64,
     sideWidth: 224,
-    topClassName: "",
-    sideClassName: "",
-    mainClassName: "",
+    topClassName: '',
+    sideClassName: '',
+    mainClassName: '',
     topStyle: {},
     sideStyle: {},
     mainStyle: {},
   }
 
   render() {
-    var {props: {top, side, main, topHeight, sideWidth, topClassName, topStyle, sideClassName, sideStyle, mainClassName, mainStyle}} = this
+    var {
+      props: {
+        top,
+        side,
+        main,
+        topHeight,
+        sideWidth,
+        topClassName,
+        topStyle,
+        sideClassName,
+        sideStyle,
+        mainClassName,
+        mainStyle,
+      },
+    } = this
     s.top = Object.assign(s.top, {
       height: topHeight,
     })
@@ -41,9 +55,17 @@ export default class Layout extends Component {
     }
     return (
       <div>
-        {top && <header className={topClassName} style={{...s.top, ...topStyle}}>{top}</header>}
-        {side && <aside className={sideClassName} style={{...s.side, ...sideStyle}}>{side}</aside>}
-        <main className={mainClassName} style={{...s.main, ...mainStyle}}>{main}</main>
+        {top &&
+          <header className={topClassName} style={{ ...s.top, ...topStyle }}>
+            {top}
+          </header>}
+        {side &&
+          <aside className={sideClassName} style={{ ...s.side, ...sideStyle }}>
+            {side}
+          </aside>}
+        <main className={mainClassName} style={{ ...s.main, ...mainStyle }}>
+          {main}
+        </main>
       </div>
     )
   }
@@ -51,8 +73,8 @@ export default class Layout extends Component {
 
 const s = {
   top: {
-    backgroundColor: "white",
-    position: "fixed",
+    backgroundColor: 'white',
+    position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
@@ -61,8 +83,8 @@ const s = {
   },
 
   side: {
-    position: "fixed",
-    height: "100%",
+    position: 'fixed',
+    height: '100%',
     left: 0,
     // width: "224px"
     // top: "64px"
@@ -73,3 +95,5 @@ const s = {
     // marginLeft: "224px"
   },
 }
+
+export default Layout

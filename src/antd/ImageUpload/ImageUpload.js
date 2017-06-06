@@ -1,4 +1,5 @@
-import React, { styled } from '../vendor'
+import React from 'react'
+import styled from 'styled-components'
 import { Upload } from 'antd'
 import { MdCreate, MdVisibility } from 'react-icons'
 import PreviewModal from '../PreviewModal'
@@ -16,7 +17,7 @@ import PreviewModal from '../PreviewModal'
 class ImageUpload extends React.Component {
   static defaultProps = {
     onChange: () => {},
-    valueExtractor: (response) => response.path,
+    valueExtractor: response => response.path,
     onUpload: () => {},
   }
 
@@ -25,52 +26,56 @@ class ImageUpload extends React.Component {
   }
 
   render() {
-    const {value, baseUrl} = this.props
-    const {isPreviewOpen} = this.state
+    const { value, baseUrl } = this.props
+    const { isPreviewOpen } = this.state
     const imageUrl = `${baseUrl}/${value}`
     const uploadProps = {
       ...this.props,
       showUploadList: false,
-      onChange: (info) => {
+      onChange: info => {
         if (info.file.status === 'done') {
           this.props.onChange(this.props.valueExtractor(info.file.response))
         }
         this.props.onUpload(info)
-      }
+      },
     }
     return (
       <Root>
-        <div className='upload'>
-          {value ?
-          <div className='filled'>
-            <img className='thumb' src={imageUrl} alt='' />
-            <div className='overlay'>
-              <MdVisibility onClick={this.openPreview} />
-              <Upload {...uploadProps}>
-                <MdCreate />
-              </Upload>
-            </div>
-          </div> :
-          <Upload className='empty' {...uploadProps}>{this.props.children}</Upload>
-          }
+        <div className="upload">
+          {value
+            ? <div className="filled">
+                <img className="thumb" src={imageUrl} alt="" />
+                <div className="overlay">
+                  <MdVisibility onClick={this.openPreview} />
+                  <Upload {...uploadProps}>
+                    <MdCreate />
+                  </Upload>
+                </div>
+              </div>
+            : <Upload className="empty" {...uploadProps}>
+                {this.props.children}
+              </Upload>}
         </div>
-        <PreviewModal width='512' visible={isPreviewOpen} onCancel={this.closePreview}>
-          <img src={imageUrl} alt='' />
+        <PreviewModal
+          width="512"
+          visible={isPreviewOpen}
+          onCancel={this.closePreview}
+        >
+          <img src={imageUrl} alt="" />
         </PreviewModal>
       </Root>
     )
   }
 
   openPreview = () => {
-    this.setState({isPreviewOpen: true})
+    this.setState({ isPreviewOpen: true })
   }
 
   closePreview = () => {
-    this.setState({isPreviewOpen: false})
+    this.setState({ isPreviewOpen: false })
   }
 
-  openUpload = () => {
-  }
+  openUpload = () => {}
 }
 
 const HEIGHT = 240
@@ -132,6 +137,5 @@ const Root = styled.div`
   }
 
 `
-
 
 export default ImageUpload

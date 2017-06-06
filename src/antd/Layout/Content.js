@@ -1,4 +1,5 @@
-import { styled, mobileOnly, tablet, desktop } from '../vendor'
+import styled from 'styled-components'
+import s from '../../theme'
 
 export const Left = styled.div``
 export const Right = styled.div``
@@ -10,7 +11,7 @@ export const Content = styled.div`
   border-radius: 3px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
-  ${tablet} {
+  ${s.tabletMin} {
     display: flex;
 
     ${Left} {
@@ -23,7 +24,7 @@ export const Content = styled.div`
     }
   }
 
-  ${desktop} {
+  ${s.desktopMin} {
     margin-left: 24px;
     margin-right: 24px;
   }

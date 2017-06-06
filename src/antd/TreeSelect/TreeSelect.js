@@ -1,4 +1,5 @@
-import React, { _ } from '../vendor'
+import React from 'react'
+import { map } from 'lodash'
 import { TreeSelect } from 'antd'
 
 /*
@@ -18,12 +19,11 @@ class AntdTreeSelect extends React.Component {
   }
 
   render() {
-    const {options, onChange, onSearch, ...rest} = this.props
+    const { options, onChange, onSearch, ...rest } = this.props
     rest.treeData = simple2complex(options)
     rest.onChange = (value, label, extra) => {
       onChange(value, label, extra)
-      if (onSearch)
-        onSearch(value)
+      if (onSearch) onSearch(value)
     }
     return <TreeSelect {...rest} />
   }
@@ -42,12 +42,16 @@ export function simple2complex(data) {
 
 // I'm recursive
 function mapChildren(a, parent) {
-  return _.map(a, (v,k) => {
+  return map(a, (v, k) => {
     const value = `${parent}${k}`
-    if (v === 1)
-      return {label: k, value, key: value}
+    if (v === 1) return { label: k, value, key: value }
     else
-      return {label: k, value, key: value, children: mapChildren(v, `${value}.`)}
+      return {
+        label: k,
+        value,
+        key: value,
+        children: mapChildren(v, `${value}.`),
+      }
   })
 }
 

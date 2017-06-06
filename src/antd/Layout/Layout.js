@@ -1,4 +1,7 @@
-import React, { styled, tablet, desktop, _ } from '../vendor'
+import React from 'react'
+import styled from 'styled-components'
+import s from '../../theme'
+import { merge } from 'lodash'
 import { ThemeProvider } from 'styled-components'
 import Header from './Header'
 import Drawer from './Drawer'
@@ -40,9 +43,13 @@ class Layout extends React.Component {
     const { drawer, header, inner } = this.props
     const { drawerIsOpen } = this.state
     return (
-      <ThemeProvider theme={v => _.merge(theme, v)}>
+      <ThemeProvider theme={v => merge(theme, v)}>
         <Root>
-          <Drawer isOpen={drawerIsOpen} closeDrawer={this.closeDrawer} {...drawer} />
+          <Drawer
+            isOpen={drawerIsOpen}
+            closeDrawer={this.closeDrawer}
+            {...drawer}
+          />
           <DrawerRight>
             <Header openDrawer={this.openDrawer} header={header} />
             <HeaderDown>
@@ -57,22 +64,22 @@ class Layout extends React.Component {
   }
 
   openDrawer = () => {
-    this.setState({drawerIsOpen: true})
+    this.setState({ drawerIsOpen: true })
   }
 
   closeDrawer = () => {
-    this.setState({drawerIsOpen: false})
+    this.setState({ drawerIsOpen: false })
   }
 }
 
 const Root = styled.div``
 
 const DrawerRight = styled.div`
-  ${tablet} {
+  ${s.tabletMin} {
     margin-left: ${p => p.theme.drawer.tabletWidth};
   }
 
-  ${desktop} {
+  ${s.desktopMin} {
     margin-left: ${p => p.theme.drawer.desktopWidth};
   }
 `
@@ -83,13 +90,15 @@ const HeaderDown = styled.div`
 `
 
 const HeaderDownInner = styled.div`
-  ${p => p.inner && `
+  ${p =>
+    p.inner &&
+    `
     background-color: white;
     margin-top: 24px;
     border-radius: 3px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
-    ${desktop} {
+    ${s.desktopMin} {
       margin-left: 24px;
       margin-right: 24px;
     }

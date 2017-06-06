@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import cx from 'classnames'
 
@@ -8,11 +8,11 @@ import cx from 'classnames'
  *    device='phone' tablet laptop
  *    landscape
  */
-class Device extends Component {
+class Device extends React.Component {
   render() {
-    const {props: {className, device, landscape, src}} = this
+    const { props: { className, device, landscape, src } } = this
     return (
-      <Root className={cx(className, device, {landscape})}>
+      <Root className={cx(className, device, { landscape })}>
         <Iframe src={src} />
       </Root>
     )

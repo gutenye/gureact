@@ -1,4 +1,4 @@
-import React from './vendor'
+import React from 'react'
 import { injectGlobal } from 'styled-components'
 import { Modal } from 'antd'
 
@@ -22,11 +22,7 @@ injectGlobal`
 class PreviewModal extends React.Component {
   render() {
     return (
-      <Modal
-        className='PreviewModal'
-        footer={null}
-        {...this.props}
-      >
+      <Modal className="PreviewModal" footer={null} {...this.props}>
         {this.props.children}
       </Modal>
     )

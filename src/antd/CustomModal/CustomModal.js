@@ -1,4 +1,5 @@
-import React, { styled } from './vendor'
+import React from 'react'
+import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 import { Form, Modal, Button } from 'antd'
 
@@ -9,7 +10,7 @@ import { Form, Modal, Button } from 'antd'
 // CustomModal.close()
 class CustomModal extends React.Component {
   render() {
-    const {component:Component, close, ...rest} = this.props
+    const { component: Component, close, ...rest } = this.props
     return (
       <Modal visible footer={null} onCancel={close}>
         <Component {...rest} />
@@ -23,7 +24,7 @@ CustomModal.open = function(options) {
   document.body.appendChild(div)
 
   function close() {
-    const unmountResult = ReactDOM.unmountComponentAtNode(div);
+    const unmountResult = ReactDOM.unmountComponentAtNode(div)
     if (unmountResult && div.parentNode) {
       div.parentNode.removeChild(div)
     }

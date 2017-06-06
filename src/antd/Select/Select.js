@@ -1,4 +1,5 @@
-import React, { _ } from '../vendor'
+import React from 'react'
+import { isPlainObject } from 'lodash'
 import { Select } from 'antd'
 
 //
@@ -15,22 +16,18 @@ class AntdSelect extends React.Component {
   }
 
   render() {
-    var {options, field, onChange, onSearch, ...rest} = this.props
-    if (_.isPlainObject(options[0]))
-      options = options.map(v => v[field])
+    var { options, field, onChange, onSearch, ...rest } = this.props
+    if (isPlainObject(options[0])) options = options.map(v => v[field])
     return (
       <Select onChange={this.onChange} {...rest}>
-        {options.map(v =>
-        <Select.Option key={v} value={v}>{v}</Select.Option>
-        )}
+        {options.map(v => <Select.Option key={v} value={v}>{v}</Select.Option>)}
       </Select>
     )
   }
 
-  onChange = (value) => {
+  onChange = value => {
     this.props.onChange(value)
-    if (this.props.onSearch)
-      this.props.onSearch(value)
+    if (this.props.onSearch) this.props.onSearch(value)
   }
 }
 
