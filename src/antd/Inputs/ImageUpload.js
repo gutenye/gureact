@@ -5,9 +5,11 @@ import PreviewModal from '../PreviewModal'
 
 // <ImageUpload>
 //    children: 'Upload Image'
-//    value onChange(value) valueExtractor(response)    // by default value is response.path
+//    value onChange(value)       // value: a.png
 //    action: '/upload'
 //    ---
+//    baseUrl: ''                 // imageUrl is baseUrl/value
+//    valueExtractor(response)    // by default value is response.path
 //    name: 'file'*
 //    onUpload(info)
 //
@@ -23,8 +25,9 @@ class ImageUpload extends React.Component {
   }
 
   render() {
-    const {value} = this.props
+    const {value, baseUrl} = this.props
     const {isPreviewOpen} = this.state
+    const imageUrl = `${baseUrl}/${value}`
     const uploadProps = {
       ...this.props,
       showUploadList: false,
@@ -40,7 +43,7 @@ class ImageUpload extends React.Component {
         <div className='upload'>
           {value ?
           <div className='filled'>
-            <img className='thumb' src={value} alt='' />
+            <img className='thumb' src={imageUrl} alt='' />
             <div className='overlay'>
               <MdVisibility onClick={this.openPreview} />
               <Upload {...uploadProps}>
@@ -52,7 +55,7 @@ class ImageUpload extends React.Component {
           }
         </div>
         <PreviewModal width='512' visible={isPreviewOpen} onCancel={this.closePreview}>
-          <img src={value} alt='' />
+          <img src={imageUrl} alt='' />
         </PreviewModal>
       </Root>
     )

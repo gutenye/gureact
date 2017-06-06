@@ -20,6 +20,7 @@ publish() {
   version=$1
   git commit -am "publish $version"
   git tag $version
+  git push
   git push --tags
 }
 
