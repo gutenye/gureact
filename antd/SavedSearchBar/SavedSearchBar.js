@@ -4,9 +4,9 @@ import { withRouter } from 'react-router'
 import { difference, isEmpty, remove, maxBy } from 'lodash'
 import { Dropdown, Menu, Modal } from 'antd'
 import { MdMoreVert } from 'react-icons'
-import { INPUTS } from './Inputs'
-import FormModal from './FormModal'
-import NavLink from '../NavLink'
+import INPUTS from '../Inputs/Inputs'
+import FormModal from '../FormModal/FormModal'
+import NavLink from '../../NavLink/NavLink'
 
 //
 // /posts?saved=:index

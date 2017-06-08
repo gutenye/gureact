@@ -4,7 +4,7 @@ import { isString } from 'lodash'
 import { MdMenu } from 'react-icons'
 import { Button } from 'gureact'
 import { app } from 'states'
-import Breadcrumb from '../Breadcrumb'
+import Breadcrumb from '../Breadcrumb/Breadcrumb'
 
 // <Header header openDrawer
 //

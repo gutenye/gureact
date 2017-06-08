@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Upload } from 'antd'
 import { MdCreate, MdVisibility } from 'react-icons'
-import PreviewModal from '../PreviewModal'
+import PreviewModal from '../PreviewModal/PreviewModal'
 
 // <ImageUpload>
 //    children: 'Upload Image'

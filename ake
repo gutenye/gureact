@@ -24,9 +24,18 @@ publish() {
   git push --tags
 }
 
+docs() {
+  styleguidist server
+}
+
+build-docs() {
+  styleguidist build
+}
+
 case "$1" in
   test ) test ;;
   b | build ) build ;;
   w | watch ) watch ;;
   publish ) shift 1; publish "$@" ;;
+  docs ) docs ;;
 esac

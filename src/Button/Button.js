@@ -1,12 +1,17 @@
+// @flow
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { isString, omit } from 'lodash'
 import { Link } from 'react-router-dom'
 
-// <Button
-//   action: link | fn
-//   primary
 class Button extends React.Component {
+  props: {
+    primary: boolean,
+    /** link | fn */
+    action: any,
+    children: any,
+  }
+
   render() {
     const { action, children, ...rest } = this.props
     if (isString(action)) {
@@ -24,7 +29,9 @@ const shared = css`
   height: 100%;
   cursor: pointer;
 
-  ${p => p.primary && `
+  ${p =>
+    p.primary &&
+    `
     color: ${p.theme.primary.color};
     background: ${p.theme.primary.background};
     &:hover {
@@ -34,7 +41,9 @@ const shared = css`
   `}
 `
 
-const LinkStyled = styled(p => <Link {...omit(p, 'primary') }>{p.children}</Link>) `
+const LinkStyled = styled(p =>
+  <Link {...omit(p, 'primary')}>{p.children}</Link>
+)`
   ${shared}
 `
 

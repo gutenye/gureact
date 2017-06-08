@@ -1,6 +1,6 @@
 import React from 'react'
-import Input from './Input'
-import TreeSelect from './TreeSelect'
+import Input from '../Input/Input'
+import TreeSelect from '../TreeSelect/TreeSelect'
 
 // <InputTree value onChange options
 class AntdInputTree extends React.Component {
