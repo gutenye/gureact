@@ -1,13 +1,9 @@
 stages:
   - deploy
+  - mirror
 variables:
   GIT_SSL_NO_VERIFY: "1"
 
-mirror:
-  stage: deploy
-  script:
-    - git-push git@gitlab.com:gutenye/gureact.git
-  image: ilyasemenov/gitlab-ci-git-push
 
 pages:
   stage: deploy
@@ -19,3 +15,9 @@ pages:
   only:
     - master
   image: alpine
+
+mirror:
+  stage: mirror
+  script:
+    - git-push git@gitlab.com:gutenye/gureact.git
+  image: ilyasemenov/gitlab-ci-git-push
