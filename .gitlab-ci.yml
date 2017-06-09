@@ -1,11 +1,20 @@
 stages:
-  - build
+  - deploy
 variables:
   GIT_SSL_NO_VERIFY: "1"
 
 mirror:
-  stage: build
+  stage: deploy
   script:
-    - git-push git@code.aliyun.com:gutenye/gureact.git
+    - git-push git@gitlab.com:gutenye/gureact.git
   image: ilyasemenov/gitlab-ci-git-push
 
+pages:
+  stage: deploy
+  script:
+    - echo
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
