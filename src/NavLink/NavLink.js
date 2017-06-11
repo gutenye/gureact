@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-const NavLinkWrapped = props => {
+const NavLinkWrapped = (props: any) => {
   return <NavLink activeClassName="active" {...props}>{props.children}</NavLink>
 }
 

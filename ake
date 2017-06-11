@@ -38,4 +38,5 @@ case "$1" in
   w | watch ) watch ;;
   publish ) shift 1; publish "$@" ;;
   docs ) docs ;;
+  build-docs ) build-docs ;;
 esac

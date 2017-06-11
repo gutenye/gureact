@@ -3,10 +3,14 @@ import styled from 'styled-components'
 
 // <Col w={1} md={1/2} lg={1/3}>
 class Col extends React.Component {
+  props: {
+    children?: any,
+  }
+
   render() {
-    const { props: { children }, props } = this
+    const { children } = this.props
     return (
-      <ColStyled {...props}>
+      <ColStyled {...this.props}>
         {children}
       </ColStyled>
     )

@@ -1,4 +1,6 @@
 module.exports = {
+  styleguideDir: 'build-docs',
+
   title: 'Styleguide',
 
   sections: [

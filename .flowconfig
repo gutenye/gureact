@@ -1,5 +1,9 @@
 [ignore]
-.*node_modules.*
+<PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/antd/.*
+<PROJECT_ROOT>/build-docs/.*
+<PROJECT_ROOT>/lib/.*
+<PROJECT_ROOT>/test/.*
 
 [include]
 
@@ -9,3 +13,4 @@
 module.system.node.resolve_dirname=node_modules
 module.system.node.resolve_dirname=src
 esproposal.decorators=ignore
+all=true

@@ -4,17 +4,17 @@ stages:
 variables:
   GIT_SSL_NO_VERIFY: "1"
 
-
 pages:
   stage: deploy
   script:
-    - echo
+    - yarn
+    - npm run build-docs
   artifacts:
     paths:
-      - public
+      - build-docs
   only:
     - master
-  image: alpine
+  image: gutenye/node
 
 mirror:
   stage: mirror

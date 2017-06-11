@@ -71,7 +71,13 @@ class Layout extends React.Component {
   }
 }
 
-const s = {
+type styleT = {
+  top: Object,
+  side: Object,
+  main: Object,
+}
+
+const s: styleT = {
   top: {
     backgroundColor: 'white',
     position: 'fixed',

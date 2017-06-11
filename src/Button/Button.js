@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom'
 
 class Button extends React.Component {
   props: {
-    primary: boolean,
-    /** link | fn */
-    action: any,
-    children: any,
+    primary?: boolean,
+    /** href or onClick function */
+    action?: string | Function,
+    children?: any,
   }
 
   render() {

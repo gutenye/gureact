@@ -1,13 +1,18 @@
+// @flow
 import React from 'react'
 
 /**
  * <Icon src={require('./home.svg')} />
  **/
 class Icon extends React.Component {
+  props: {
+    src: string,
+  }
+
   render() {
-    const { props: { src } } = this
+    const { src } = this.props
     return (
-      <svg className='icon'>
+      <svg className="icon">
         <use xlinkHref={src} />
       </svg>
     )

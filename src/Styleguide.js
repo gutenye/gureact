@@ -1,16 +1,13 @@
 import React from 'react'
-import Guide from './guide'
+import Guide from './Styleguide/Styleguide'
 import Button from './Button/Button'
 
 class Styleguide extends React.Component {
   render() {
     return (
       <Guide>
-        <Guide.Section title="Buttons">
-          <Button>button</Button>
-        </Guide.Section>
         <Guide.Section title="Basic">
-          <Button>button</Button>
+          <Button>Button</Button>
         </Guide.Section>
       </Guide>
     )

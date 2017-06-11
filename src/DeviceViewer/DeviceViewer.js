@@ -1,14 +1,23 @@
+// @flow
 import React from 'react'
 import styled from 'styled-components'
 import Device from './Device'
 
-// scale='0.6' is 600px width
 // laptop: 683x400 tablet: 612x360 phone: 180x300
 // laptopPos='0px, 40px'
 // tabletPos='180px, 230px'
 // phonePos='600px, 210px'
 
 class DeviceViewer extends React.Component {
+  props: {
+    src: string,
+    /** '0.6' is 600px width */
+    scale: string,
+    laptopPos: string,
+    tabletPos: string,
+    phonePos: string,
+  }
+
   static defaultProps = {
     scale: '1.0',
     laptopPos: '0px, 40px',
@@ -20,7 +29,7 @@ class DeviceViewer extends React.Component {
     const { src, scale, laptopPos, tabletPos, phonePos } = this.props
     return (
       <RootInner scale={scale}>
-        <DeviceStyled device="laptop" src={src} pos={laptopPos} />
+        <DeviceStyled device="laptop" pos={laptopPos} src={src} />
         <DeviceStyled device="tablet" landscape pos={tabletPos} src={src} />
         <DeviceStyled device="phone" pos={phonePos} src={src} />
       </RootInner>

@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 /**
- * <Guide>
- *   <Guide.Section title="Basic">
+ * <Styleguide>
+ *   <Styleguide.Section title="Basic">
  *     <Button />
  *   ...
  */
-const Guide = styled.div`
+const Styleguide = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
@@ -28,6 +28,6 @@ const SectionRoot = styled.div`
   }
 `
 
-Guide.Section = Section
+Styleguide.Section = Section
 
-export default Guide
+export default Styleguide
