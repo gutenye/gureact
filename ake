@@ -32,6 +32,11 @@ build-docs() {
   styleguidist build
 }
 
+push-docs() {
+  git push origin master:docs
+}
+
+
 case "$1" in
   test ) test ;;
   b | build ) build ;;
@@ -39,4 +44,5 @@ case "$1" in
   publish ) shift 1; publish "$@" ;;
   docs ) docs ;;
   build-docs ) build-docs ;;
+  push-docs ) push-docs ;;
 esac

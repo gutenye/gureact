@@ -13,7 +13,7 @@ pages:
     paths:
       - build-docs
   only:
-    - master
+    - docs
   image: gutenye/node
 
 mirror:
