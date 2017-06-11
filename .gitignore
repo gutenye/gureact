@@ -1,5 +1,5 @@
 /lib
-/build-docs
+/public
 node_modules
 *.swp
 .vscode

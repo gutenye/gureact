@@ -11,7 +11,7 @@ pages:
     - npm run build-docs
   artifacts:
     paths:
-      - build-docs
+      - public
   only:
     - docs
   image: gutenye/node

@@ -1,5 +1,5 @@
 module.exports = {
-  styleguideDir: 'build-docs',
+  styleguideDir: 'public',
 
   title: 'Styleguide',
 
