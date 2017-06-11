@@ -1,6 +1,6 @@
 {
   "name": "gureact",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "",
   "scripts": {
     "build-docs": "NODE_ENV=production ./ake build-docs"
@@ -37,5 +37,8 @@
     "lodash": "^4.17.4",
     "react-icons": "^2.2.5",
     "styled-components": "^2.0.1"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }
