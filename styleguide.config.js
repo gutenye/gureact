@@ -1,5 +1,4 @@
 const Copy = require('copy-webpack-plugin')
-console.log(1, Copy)
 
 module.exports = {
   styleguideDir: 'public',
@@ -19,7 +18,7 @@ module.exports = {
       ]
     },
     plugins: [
-      //new Copy([{from: 'static'}])
+      new Copy([{from: 'static'}])
     ]
   }
 }
