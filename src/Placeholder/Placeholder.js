@@ -29,6 +29,7 @@ class Placeholder extends React.Component {
   props: {
     /** 'random' */
     width?: string,
+    /** default to height */
     height?: string,
   }
 

@@ -12,8 +12,15 @@ const Styleguide = styled.div`
   flex-wrap: wrap;
 `
 
-const Section = ({ title, children }) =>
-  <SectionRoot>
+type props = {
+  title: string,
+  className?: string,
+  style?: Object,
+  children: any,
+}
+
+const Section = ({ title, children, ...props }) =>
+  <SectionRoot {...props}>
     <h3 className="header">{title}</h3>
     <div>
       {children}

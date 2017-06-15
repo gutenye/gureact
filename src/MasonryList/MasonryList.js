@@ -6,6 +6,8 @@ class MasonryList extends React.Component {
     /** '100px' '3' */
     columns: string,
     gutter?: number,
+    className?: string,
+    style?: Object,
     children: any,
   }
 
@@ -29,11 +31,11 @@ class MasonryList extends React.Component {
 
 const Root = styled.div`
   columns: ${p => p.columns};
-  column-gap: 0;
+  column-gap: ${p => p.gutter};
 
   > .item {
     break-inside: avoid;
-    padding: ${p => p.gutter}px;
+    margin-bottom: ${p => p.gutter};
   }
 `
 
