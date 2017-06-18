@@ -8,7 +8,7 @@ manage two dependencs, admin and gureact is easy to get wrong.
 import {Layout} from "gureact"
 ```
 
-### Install
+## Install
 
 ```
 $ npm install gureact
