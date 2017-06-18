@@ -6,7 +6,7 @@ import { Dropdown, Menu, Modal } from 'antd'
 import { MdMoreVert } from 'react-icons'
 import INPUTS from '../Inputs/Inputs'
 import FormModal from '../FormModal/FormModal'
-import NavLink from '../../NavLink/NavLink'
+import NavLink from '../../core/NavLink/NavLink'
 
 //
 // /posts?saved=:index

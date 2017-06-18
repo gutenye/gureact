@@ -1,3 +1,4 @@
+// used by patch-react-router
 import { fromPairs, reduce, omitBy, isNil } from 'lodash'
 
 export function toQueryString(obj: Object) {

@@ -1,11 +1,6 @@
 import React from 'react'
 import { AutoComplete, InputNumber } from 'antd'
-import {
-  addUpdateViaRecord,
-  stringQuerier,
-  numberQuerier,
-  arrayQuerier,
-} from './utils'
+import { stringQuerier, numberQuerier, arrayQuerier } from './utils'
 import TreeSelect from '../TreeSelect/TreeSelect'
 import Input from '../Input/Input'
 import Select from '../Select/Select'
@@ -40,5 +35,3 @@ export default {
   InputTree: stringQuerier(InputTree),
   ImageUpload: stringQuerier(ImageUpload),
 }
-
-export const SetInputNumber = addUpdateViaRecord(InputNumber)

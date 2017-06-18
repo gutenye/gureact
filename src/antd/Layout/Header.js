@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import { isString } from 'lodash'
 import { MdMenu } from 'react-icons'
-import { Button } from 'gureact'
-import { app } from 'states'
 import Breadcrumb from '../Breadcrumb/Breadcrumb'
+import Button from '../../core/Button/Button'
+import s from '../../theme'
 
-// <Header header openDrawer
+// import { app } from 'states'
+// <Header header={app.header} openDrawer
 //
 // @setHeader({
 //   title

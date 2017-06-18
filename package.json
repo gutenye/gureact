@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@gutenye/babel-plugin-transform-imports": "^1.1.12",
+    "antd": "^2.11.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-import": "^1.2.1",
@@ -23,12 +24,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
     "flow-bin": "^0.47.0",
     "flow-typed": "^2.1.2",
     "react": "^15.5.4",
     "react-dom": "",
     "react-router-dom": "^4.1.1",
     "react-styleguidist": "^5.4.4",
+    "style-loader": "^0.18.2",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
   },
@@ -36,6 +39,7 @@
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
     "react-icons": "^2.2.5",
+    "recompose": "^0.23.5",
     "styled-components": "^2.0.1"
   },
   "files": [

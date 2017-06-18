@@ -7,14 +7,15 @@ module.exports = {
   title: 'Styleguide',
 
   sections: [
-    {name: 'Overview', content: 'src/styleguide.md' },
-    {name: 'Components', components: 'src/**/[A-Z]*.js'},
+    {name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
+    {name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
   ],
 
   webpackConfig: {
     module: {
       rules: [
-        {test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']}
+        {test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']},
+        {test: /\.css$/, use: ['style-loader', 'css-loader']},
       ]
     },
     plugins: [

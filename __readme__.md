@@ -20,7 +20,7 @@ Philosophy: each compnent is independent.
 # .babelrc
   plugins: [
     ['transform-imports', {
-      'gureact': { transfrom: 'gureact/lib/${member}/${member} },
+      'gureact': { transfrom: 'gureact/lib/core/${member}/${member} },
       'gureact/antd': { transfrom: 'gureact/lib/antd/${member}/${member} },
 
 import { Button } from 'gureact'
