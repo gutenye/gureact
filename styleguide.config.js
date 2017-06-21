@@ -3,11 +3,13 @@ const Copy = require('copy-webpack-plugin')
 module.exports = {
   styleguideDir: 'public',
   assetsDir: 'static',
+  require: ['./src/styleguidist.css'],
 
   title: 'Styleguide',
 
   sections: [
     {name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
+    {name: 'Commerce', content: 'src/commerce/commerce.md', components: 'src/commerce/**/[A-Z]*.js'},
     {name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
   ],
 

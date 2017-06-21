@@ -30,9 +30,12 @@ class GridList extends React.Component {
 const Root = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   > .item {
     padding: ${p => p.gutter}px;
+    width: 50%;
+    max-width: 200px;
   }
 `
 
