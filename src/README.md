@@ -1,11 +1,14 @@
-manage two dependencs, admin and gureact is easy to get wrong.
-  e.g. admin upgrade styled-compnents, but gureat not. // your mind dont' think about it first.
-  for test: needs a way
-
-### Getting Started
+Philosophy: each compnent is independent.
 
 ```
-import {Layout} from "gureact"
+import { Button } from 'gureact'
+import { TextField } from 'gureact/antd'
+
+<ThemeProvider theme={theme}>
+  <Button />
+</ThemeProvider>
+
+const theme = { primary }
 ```
 
 ## Install
@@ -14,7 +17,6 @@ import {Layout} from "gureact"
 $ npm install gureact
 ```
 
-Philosophy: each compnent is independent.
 
 ```
 # .babelrc

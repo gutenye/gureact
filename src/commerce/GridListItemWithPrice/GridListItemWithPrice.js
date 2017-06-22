@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-class GridListItem extends React.Component {
+class GridListItemWithPrice extends React.Component {
   render() {
     const { image, price, className, style } = this.props
     return (
       <Root className={className} style={style}>
-        <img src={image} />
+        <img src={image} alt="product" />
         <div className="price">
-          ¥{price}
+          {price}
         </div>
       </Root>
     )
@@ -33,4 +33,4 @@ const Root = styled.div`
     padding: 0 5px;
   }
 `
-export default GridListItem
+export default GridListItemWithPrice

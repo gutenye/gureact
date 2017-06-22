@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-class GridListItem2 extends React.Component {
+class GridListItemWithDescription extends React.Component {
   render() {
     const { image, description, className, style } = this.props
     return (
       <Root className={className} style={style}>
-        <img src={image} />
+        <img src={image} alt="product" />
         <div className="description">
           {description}
         </div>
@@ -31,4 +31,4 @@ const Root = styled.div`
     color: white;
   }
 `
-export default GridListItem2
+export default GridListItemWithDescription
