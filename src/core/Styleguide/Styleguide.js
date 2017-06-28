@@ -30,11 +30,21 @@ const Section = ({ title, children, ...props }) =>
   </SectionRoot>
 
 const SectionRoot = styled.div`
-  margin-right: 40px;
-  width: 375px;
+  margin: 0 40px 40px 0;
+  width: 395px;
+  padding: 0 10px 10px 10px;
+  background-color: #dddfe2;
 
   > .header {
-    border-top: 2px solid black;
+    margin-bottom: 10px;
+
+    &::before {
+      display: block;
+      content: '';
+      width: 30%;
+      border-top: 4px solid ${p => p.theme.primary};
+      margin-bottom: 3px;
+    }
   }
 `
 
