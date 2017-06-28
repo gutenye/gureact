@@ -13,11 +13,20 @@ class Button extends React.Component {
   }
 
   render() {
+    pd(1, this.props)
     const { action, children, ...rest } = this.props
     if (isString(action)) {
-      return <LinkStyled to={action} {...rest}>{children}</LinkStyled>
+      return (
+        <LinkStyled to={action} {...rest}>
+          {children}
+        </LinkStyled>
+      )
     } else {
-      return <Root onClick={action} {...rest}>{children}</Root>
+      return (
+        <Root onClick={action} {...rest}>
+          {children}
+        </Root>
+      )
     }
   }
 }
@@ -32,8 +41,9 @@ const shared = css`
   ${p =>
     p.primary &&
     `
-    color: ${p.theme.primary.color};
-    background: ${p.theme.primary.background};
+    color: ${p.theme.textPrimaryOnPrimary};
+    background: ${p.theme.primary};
+
     &:hover {
       color: ${p.theme.primary.color};
       background: ${p.theme.primary.backgroundDarken};
@@ -42,13 +52,13 @@ const shared = css`
 `
 
 const LinkStyled = styled(p =>
-  <Link {...omit(p, 'primary')}>{p.children}</Link>
+  <Link {...omit(p, 'primary')}>
+    {p.children}
+  </Link>
 )`
   ${shared}
 `
 
-const Root = styled.div`
-  ${shared}
-`
+const Root = styled.div`${shared};`
 
 export default Button

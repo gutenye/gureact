@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { withRouter } from 'react-router'
+import { NavLink } from 'react-router-dom'
 import { difference, isEmpty, remove, maxBy } from 'lodash'
 import { Dropdown, Menu, Modal } from 'antd'
 import { MdMoreVert } from 'react-icons'
 import INPUTS from '../Inputs/Inputs'
 import FormModal from '../FormModal/FormModal'
-import NavLink from '../../core/NavLink/NavLink'
 
 //
 // /posts?saved=:index
@@ -32,8 +32,14 @@ class SavedSearchBar extends React.Component {
     const { values, isCustom, isSaved } = this.state
     const dropdownMenu = (
       <Menu onClick={this.onMenuClick}>
-        {isCustom && <Menu.Item key="saveSearch">{t.saveSearch}</Menu.Item>}
-        {isSaved && <Menu.Item key="deleteSearch">{t.deleteSearch}</Menu.Item>}
+        {isCustom &&
+          <Menu.Item key="saveSearch">
+            {t.saveSearch}
+          </Menu.Item>}
+        {isSaved &&
+          <Menu.Item key="deleteSearch">
+            {t.deleteSearch}
+          </Menu.Item>}
       </Menu>
     )
 
@@ -41,7 +47,12 @@ class SavedSearchBar extends React.Component {
       <Root>
         <div className="tabbar">
           <div className="tabs">
-            <NavLink to={match.url} exact isActive={this.isActive('root')}>
+            <NavLink
+              activeClassName="active"
+              to={match.url}
+              exact
+              isActive={this.isActive('root')}
+            >
               {t.all}
             </NavLink>
             {savedSearchs.map(v =>
@@ -49,11 +60,15 @@ class SavedSearchBar extends React.Component {
                 key={v.id}
                 to={`${match.url}?saved=${v.id}`}
                 isActive={this.isActive(v.id)}
+                activeClassName="active"
               >
                 {v.name}
               </NavLink>
             )}
-            {isCustom && <a className="active">{t.customSearch}</a>}
+            {isCustom &&
+              <a className="active">
+                {t.customSearch}
+              </a>}
           </div>
           <Dropdown
             overlay={dropdownMenu}

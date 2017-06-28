@@ -1,16 +1,15 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import StyleguideRoot from '../StyleguideRoot'
 import { times } from 'lodash'
 import Guide from '../core/Styleguide/Styleguide'
 import GridListItem from './GridListItem/GridListItem'
 import GridListItemWithPrice from './GridListItemWithPrice/GridListItemWithPrice'
 import GridListItemWithDescription from './GridListItemWithDescription/GridListItemWithDescription'
-import theme from '../theme'
 
 class Styleguide extends React.Component {
   render() {
     return (
-      <ThemeProvider theme={theme}>
+      <StyleguideRoot>
         <Guide>
           <Guide.Section title="GridListItem" style={{ width: '200px' }}>
             <GridListItem
@@ -28,7 +27,7 @@ class Styleguide extends React.Component {
             />
           </Guide.Section>
         </Guide>
-      </ThemeProvider>
+      </StyleguideRoot>
     )
   }
 }

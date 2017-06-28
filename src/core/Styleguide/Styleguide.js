@@ -21,7 +21,9 @@ type props = {
 
 const Section = ({ title, children, ...props }) =>
   <SectionRoot {...props}>
-    <h3 className="header">{title}</h3>
+    <h3 className="header">
+      {title}
+    </h3>
     <div>
       {children}
     </div>
@@ -29,6 +31,7 @@ const Section = ({ title, children, ...props }) =>
 
 const SectionRoot = styled.div`
   margin-right: 40px;
+  width: 375px;
 
   > .header {
     border-top: 2px solid black;
