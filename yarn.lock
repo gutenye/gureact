@@ -9,6 +9,42 @@
     babel-types "^6.6.0"
     lodash.kebabcase "^4.0.1"
 
+"@material/animation@^0.2.3":
+  version "0.2.3"
+  resolved "http://registry.npm.taobao.org/@material/animation/download/@material/animation-0.2.3.tgz#25f24962cd649e76459a16ab234b7846a7a7f419"
+
+"@material/base@^0.2.1":
+  version "0.2.1"
+  resolved "http://registry.npm.taobao.org/@material/base/download/@material/base-0.2.1.tgz#1206df65da0bcde5df46e78b4d60a1e09fdc41cb"
+
+"@material/elevation@^0.1.9":
+  version "0.1.9"
+  resolved "http://registry.npm.taobao.org/@material/elevation/download/@material/elevation-0.1.9.tgz#d54c11b9c57855072ab7c59636b8b6a8787c76f4"
+  dependencies:
+    "@material/animation" "^0.2.3"
+
+"@material/rtl@^0.1.6":
+  version "0.1.6"
+  resolved "http://registry.npm.taobao.org/@material/rtl/download/@material/rtl-0.1.6.tgz#64897f3050b2c53c378c6b4a7d2998cf61b2445b"
+
+"@material/theme@^0.1.5":
+  version "0.1.5"
+  resolved "http://registry.npm.taobao.org/@material/theme/download/@material/theme-0.1.5.tgz#5c7bd9a1974d8c1c0eacf037e0235aad9c5cb699"
+
+"@material/toolbar@^0.4.1":
+  version "0.4.1"
+  resolved "http://registry.npm.taobao.org/@material/toolbar/download/@material/toolbar-0.4.1.tgz#52748240022137f076bebc631a72b4fe32e6f78f"
+  dependencies:
+    "@material/base" "^0.2.1"
+    "@material/elevation" "^0.1.9"
+    "@material/rtl" "^0.1.6"
+    "@material/theme" "^0.1.5"
+    "@material/typography" "^0.2.2"
+
+"@material/typography@^0.2.2":
+  version "0.2.2"
+  resolved "http://registry.npm.taobao.org/@material/typography/download/@material/typography-0.2.2.tgz#dc5f0763ad7d6e5ad5c86c394b360f2b4cf30bb2"
+
 abbrev@1:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/abbrev/download/abbrev-1.1.0.tgz#d0554c2256636e2f56e7c2e5ad183f859428d81f"

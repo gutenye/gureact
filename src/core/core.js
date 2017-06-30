@@ -6,6 +6,7 @@ import GridList from './GridList/GridList'
 import MasonryList from './MasonryList/MasonryList'
 import Placeholder from './Placeholder/Placeholder'
 import BottomNavigation from './BottomNavigation/BottomNavigation'
+import Toolbar from './Toolbar/Toolbar'
 import { times } from 'lodash'
 import theme from '../theme'
 
@@ -37,6 +38,7 @@ class Styleguide extends React.Component {
           </Guide.Section>
 
           <Guide.Section title="Layout">
+            <Toolbar>Gureact</Toolbar>
             <BottomNavigation
               items={[{ label: 'Home' }, { label: 'Explore' }, { label: 'Me' }]}
             />
