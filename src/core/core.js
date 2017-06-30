@@ -38,7 +38,7 @@ class Styleguide extends React.Component {
           </Guide.Section>
 
           <Guide.Section title="Layout">
-            <Toolbar>Gureact</Toolbar>
+            <Toolbar>Toolbar</Toolbar>
             <BottomNavigation
               items={[{ label: 'Home' }, { label: 'Explore' }, { label: 'Me' }]}
             />

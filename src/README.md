@@ -15,8 +15,17 @@ const theme = { primary }
 
 ```
 $ npm install gureact
-```
 
+# src/_variables.scss
+
+{
+  loader: 'sass-loader',
+  options: {
+    data: '@import "variables";',
+    includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
+  }
+}
+```
 
 ```
 # .babelrc

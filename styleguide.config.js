@@ -1,4 +1,5 @@
 const Copy = require('copy-webpack-plugin')
+const path = require('path')
 
 module.exports = {
   styleguideDir: 'public',
@@ -18,6 +19,10 @@ module.exports = {
       rules: [
         {test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']},
         {test: /\.css$/, use: ['style-loader', 'css-loader']},
+        {test: /\.scss$/, use: ['style-loader', 'css-loader', {loader: 'sass-loader', options: {
+          data: '@import "variables";',
+          includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
+        }}]},
       ]
     },
     plugins: [
