@@ -1,5 +1,8 @@
+// @flow
+// prettier-ignore
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { Link } from 'react-router-dom'
 
 class BottomToolbar extends React.Component {
   props: {
@@ -7,6 +10,7 @@ class BottomToolbar extends React.Component {
       label: string,
       primary?: boolean,
       onClick?: Function,
+      to?: string,
     },
     style?: Object,
     className?: string,
@@ -16,11 +20,19 @@ class BottomToolbar extends React.Component {
     const { items } = this.props
     return (
       <Root {...this.props}>
-        {items.map((item, index) =>
-          <Item key={item.label} onClick={item.onClick} primary={item.primary}>
-            {item.label}
-          </Item>
-        )}
+        {items.map((item, index) => {
+          const Cmp = item.to ? ItemWithLink : Item
+          return (
+            <Cmp
+              key={item.label}
+              onClick={item.onClick}
+              primary={item.primary}
+              to={item.to}
+            >
+              {item.label}
+            </Cmp>
+          )
+        })}
       </Root>
     )
   }
@@ -36,7 +48,7 @@ const Root = styled.div`
   background-color: white;
 `
 
-const Item = styled.div`
+const ItemStyle = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -53,6 +65,15 @@ const Item = styled.div`
         background: ${p.theme.primary};
       `}
   }
+`
+
+// prettier-ignore
+const Item = styled.div`
+  ${ItemStyle}
+`
+
+const ItemWithLink = styled(Link)`
+  ${ItemStyle}
 `
 
 BottomToolbar.Root = Root

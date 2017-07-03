@@ -6261,9 +6261,9 @@ style-loader@^0.18.2:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
 
-styled-components@^2.0.1:
-  version "2.0.1"
-  resolved "http://registry.npm.taobao.org/styled-components/download/styled-components-2.0.1.tgz#c7b5d211a2f794c0bf5e7c7d028617bed5781625"
+styled-components@^2.1.0:
+  version "2.1.0"
+  resolved "http://registry.npm.taobao.org/styled-components/download/styled-components-2.1.0.tgz#425805fca7efa5880aad2171f986bfd8a2f0808f"
   dependencies:
     buffer "^5.0.3"
     css-to-react-native "^2.0.3"

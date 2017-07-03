@@ -17,6 +17,11 @@ import './Toolbar.scss'
 
 @withRouter
 class Toolbar extends React.Component {
+  props: {
+    title?: string,
+    back?: boolean,
+  }
+
   render() {
     const { title, back } = this.props
     const backEl =

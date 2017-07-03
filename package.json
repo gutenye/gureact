@@ -45,7 +45,7 @@
     "lodash": "^4.17.4",
     "react-icons": "^2.2.5",
     "recompose": "^0.23.5",
-    "styled-components": "^2.0.1",
+    "styled-components": "^2.1.0",
     "tinycolor2": "^1.4.1"
   },
   "files": [

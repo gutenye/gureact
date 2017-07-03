@@ -2,6 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import cx from 'classnames'
+import { Link } from 'react-router-dom'
 
 class BottomNavigation extends React.Component {
   props: {
@@ -9,7 +10,7 @@ class BottomNavigation extends React.Component {
       {
         label: string,
         icon?: any,
-        to: string,
+        to?: string,
       },
     ],
     style?: Object,
@@ -25,17 +26,21 @@ class BottomNavigation extends React.Component {
     const { selectedIndex } = this.state
     return (
       <Root {...this.props}>
-        {items.map((item, index) =>
-          <div
-            className={cx('BottomNavigation-item', {
-              active: selectedIndex === index,
-            })}
-            key={item.label}
-            onClick={this.onClick(index)}
-          >
-            {item.label}
-          </div>
-        )}
+        {items.map((item, index) => {
+          const Cmp = item.to ? Link : Div
+          return (
+            <Cmp
+              className={cx('BottomNavigation-item', {
+                active: selectedIndex === index,
+              })}
+              key={item.label}
+              onClick={this.onClick(index)}
+              to={item.to}
+            >
+              {item.label}
+            </Cmp>
+          )
+        })}
       </Root>
     )
   }
@@ -67,6 +72,8 @@ const Root = styled.div`
     }
   }
 `
+
+const Div = styled.div``
 
 BottomNavigation.Root = Root
 

@@ -4,14 +4,16 @@ import { castArray } from 'lodash'
 
 type props = {
   title: string,
+  /** white: white background instead of transperent */
+  type?: string,
   className?: string,
   style?: Object,
   children: any,
 }
 
-const ArtboardDefault = ({ title, children, ...props }) => {
+const ArtboardDefault = ({ title, children, ...rest }) => {
   return (
-    <Root {...props}>
+    <Root {...rest}>
       <h3 className="Styleguide-header">
         {title}
       </h3>
@@ -30,7 +32,7 @@ const Root = styled.div`
   margin: 0 40px 40px 0;
   width: 395px;
   padding: 0 10px 10px 10px;
-  background-color: #dddfe2;
+  background-color: ${p => (p.type ? 'white' : 'transparent')};
 
   .Styleguide-header {
     margin-bottom: 10px;

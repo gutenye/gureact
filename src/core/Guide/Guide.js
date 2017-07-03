@@ -4,6 +4,7 @@ import { castArray } from 'lodash'
 import Artboard from './Artboard'
 import ArtboardDefault from './ArtboardDefault'
 import ArtboardMobile from './ArtboardMobile'
+import Color from './Color'
 
 /**
  * <Guide>
@@ -14,8 +15,8 @@ import ArtboardMobile from './ArtboardMobile'
 const Guide = ({ children }) => {
   return (
     <Root>
-      {castArray(children).map(item =>
-        <div className="Guide-item">
+      {castArray(children).map((item, i) =>
+        <div key={i} className="Guide-item">
           {item}
         </div>
       )}
@@ -35,5 +36,6 @@ const Root = styled.div`
 Guide.Artboard = Artboard
 Guide.ArtboardMobile = ArtboardMobile
 Guide.ArtboardDefault = ArtboardDefault
+Guide.Color = Color
 
 export default Guide
