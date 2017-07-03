@@ -14,17 +14,22 @@ const theme = { primary }
 ## Install
 
 ```
-$ npm install gureact
+$ yarn add gureact
+MDC: yarn add material-components-web react-material-components-web
+Antd: yarn add antd
 
 # src/_variables.scss
 
-{
-  loader: 'sass-loader',
-  options: {
-    data: '@import "variables";',
-    includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
+  $mdc-theme-primary: #3b5999;
+
+# webpack.config.js
+
+  {
+    loader: 'sass-loader',
+    options: {
+      includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
+    }
   }
-}
 ```
 
 ```
@@ -37,14 +42,6 @@ $ npm install gureact
 import { Button } from 'gureact'
 
 yarn add lodash styled-components classnames react-icons recompose react-router react-router-dom
-```
-
-## Antd
-
-```
-yarn add antd
-
-import { PreviweModal } from 'gureact/antd'
 ```
 
 ### Setup global styles

@@ -16,16 +16,27 @@ class Drawer extends React.Component {
     return (
       <Root {...this.props} onClick={this.onRootClick}>
         <div className="drawer" onClick={this.onDrawerClick}>
-          <Link className="logo" to="/">{appName}</Link>
+          <Link className="logo" to="/">
+            {appName}
+          </Link>
           <Menu mode={menuMode}>
             {menu.map(v =>
               <Menu.SubMenu
                 key={v.title}
-                title={<span>{v.icon}<Title>{v.title}</Title></span>}
+                title={
+                  <span>
+                    {v.icon}
+                    <Title>
+                      {v.title}
+                    </Title>
+                  </span>
+                }
               >
                 {v.children.map(c =>
                   <Menu.Item key={c.title}>
-                    <Link to={c.to}>{c.title}</Link>
+                    <Link to={c.to}>
+                      {c.title}
+                    </Link>
                   </Menu.Item>
                 )}
               </Menu.SubMenu>
@@ -51,7 +62,7 @@ const Root = styled.aside`
   left: 0;
   z-index: 20;
   height: 100%;
-  
+
   .drawer {
     height: 100%;
     background-color: white;
@@ -78,7 +89,9 @@ const Root = styled.aside`
 
     > .drawer {
       background: #fff;
-      box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+      box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
+        0px 16px 24px 2px rgba(0, 0, 0, 0.14),
+        0px 6px 30px 5px rgba(0, 0, 0, 0.12);
       left: 0;
       right: initial;
       display: flex;
@@ -120,9 +133,5 @@ const Root = styled.aside`
   }
 `
 
-const Title = styled.span`
-  ${s.tabletOnly} {
-    display: none;
-  }
-`
+const Title = styled.span`${s.tabletOnly} {display: none;}`
 export default Drawer

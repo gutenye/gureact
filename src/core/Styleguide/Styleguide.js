@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { castArray } from 'lodash'
 
 /**
  * <Styleguide>
  *   <Styleguide.Section title="Basic">
- *     <Button />
- *   ...
+ *     <Styleguide.Item>
+ *      ...
  */
 const Styleguide = styled.div`
   display: flex;
@@ -19,15 +20,22 @@ type props = {
   children: any,
 }
 
-const Section = ({ title, children, ...props }) =>
-  <SectionRoot {...props}>
-    <h3 className="header">
-      {title}
-    </h3>
-    <div>
-      {children}
-    </div>
-  </SectionRoot>
+const Section = ({ title, children, ...props }) => {
+  return (
+    <SectionRoot {...props}>
+      <h3 className="Styleguide-header">
+        {title}
+      </h3>
+      <div>
+        {castArray(children).map((v, i) =>
+          <div key={i} className="Styleguide-item">
+            {v}
+          </div>
+        )}
+      </div>
+    </SectionRoot>
+  )
+}
 
 const SectionRoot = styled.div`
   margin: 0 40px 40px 0;
@@ -35,7 +43,7 @@ const SectionRoot = styled.div`
   padding: 0 10px 10px 10px;
   background-color: #dddfe2;
 
-  > .header {
+  .Styleguide-header {
     margin-bottom: 10px;
 
     &::before {
@@ -45,6 +53,10 @@ const SectionRoot = styled.div`
       border-top: 4px solid ${p => p.theme.primary};
       margin-bottom: 3px;
     }
+  }
+
+  .Styleguide-item {
+    margin-top: 10px;
   }
 `
 

@@ -10,6 +10,7 @@ module.exports = {
 
   sections: [
     {name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
+    {name: 'MDC', content: 'src/mdc/mdc.md', components: 'src/mdc/**/[A-Z]*.js'},
     {name: 'Commerce', content: 'src/commerce/commerce.md', components: 'src/commerce/**/[A-Z]*.js'},
     {name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
   ],
@@ -20,7 +21,6 @@ module.exports = {
         {test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']},
         {test: /\.css$/, use: ['style-loader', 'css-loader']},
         {test: /\.scss$/, use: ['style-loader', 'css-loader', {loader: 'sass-loader', options: {
-          data: '@import "variables";',
           includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
         }}]},
       ]

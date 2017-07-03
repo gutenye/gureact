@@ -27,9 +27,11 @@
     "css-loader": "^0.28.4",
     "flow-bin": "^0.47.0",
     "flow-typed": "^2.1.2",
+    "material-components-web": "^0.14.0",
     "node-sass": "^4.5.3",
     "react": "^15.5.4",
     "react-dom": "",
+    "react-material-components-web": "^0.1.17",
     "react-router-dom": "^4.1.1",
     "react-styleguidist": "^5.4.4",
     "sass-loader": "^6.0.6",
@@ -38,7 +40,6 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "@material/toolbar": "^0.4.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
     "react-icons": "^2.2.5",

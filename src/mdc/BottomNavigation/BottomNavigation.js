@@ -12,6 +12,8 @@ class BottomNavigation extends React.Component {
         to: string,
       },
     ],
+    style?: Object,
+    className?: string,
   }
 
   state = {
@@ -49,6 +51,9 @@ const Root = styled.div`
   display: flex;
   height: 49px;
   background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 
   .BottomNavigation-item {
     flex: 1;

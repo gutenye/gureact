@@ -7,13 +7,13 @@ test() {
 }
 
 build() {
-  rm lib/* 2>/dev/null
-  babel src -d lib --ignore __tests__
+  rm -r lib 2>/dev/null
+  babel src -d lib --ignore __tests__ --copy-files
 }
 
 watch() {
-  rm lib/* 2>/dev/null
-  babel src -d lib --watch --ignore __tests__
+  rm -r lib 2>/dev/null
+  babel src -d lib --watch --ignore __tests__ --copy-files
 }
 
 publish() {

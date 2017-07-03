@@ -13,7 +13,6 @@ class Button extends React.Component {
   }
 
   render() {
-    pd(1, this.props)
     const { action, children, ...rest } = this.props
     if (isString(action)) {
       return (
