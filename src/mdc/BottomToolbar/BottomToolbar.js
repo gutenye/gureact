@@ -55,4 +55,6 @@ const Item = styled.div`
   }
 `
 
+BottomToolbar.Root = Root
+
 export default BottomToolbar

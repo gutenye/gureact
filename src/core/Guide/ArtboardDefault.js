@@ -2,17 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { castArray } from 'lodash'
 
-/**
- * <Styleguide>
- *   <Styleguide.Section title="Basic">
- *     <Styleguide.Item>
- *      ...
- */
-const Styleguide = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
 type props = {
   title: string,
   className?: string,
@@ -20,9 +9,9 @@ type props = {
   children: any,
 }
 
-const Section = ({ title, children, ...props }) => {
+const ArtboardDefault = ({ title, children, ...props }) => {
   return (
-    <SectionRoot {...props}>
+    <Root {...props}>
       <h3 className="Styleguide-header">
         {title}
       </h3>
@@ -33,11 +22,11 @@ const Section = ({ title, children, ...props }) => {
           </div>
         )}
       </div>
-    </SectionRoot>
+    </Root>
   )
 }
 
-const SectionRoot = styled.div`
+const Root = styled.div`
   margin: 0 40px 40px 0;
   width: 395px;
   padding: 0 10px 10px 10px;
@@ -60,6 +49,4 @@ const SectionRoot = styled.div`
   }
 `
 
-Styleguide.Section = Section
-
-export default Styleguide
+export default ArtboardDefault

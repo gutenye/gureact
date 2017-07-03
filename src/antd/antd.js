@@ -1,6 +1,6 @@
 import React from 'react'
 import StyleguideRoot from '../StyleguideRoot'
-import Guide from '../core/Styleguide/Styleguide'
+import Guide from '../core/Guide/Guide'
 import ImageUpload from './ImageUpload/ImageUpload'
 
 class Styleguide extends React.Component {
@@ -8,10 +8,10 @@ class Styleguide extends React.Component {
     return (
       <StyleguideRoot>
         <Guide>
-          <Guide.Section title="Form">
+          <Guide.Artboard title="Form">
             <ImageUpload>Upload Image</ImageUpload>
-          </Guide.Section>
-          <Guide.Section title="More" />
+          </Guide.Artboard>
+          <Guide.Artboard title="More" />
         </Guide>
       </StyleguideRoot>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 import StyleguideRoot from '../StyleguideRoot'
-import Guide from '../core/Styleguide/Styleguide'
+import Guide from '../core/Guide/Guide'
 import BottomNavigation from './BottomNavigation/BottomNavigation'
 import BottomToolbar from './BottomToolbar/BottomToolbar'
 import Toolbar from './Toolbar/Toolbar'
@@ -12,7 +12,7 @@ class Styleguide extends React.Component {
     return (
       <StyleguideRoot>
         <Guide>
-          <Guide.Section title="Layout">
+          <Guide.Artboard title="Layout">
             <Toolbar back title="Toolbar" />
             <BottomNavigation
               items={[
@@ -30,7 +30,7 @@ class Styleguide extends React.Component {
               ]}
               style={{ position: 'relative', marginTop: 10 }}
             />
-          </Guide.Section>
+          </Guide.Artboard>
         </Guide>
       </StyleguideRoot>
     )

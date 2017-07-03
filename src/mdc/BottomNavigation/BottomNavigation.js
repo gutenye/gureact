@@ -68,4 +68,6 @@ const Root = styled.div`
   }
 `
 
+BottomNavigation.Root = Root
+
 export default BottomNavigation

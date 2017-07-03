@@ -23,6 +23,7 @@ module.exports = {
         {test: /\.scss$/, use: ['style-loader', 'css-loader', {loader: 'sass-loader', options: {
           includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
         }}]},
+        { test: /\.svg$/, use: ['babel-loader', {loader: '@gutenye/react-svg-loader', options: {es5: false, svgo: { pretty: true, plugins: [ { removeStyleElement: true } ] } }}] }
       ]
     },
     plugins: [

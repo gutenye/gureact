@@ -1,7 +1,7 @@
 import React from 'react'
 import StyleguideRoot from '../StyleguideRoot'
 import { times } from 'lodash'
-import Guide from '../core/Styleguide/Styleguide'
+import Guide from '../core/Guide/Guide'
 import GridListItem from './GridListItem/GridListItem'
 import GridListItemWithPrice from './GridListItemWithPrice/GridListItemWithPrice'
 import GridListItemWithDescription from './GridListItemWithDescription/GridListItemWithDescription'
@@ -11,7 +11,7 @@ class Styleguide extends React.Component {
     return (
       <StyleguideRoot>
         <Guide>
-          <Guide.Section title="GridListItem" style={{ width: '200px' }}>
+          <Guide.Artboard title="GridListItem" style={{ width: '200px' }}>
             <GridListItem
               name="Netgear Orbi"
               priceDisplay="¥2200"
@@ -25,7 +25,7 @@ class Styleguide extends React.Component {
               name="Netgear Orbi"
               image="/images/product1.jpg"
             />
-          </Guide.Section>
+          </Guide.Artboard>
         </Guide>
       </StyleguideRoot>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 import StyleguideRoot from '../StyleguideRoot'
-import Guide from './Styleguide/Styleguide'
+import Guide from './Guide/Guide'
 import Button from './Button/Button'
 import GridList from './GridList/GridList'
 import MasonryList from './MasonryList/MasonryList'
@@ -13,11 +13,11 @@ class Styleguide extends React.Component {
     return (
       <StyleguideRoot>
         <Guide>
-          <Guide.Section title="Basic">
+          <Guide.Artboard title="Basic">
             <Button primary>Button</Button>
-          </Guide.Section>
+          </Guide.Artboard>
 
-          <Guide.Section title="Data Display" style={{ width: '320px' }}>
+          <Guide.Artboard title="Data Display" style={{ width: '320px' }}>
             <h3>GridList</h3>
             <GridList>
               {times(4).map(v => <Placeholder key={v} />)}
@@ -33,7 +33,7 @@ class Styleguide extends React.Component {
                 <Placeholder width="100%" height="random" key={v} />
               )}
             </MasonryList>
-          </Guide.Section>
+          </Guide.Artboard>
         </Guide>
       </StyleguideRoot>
     )
