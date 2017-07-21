@@ -5,6 +5,7 @@ import Guide from '../core/Guide/Guide'
 import GridListItem from './GridListItem/GridListItem'
 import GridListItemWithPrice from './GridListItemWithPrice/GridListItemWithPrice'
 import GridListItemWithDescription from './GridListItemWithDescription/GridListItemWithDescription'
+import StockQtyEdit from './StockQtyEdit/StockQtyEdit'
 
 class Styleguide extends React.Component {
   render() {
@@ -25,6 +26,7 @@ class Styleguide extends React.Component {
               name="Netgear Orbi"
               image="/images/product1.jpg"
             />
+            <StockQtyEdit />
           </Guide.Artboard>
         </Guide>
       </StyleguideRoot>

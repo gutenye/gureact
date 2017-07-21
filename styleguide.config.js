@@ -2,11 +2,10 @@ const Copy = require('copy-webpack-plugin')
 const path = require('path')
 
 module.exports = {
+  title: 'Styleguide',
   styleguideDir: 'public',
   assetsDir: 'static',
   require: ['./src/styleguidist.css'],
-
-  title: 'Styleguide',
 
   sections: [
     {name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},

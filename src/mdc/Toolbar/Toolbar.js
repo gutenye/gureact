@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import MDCToolbar from '@react-mdc/toolbar'
+import { Toolbar } from 'react-mc'
 import { withRouter } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons'
-import './Toolbar.scss'
 
 /**
  * import { Toolbar } from 'gureact/mdc'
@@ -16,7 +15,7 @@ import './Toolbar.scss'
  */
 
 @withRouter
-class Toolbar extends React.Component {
+class MDCToolbar extends React.Component {
   props: {
     title?: string,
     back?: boolean,
@@ -31,16 +30,16 @@ class Toolbar extends React.Component {
       </div>
     return (
       <Root>
-        <MDCToolbar.Container>
-          <MDCToolbar.Row>
-            <MDCToolbar.Section align="start">
+        <Toolbar>
+          <Toolbar.Row>
+            <Toolbar.Section align="start">
               {backEl}
-              <MDCToolbar.Title>
+              <Toolbar.Title>
                 {title}
-              </MDCToolbar.Title>
-            </MDCToolbar.Section>
-          </MDCToolbar.Row>
-        </MDCToolbar.Container>
+              </Toolbar.Title>
+            </Toolbar.Section>
+          </Toolbar.Row>
+        </Toolbar>
       </Root>
     )
   }
@@ -57,4 +56,4 @@ const Root = styled.div`
   }
 `
 
-export default Toolbar
+export default MDCToolbar

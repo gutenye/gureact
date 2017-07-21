@@ -12,6 +12,7 @@
     "@gutenye/babel-plugin-transform-imports": "^1.1.12",
     "@gutenye/react-svg-loader": "^2.0.8",
     "antd": "^2.11.0",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-plugin-import": "^1.2.1",

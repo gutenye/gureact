@@ -3,7 +3,15 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
+import { findIndex, omit } from 'lodash'
 
+/**
+ * <BottomToolbar
+ *  items=[
+ *    { label: 'Favourite' }
+ *    { label: 'Add to Cart', primary: true, align: 'end' }
+ *  ]
+ */
 class BottomToolbar extends React.Component {
   props: {
     items: {
@@ -21,6 +29,14 @@ class BottomToolbar extends React.Component {
     return (
       <Root {...this.props}>
         {items.map((item, index) => {
+          let marginLeft = 'initial'
+          // first time occurs align: 'end': add margin-left: 'auto'
+          if (
+            item.align === 'end' &&
+            findIndex(items, { align: 'end' }) === index
+          )
+            marginLeft = 'auto'
+
           const Cmp = item.to ? ItemWithLink : Item
           return (
             <Cmp
@@ -28,6 +44,7 @@ class BottomToolbar extends React.Component {
               onClick={item.onClick}
               primary={item.primary}
               to={item.to}
+              marginLeft={marginLeft}
             >
               {item.label}
             </Cmp>
@@ -49,18 +66,17 @@ const Root = styled.div`
 `
 
 const ItemStyle = css`
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     cursor: pointer;
-    flex: 1;
+    margin-left: ${p => p.marginLeft};
+    padding: 0 16px;
 
     ${p =>
       p.primary &&
       `
-        flex: none;
-        padding: 0 16px;
         color: ${p.theme.textPrimaryOnPrimary};
         background: ${p.theme.primary};
       `}
@@ -72,7 +88,9 @@ const Item = styled.div`
   ${ItemStyle}
 `
 
-const ItemWithLink = styled(Link)`
+const ItemWithLink = styled(p =>
+  <Link {...omit(p, ['primary', 'marginLeft'])} />
+)`
   ${ItemStyle}
 `
 
