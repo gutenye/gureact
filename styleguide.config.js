@@ -1,18 +1,39 @@
-const Copy = require('copy-webpack-plugin')
 const path = require('path')
+const Copy = require('copy-webpack-plugin')
+const Compression = require('compression-webpack-plugin')
 
 module.exports = {
-  title: 'Styleguide',
-  styleguideDir: 'public',
+  title: 'GuReact',
+  styleguideDir: 'build.docs',
   assetsDir: 'static',
-  require: ['./src/styleguidist.css'],
+  template: 'docs/template.html',
+  require: ['./docs/docs.js', './docs/docs.css'],
 
+  // prettier-ignore
   sections: [
-    {name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
-    {name: 'MDC', content: 'src/mdc/mdc.md', components: 'src/mdc/**/[A-Z]*.js'},
-    {name: 'Commerce', content: 'src/commerce/commerce.md', components: 'src/commerce/**/[A-Z]*.js'},
-    {name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
+    //{name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
+    { name: 'MDC', sections: [
+      { name: 'Settings', content: 'src/mdc/Settings/README.md', components: 'src/mdc/Settings/[A-Z]*.js' },
+    ]},
+    //{name: 'Commerce', content: 'src/commerce/commerce.md', components: 'src/commerce/**/[A-Z]*.js'},
+    //{name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
   ],
+
+  // remove default README.md
+  getExampleFilename(componentPath) {
+    return componentPath.replace(/\.js$/, '.md')
+  },
+
+  styles: {
+    ComponentsList: {
+      heading: {
+        '& + ul > $isChild': {
+          display: 'none',
+        }
+      },
+    },
+  },
+
 
   webpackConfig: {
     module: {
@@ -26,7 +47,8 @@ module.exports = {
       ]
     },
     plugins: [
-      new Copy([{from: 'static'}])
+      new Compression(),
+      //new Copy([{from: 'static'}])
     ]
   }
 }

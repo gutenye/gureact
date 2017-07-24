@@ -12,25 +12,7 @@ class Styleguide extends React.Component {
     return (
       <StyleguideRoot>
         <Guide>
-          <Guide.Artboard title="Layout">
-            <Toolbar back title="Toolbar" />
-            <BottomNavigation
-              items={[
-                { label: 'Bottom' },
-                { label: 'Navigation' },
-                { label: 'Me' },
-              ]}
-              style={{ position: 'relative' }}
-            />
-            <BottomToolbar
-              items={[
-                { label: 'Bottom' },
-                { label: 'Toolbar' },
-                { label: 'Add to Cart', primary: true },
-              ]}
-              style={{ position: 'relative', marginTop: 10 }}
-            />
-          </Guide.Artboard>
+          <Guide.Artboard title="Layout" />
         </Guide>
       </StyleguideRoot>
     )

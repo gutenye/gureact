@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import cx from 'classnames'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 class BottomNavigation extends React.Component {
   props: {
@@ -27,18 +27,16 @@ class BottomNavigation extends React.Component {
     return (
       <Root {...this.props}>
         {items.map((item, index) => {
-          const Cmp = item.to ? Link : Div
           return (
-            <Cmp
-              className={cx('BottomNavigation-item', {
-                active: selectedIndex === index,
-              })}
+            <NavLink
               key={item.label}
-              onClick={this.onClick(index)}
+              className="BottomNavigation-item"
+              activeClassName="active"
               to={item.to}
+              exact
             >
               {item.label}
-            </Cmp>
+            </NavLink>
           )
         })}
       </Root>

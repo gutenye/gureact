@@ -4,18 +4,9 @@ import { Toolbar } from 'react-mc'
 import { withRouter } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons'
 
-/**
- * import { Toolbar } from 'gureact/mdc'
- * import { MdMenu, MdArrowBack } from 'react-icons'
- * 
- * <Toolbar
- *   menu onMenuClick
- *   back
- *   title, search
- */
-
 @withRouter
 class MDCToolbar extends React.Component {
+  static displayName = 'Toolbar'
   props: {
     title?: string,
     back?: boolean,
@@ -45,7 +36,8 @@ class MDCToolbar extends React.Component {
   }
 
   onBackClick = () => {
-    this.props.history.goBack()
+    const { history } = this.props
+    history.goBack()
   }
 }
 

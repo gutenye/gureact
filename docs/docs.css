@@ -1,0 +1,120 @@
+demo-canvas {
+  display: block;
+  padding-left: 20px;
+  background-color: #DDDFE2;
+}
+
+demo-artboard {
+  display: block;
+  width: 425px;
+  background-color: #efeff4;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: bottom;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.h100 {
+  height: 100px;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.h200 {
+  height: 200px;
+}
+
+.w300 {
+  width: 300px;
+}
+
+.h300 {
+  height: 300px;
+}
+
+.bg1 {
+  background-color: #dddddd;
+}
+
+.bg2 {
+  background-color: #666666;
+  color: white;
+}
+
+h {
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+
+.demo-settings-page {
+}
+
+.demo-settings-page .mdc-list {
+  border-top: 1px solid rgba(0, 0, 0, .12);
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+  background-color: white;
+}
+
+.demo-settings-page .mdc-list-item__end-detail {
+  color: #c7c7cc;
+}
+
+.demo-settings-page seperator {
+  display: block;
+  height: 48px;
+}
+
+demo-grid-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+demo-grid-list > * {
+  margin-bottom: 20px;
+}
+
+demo-grid-list > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+demo-row {
+  display: flex;
+  align-items: center;
+}
+
+demo-row > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+demo-column {
+  display: flex;
+  flex-direction: column;
+}
+
+demo-column > *:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+iframe {
+  border: 1px solid #eee;
+  height: 200px;
+  margin: 0px;
+  overflow: scroll;
+}
