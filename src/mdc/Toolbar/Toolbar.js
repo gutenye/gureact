@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Toolbar } from 'react-mc'
 import { withRouter } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons'
+import s from '../../theme'
 
 @withRouter
 class MDCToolbar extends React.Component {
@@ -10,18 +11,23 @@ class MDCToolbar extends React.Component {
   props: {
     title?: string,
     back?: boolean,
+    children: any,
   }
 
   render() {
-    const { title, back } = this.props
+    const { title, back, children } = this.props
     const backEl =
       back &&
-      <div className="mdc-toolbar__icon--menu" onClick={this.onBackClick}>
-        <MdArrowBack className="Toolbar-icon" />
-      </div>
+      <Toolbar.Icon
+        menu
+        className="Toolbar-back-icon"
+        onClick={this.onBackClick}
+      >
+        <MdArrowBack />
+      </Toolbar.Icon>
     return (
       <Root>
-        <Toolbar>
+        <Toolbar fixed waterfall>
           <Toolbar.Row>
             <Toolbar.Section align="start">
               {backEl}
@@ -31,6 +37,9 @@ class MDCToolbar extends React.Component {
             </Toolbar.Section>
           </Toolbar.Row>
         </Toolbar>
+        <Toolbar.FixedAdjust>
+          {children}
+        </Toolbar.FixedAdjust>
       </Root>
     )
   }
@@ -42,10 +51,13 @@ class MDCToolbar extends React.Component {
 }
 
 const Root = styled.div`
-  .Toolbar-icon {
-    width: 24px;
-    height: 24px;
+  .Toolbar-back-icon {
+    ${s.desktopMin} {
+      display: none;
+    }
   }
 `
+
+MDCToolbar.FixedAdjust = Toolbar.FixedAdjust
 
 export default MDCToolbar

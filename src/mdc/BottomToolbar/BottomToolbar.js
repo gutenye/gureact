@@ -19,6 +19,8 @@ class BottomToolbar extends React.Component {
       primary?: boolean,
       onClick?: Function,
       to?: string,
+      /** needs above BottomNativation bar */
+      lift?: boolean,
     },
     style?: Object,
     className?: string,
@@ -57,8 +59,9 @@ class BottomToolbar extends React.Component {
 
 const Root = styled.div`
   position: fixed;
-  bottom: 0;
-  width: 100%;
+  bottom: ${p => (p.lift ? '49px' : 0)};
+  left: 0;
+  right: 0;
 
   display: flex;
   height: 49px;
