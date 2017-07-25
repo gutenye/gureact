@@ -19,5 +19,5 @@ pages:
 mirror:
   stage: mirror
   script:
-    - git-push git@gitlab.com:gutenye/gureact.git
+    - git-push git@github.com:gutenye/gureact.git
   image: ilyasemenov/gitlab-ci-git-push
