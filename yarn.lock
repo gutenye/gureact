@@ -3810,6 +3810,10 @@ jest-snapshot@^20.0.3:
     natural-compare "^1.4.0"
     pretty-format "^20.0.3"
 
+jest-transforms@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/jest-transforms/download/jest-transforms-1.0.0.tgz#01485094522d120fefda286d2152c81b3c380b37"
+
 jest-util@^20.0.3:
   version "20.0.3"
   resolved "http://registry.npm.taobao.org/jest-util/download/jest-util-20.0.3.tgz#0c07f7d80d82f4e5a67c6f8b9c3fe7f65cfd32ad"
@@ -6893,6 +6897,10 @@ url-parse@^1.0.1, url-parse@^1.1.1, url-parse@^1.1.8:
   dependencies:
     querystringify "~1.0.0"
     requires-port "1.0.x"
+
+url-search-params@^0.10.0:
+  version "0.10.0"
+  resolved "http://registry.npm.taobao.org/url-search-params/download/url-search-params-0.10.0.tgz#d428c1fa9d78d5c5a3feb634147873890f4adcf0"
 
 url@^0.11.0:
   version "0.11.0"

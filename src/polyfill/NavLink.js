@@ -1,20 +1,30 @@
 import React from 'vendor'
 import { NavLink } from 'react-router-dom'
-import { isString, map } from 'lodash'
+import { isString, map, omit, isEqual } from 'lodash'
+import { toSearchString } from '../utils'
 
 /**
  * activeClassName='active'
- * to={query}
- * isActive based on query and status: 'root', 'saved', 'custom'
+ * to supports query
+ * isActive supports query
  */
 class SavedSearchBarNavLink extends React.Component {
+  props: {
+    /** omit: ['page', 'limit'] */
+    omit?: Array<string>,
+  }
+
+  static defaultProps = {
+    omit: [],
+  }
+
   render() {
     const { to, ...rest } = this.props
     return (
       <NavLink
         to={this.toStr(to)}
         activeClassName="active"
-        isActive={this.isActive(this.toObj(to))}
+        isActive={this.isActive(to)}
         {...rest}
       />
     )
@@ -22,21 +32,30 @@ class SavedSearchBarNavLink extends React.Component {
 
   // str/obj -> obj
   toObj = to => {
-    if (isString(to))
-      
-      ...
+    if (isString(to)) {
+      return {}
+    }
     return to
   }
 
   // str/obj -> str
   toStr = to => {
-    return isString(to) ? to : `${to.pathname}?${toQueryString(to.query)}`
+    return isString(to) ? to : `${to.pathname}?${toSearchString(to.query)}`
   }
 
-  isActive = (to) => {
+  /**
+   * 
+   * /posts
+   * /posts?a=1
+   * 
+   * to='/posts'
+   * to={query: {a: 1}}
+   */
+  isActive = to => {
+    const toObj = this.toObj(to)
     return (match, location) => {
-      pd('isActive', match, location)
-      return false
+      const query = omit(location.query, this.props.omit)
+      return isEqual(toObj, query)
     }
   }
 }

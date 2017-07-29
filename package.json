@@ -3,10 +3,8 @@
   "version": "1.0.7",
   "main": "",
   "scripts": {
-    "build-docs": "NODE_ENV=production ./ake build-docs"
-  },
-  "eslintConfig": {
-    "extends": "@gutenye/react-app"
+    "build-docs": "NODE_ENV=production ./ake build-docs",
+    "test": "jest"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -25,6 +23,7 @@
     "antd": "^2.12.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.0.0",
     "babel-plugin-import": "^1.2.1",
     "babel-plugin-styled-components": "^1.1.4",
@@ -41,16 +40,30 @@
     "css-loader": "^0.28.4",
     "flow-bin": "^0.47.0",
     "flow-typed": "^2.1.2",
+    "jest": "^20.0.4",
+    "jest-transforms": "^1.0.0",
     "node-sass": "^4.5.3",
     "react-mc": "^0.15.5",
     "react-router-dom": "^4.1.1",
     "react-styleguidist": "^5.4.4",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "url-search-params": "^0.10.0",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
   },
   "files": [
     "lib"
-  ]
+  ],
+  "eslintConfig": {
+    "extends": "@gutenye/react-app"
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "babel-jest",
+      "\\.css$": "jest-transforms/css",
+      "^(?!.*\\.(js|jsx|css|json)$)": "jest-transforms/file"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
+  }
 }
