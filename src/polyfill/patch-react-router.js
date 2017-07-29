@@ -1,13 +1,13 @@
 // @flow
 import createBrowserHistory from 'history/createBrowserHistory'
-import { parseQueryString, toQueryString } from './utils'
+import { parseSearchString, toSearchString } from './index'
 import { omitBy } from 'lodash'
 
 export const history = createBrowserHistory()
 
 function historyListen() {
   history.location = Object.assign(history.location, {
-    query: parseQueryString(history.location.search),
+    query: parseSearchString(history.location.search),
   })
 }
 history.listen(historyListen)
@@ -22,7 +22,7 @@ history.push = function(path, state) {
       path.query = Object.assign({}, history.location.query, path.query)
     }
     path.query = omitBy(path.query, v => v === '')
-    path.search = toQueryString(path.query)
+    path.search = toSearchString(path.query)
   }
   return originalPush(path, state)
 }

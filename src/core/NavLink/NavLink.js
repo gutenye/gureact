@@ -1,14 +1,14 @@
 import React from 'vendor'
 import { NavLink } from 'react-router-dom'
 import { isString, map, omit, isEqual } from 'lodash'
-import { toSearchString } from '../utils'
+import { toSearchString } from '../../polyfill'
 
 /**
  * activeClassName='active'
  * to supports query
  * isActive supports query
  */
-class SavedSearchBarNavLink extends React.Component {
+class CoreNavLink extends React.Component {
   props: {
     /** omit: ['page', 'limit'] */
     omit?: Array<string>,
@@ -19,7 +19,7 @@ class SavedSearchBarNavLink extends React.Component {
   }
 
   render() {
-    const { to, ...rest } = this.props
+    const { to, omit, ...rest } = this.props
     return (
       <NavLink
         to={this.toStr(to)}
@@ -33,7 +33,7 @@ class SavedSearchBarNavLink extends React.Component {
   // str/obj -> obj
   toObj = to => {
     if (isString(to)) {
-      return {}
+      return { query: {} }
     }
     return to
   }
@@ -55,9 +55,9 @@ class SavedSearchBarNavLink extends React.Component {
     const toObj = this.toObj(to)
     return (match, location) => {
       const query = omit(location.query, this.props.omit)
-      return isEqual(toObj, query)
+      return isEqual(toObj.query, query)
     }
   }
 }
 
-export default SavedSearchBarNavLink
+export default CoreNavLink

@@ -6,10 +6,9 @@ import { Dropdown, Menu, Modal } from 'antd'
 import { MdMoreVert } from 'react-icons'
 import INPUTS from '../Inputs/Inputs'
 import FormModal from '../FormModal/FormModal'
-import NavLink from './NavLink'
+import NavLink from '../../core/NavLink/NavLink'
 
 //
-// /posts?saved=:index
 // /posts?q=x&tags=x
 //
 // <SavedSearchBar
@@ -25,7 +24,6 @@ import NavLink from './NavLink'
 @withRouter
 class SavedSearchBar extends React.Component {
   // state: {
-  //   id: ID 'root' 'custom'       // for key, isActive
   //   status: 'root', saved', 'custom'    // show differnt menu based on it
   //   inputValues: { [name]: value },  // for value/onChange
   // }
@@ -33,8 +31,7 @@ class SavedSearchBar extends React.Component {
 
   render() {
     const { match, location, savedSearchs, items } = this.props
-    pd('render', match, location)
-    const { inputValues } = this.state
+    const { inputValues, status } = this.state
     const dropdownMenu = (
       <Menu onClick={this.onMenuClick}>
         {status === 'custom' &&
@@ -68,13 +65,14 @@ class SavedSearchBar extends React.Component {
                 {t.customSearch}
               </NavLink>}
           </div>
-          <Dropdown
-            overlay={dropdownMenu}
-            trigger={['click']}
-            placement="bottomRight"
-          >
-            <MdMoreVert className="dropdown" button />
-          </Dropdown>
+          {status !== 'root' &&
+            <Dropdown
+              overlay={dropdownMenu}
+              trigger={['click']}
+              placement="bottomRight"
+            >
+              <MdMoreVert className="dropdown" button />
+            </Dropdown>}
         </div>
         <div className="searchItems">
           {items.map(({ type, name, ...rest }) => {
@@ -121,6 +119,16 @@ class SavedSearchBar extends React.Component {
     return savedSearchs.find(v => isEqual(v.query, query))
   }
 
+  onChange = name => value => {
+    const { inputValues } = this.state
+    inputValues[name] = value
+    this.setState({ inputValues })
+  }
+
+  onSearch = () => {
+    this.props.history.push({ query: this.toQueries() })
+  }
+
   // {tags: 'a,b'} -> {tags: ['a', 'b']}
   parseQueries(query, items) {
     var inputValues = {}
@@ -130,20 +138,6 @@ class SavedSearchBar extends React.Component {
       )
     })
     return inputValues
-  }
-
-  isActive = id => () => {
-    return this.state.id === id
-  }
-
-  onChange = name => value => {
-    const { inputValues } = this.state
-    inputValues[name] = value
-    this.setState({ inputValues })
-  }
-
-  onSearch = () => {
-    this.props.history.push({ query: this.toQueries() })
   }
 
   // {tags: ['a', 'b']} -> {tags: 'a,b'}
@@ -176,8 +170,7 @@ class SavedSearchBar extends React.Component {
         const found = savedSearchs.find(v => v.name === inputValues.name)
         const query = this.toQueries(this.state.inputValues)
         if (found) found.query = query
-        else
-          savedSearchs.push({ id: this.genId(), name: inputValues.name, query })
+        else savedSearchs.push({ name: inputValues.name, query })
         this.props.onUpdate(savedSearchs)
       },
     })
@@ -187,15 +180,11 @@ class SavedSearchBar extends React.Component {
     Modal.confirm({
       title: t.confirmDelete,
       onOk: () => {
-        remove(this.props.savedSearchs, { id: this.state.id })
+        const found = this.findSavedSearch(this.props)
+        remove(this.props.savedSearchs, { name: found.name })
         this.props.onUpdate(this.props.savedSearchs)
       },
     })
-  }
-
-  genId = () => {
-    const { savedSearchs } = this.props
-    return maxBy([{ id: 0 }, ...savedSearchs], 'id').id + 1
   }
 }
 
