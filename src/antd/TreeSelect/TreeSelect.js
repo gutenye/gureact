@@ -1,9 +1,9 @@
 import React from 'react'
-import { map } from 'lodash'
+import { map, isPlainObject } from 'lodash'
 import { TreeSelect } from 'antd'
 
 /*
-  treeData: {China: {Zhejiang: {Yiwu: 1, Hangzhou: 1}, Shanghai: 1}}
+  options: {China: {Zhejiang: {Yiwu: 1, Hangzhou: 1}, Shanghai: 1}}
   onSearch(value)
   treeNodeLabelProp: 'value',
   showSearch: true,
@@ -42,6 +42,7 @@ export function simple2complex(data) {
 
 // I'm recursive
 function mapChildren(a, parent) {
+  if (!isPlainObject(a)) throw new Error('tree data is not a plain object')
   return map(a, (v, k) => {
     const value = `${parent}${k}`
     if (v === 1) return { label: k, value, key: value }

@@ -1,9 +1,6 @@
 // @flow
 import createBrowserHistory from 'history/createBrowserHistory'
-import {
-  parseQueryString,
-  toQueryString,
-} from './URLSearchParams'
+import { parseQueryString, toQueryString } from './utils'
 import { omitBy } from 'lodash'
 
 export const history = createBrowserHistory()

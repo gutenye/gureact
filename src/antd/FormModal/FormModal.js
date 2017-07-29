@@ -6,7 +6,7 @@ import INPUTS from '../Inputs/Inputs'
 
 // FormModal.open({
 //   items: [
-//     {type: 'input', field: 'name', placeholder, rules: [{required: true}]}
+//     {type: 'input', name: 'name', placeholder, rules: [{required: true}]}
 //   ]
 //   onSave(values)
 @Form.create()
@@ -16,19 +16,23 @@ class FormModal extends React.Component {
     return (
       <ModalStyled visible footer={null} onCancel={close}>
         <Form style={{ marginTop: 30 }} onSubmit={this.onSubmit}>
-          {items.map(({ type, field, rules, ...rest }) => {
+          {items.map(({ type, name, rules, ...rest }) => {
             const INPUT = INPUTS[type]
             return (
-              <Form.Item key={field}>
-                {form.getFieldDecorator(field, { rules: rules || [] })(
+              <Form.Item key={name}>
+                {form.getFieldDecorator(name, { rules: rules || [] })(
                   <INPUT autoComplete="off" {...rest} />
                 )}
               </Form.Item>
             )
           })}
           <Form.Item className="actions">
-            <Button onClick={close}>{t.cancel}</Button>
-            <Button type="primary" htmlType="submit">{t.save}</Button>
+            <Button onClick={close}>
+              {t.cancel}
+            </Button>
+            <Button type="primary" htmlType="submit">
+              {t.save}
+            </Button>
           </Form.Item>
         </Form>
       </ModalStyled>
@@ -41,7 +45,7 @@ class FormModal extends React.Component {
       if (errors) return
       // trim whitespace
       this.props.items.forEach(v => {
-        values[v.field] = INPUTS[v.type].trim(values[v.field])
+        values[v.name] = INPUTS[v.type].trim(values[v.name])
       })
       this.props.onSave(values)
       this.props.close()

@@ -1,6 +1,6 @@
 {
   "name": "gureact",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "",
   "scripts": {
     "build-docs": "NODE_ENV=production ./ake build-docs"
@@ -8,12 +8,24 @@
   "eslintConfig": {
     "extends": "@gutenye/react-app"
   },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.4",
+    "react-icons": "^2.2.5",
+    "recompose": "^0.23.5",
+    "styled-components": "^2.1.0",
+    "tinycolor2": "^1.4.1"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
   "devDependencies": {
     "@gutenye/babel-plugin-transform-imports": "^1.1.12",
     "@gutenye/react-svg-loader": "^2.0.8",
     "antd": "^2.12.2",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.0.0",
     "babel-plugin-import": "^1.2.1",
     "babel-plugin-styled-components": "^1.1.4",
@@ -30,9 +42,8 @@
     "css-loader": "^0.28.4",
     "flow-bin": "^0.47.0",
     "flow-typed": "^2.1.2",
+    "jest": "^20.0.4",
     "node-sass": "^4.5.3",
-    "react": "^15.5.4",
-    "react-dom": "",
     "react-mc": "^0.15.5",
     "react-router-dom": "^4.1.1",
     "react-styleguidist": "^5.4.4",
@@ -40,14 +51,6 @@
     "style-loader": "^0.18.2",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
-  },
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.4",
-    "react-icons": "^2.2.5",
-    "recompose": "^0.23.5",
-    "styled-components": "^2.1.0",
-    "tinycolor2": "^1.4.1"
   },
   "files": [
     "lib"

@@ -3,7 +3,7 @@
 export PATH="node_modules/.bin:$PATH"
 
 test() {
-  (cd test && webpack-dev-server --inline)
+  jest --watch
 }
 
 build() {
@@ -38,7 +38,7 @@ push-docs() {
 
 
 case "$1" in
-  test ) test ;;
+  t | test ) test ;;
   b | build ) build ;;
   w | watch ) watch ;;
   publish ) shift 1; publish "$@" ;;

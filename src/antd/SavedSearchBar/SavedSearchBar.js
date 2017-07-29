@@ -1,42 +1,47 @@
 import React from 'react'
 import styled from 'styled-components'
 import { withRouter } from 'react-router'
-import { NavLink } from 'react-router-dom'
-import { difference, isEmpty, remove, maxBy } from 'lodash'
+import { difference, isEmpty, isEqual, remove, maxBy, omit } from 'lodash'
 import { Dropdown, Menu, Modal } from 'antd'
 import { MdMoreVert } from 'react-icons'
 import INPUTS from '../Inputs/Inputs'
 import FormModal from '../FormModal/FormModal'
+import NavLink from './NavLink'
 
 //
 // /posts?saved=:index
 // /posts?q=x&tags=x
 //
 // <SavedSearchBar
-//   items=[{type: 'input', field: 'q', placeholder}]  tags:{options}
-//   savedSearchs = [{id, name, query}]
-//   onUpdate(savedSearchs)   // update, remove query
+//   items = [
+//     { name: 'q', type: 'input', placeholder }
+//     { name: 'tags', type: 'tags', options }
+//   savedSearchs = [{id, name, query: { tags: 'a,b' }}]
+//   onUpdate(savedSearchs)       // save data to db
+//
+///// Development
+// query: { tags: 'a,b' }              // used in url and savedSearchs
+// inputValues: { tags: ['a', 'b'] }   // default value for input
 @withRouter
 class SavedSearchBar extends React.Component {
   // state: {
-  //   id: ID 'root' 'custom'
-  //   isRoot, isCustom, isSaved,
-  //   values: {}, for input onChange, {tags: ['a', 'b']}
+  //   id: ID 'root' 'custom'       // for key, isActive
+  //   status: 'root', saved', 'custom'    // show differnt menu based on it
+  //   inputValues: { [name]: value },  // for value/onChange
   // }
-  state = {
-    ...this.getState(),
-  }
+  state = this.getState(this.props)
 
   render() {
-    const { match, savedSearchs, items } = this.props
-    const { values, isCustom, isSaved } = this.state
+    const { match, location, savedSearchs, items } = this.props
+    pd('render', match, location)
+    const { inputValues } = this.state
     const dropdownMenu = (
       <Menu onClick={this.onMenuClick}>
-        {isCustom &&
+        {status === 'custom' &&
           <Menu.Item key="saveSearch">
             {t.saveSearch}
           </Menu.Item>}
-        {isSaved &&
+        {status === 'saved' &&
           <Menu.Item key="deleteSearch">
             {t.deleteSearch}
           </Menu.Item>}
@@ -47,28 +52,21 @@ class SavedSearchBar extends React.Component {
       <Root>
         <div className="tabbar">
           <div className="tabs">
-            <NavLink
-              activeClassName="active"
-              to={match.url}
-              exact
-              isActive={this.isActive('root')}
-            >
+            <NavLink to={match.url} exact>
               {t.all}
             </NavLink>
             {savedSearchs.map(v =>
               <NavLink
-                key={v.id}
-                to={`${match.url}?saved=${v.id}`}
-                isActive={this.isActive(v.id)}
-                activeClassName="active"
+                key={v.name}
+                to={{ pathname: match.url, query: v.query }}
               >
                 {v.name}
               </NavLink>
             )}
-            {isCustom &&
-              <a className="active">
+            {status === 'custom' &&
+              <NavLink to={{ pathname: match.url, query: location.query }}>
                 {t.customSearch}
-              </a>}
+              </NavLink>}
           </div>
           <Dropdown
             overlay={dropdownMenu}
@@ -79,14 +77,14 @@ class SavedSearchBar extends React.Component {
           </Dropdown>
         </div>
         <div className="searchItems">
-          {items.map(({ type, field, ...rest }) => {
+          {items.map(({ type, name, ...rest }) => {
             const INPUT = INPUTS[type]
             return (
               <INPUT
-                key={field}
+                key={name}
                 className="item"
-                value={values[field]}
-                onChange={this.onChange(field)}
+                value={inputValues[name]}
+                onChange={this.onChange(name)}
                 onSearch={this.onSearch}
                 {...rest}
               />
@@ -101,50 +99,47 @@ class SavedSearchBar extends React.Component {
     this.setState(this.getState(nextProps))
   }
 
+  // return { inputValues, status }
   getState(props) {
-    const { location, savedSearchs, items } = props || this.props
-    var id,
-      isRoot = false,
-      isCustom = false,
-      isSaved = false
-    const diffs = difference(Object.keys(location.query), ['page', 'limit'])
-    if (diffs.length === 0) {
-      id = 'root'
-      isRoot = true
-    } else if ('saved' in location.query) {
-      id = parseInt(location.query.saved, 10)
-      isSaved = true
-    } else {
-      id = 'custom'
-      isCustom = true
-    }
+    const { location, items } = this.props
 
-    var values
     // if loading, savedSearchs is [].
-    // if deleted, savedSearchs is not found.
-    const found = savedSearchs.find(v => v.id === id)
+    // if deleted, savedSearch is null
+    const found = this.findSavedSearch(props)
     const query = found ? found.query : location.query
-    values = this.parseQueries(query, items)
-    return { values, id, isRoot, isCustom, isSaved }
+    const inputValues = this.parseQueries(query, items)
+
+    const status = isEmpty(location.query) ? 'root' : found ? 'saved' : 'custom'
+
+    return { inputValues, status }
+  }
+
+  // find savedSearch in savedSearchs with location.query
+  findSavedSearch(props) {
+    const { location, savedSearchs } = props
+    const query = omit(location.query, 'page', 'limit')
+    return savedSearchs.find(v => isEqual(v.query, query))
   }
 
   // {tags: 'a,b'} -> {tags: ['a', 'b']}
   parseQueries(query, items) {
-    var values = {}
+    var inputValues = {}
     items.forEach(item => {
-      values[item.field] = INPUTS[item.type].parseQuery(query[item.field] || '')
+      inputValues[item.name] = INPUTS[item.type].parseQuery(
+        query[item.name] || ''
+      )
     })
-    return values
+    return inputValues
   }
 
   isActive = id => () => {
     return this.state.id === id
   }
 
-  onChange = field => value => {
-    const { values } = this.state
-    values[field] = value
-    this.setState({ values })
+  onChange = name => value => {
+    const { inputValues } = this.state
+    inputValues[name] = value
+    this.setState({ inputValues })
   }
 
   onSearch = () => {
@@ -155,8 +150,8 @@ class SavedSearchBar extends React.Component {
   toQueries() {
     var query = {}
     this.props.items.forEach(item => {
-      const value = this.state.values[item.field]
-      if (!isEmpty(value)) query[item.field] = INPUTS[item.type].toQuery(value)
+      const value = this.state.inputValues[item.name]
+      if (!isEmpty(value)) query[item.name] = INPUTS[item.type].toQuery(value)
     })
     return query
   }
@@ -171,17 +166,18 @@ class SavedSearchBar extends React.Component {
       items: [
         {
           type: 'AutoComplete',
-          field: 'name',
+          name: 'name',
           placeholder: t.name,
           rules: [{ required: true }],
           dataSource: savedSearchs.map(v => v.name),
         },
       ],
-      onSave: values => {
-        const found = savedSearchs.find(v => v.name === values.name)
-        const query = this.toQueries(this.state.values)
+      onSave: inputValues => {
+        const found = savedSearchs.find(v => v.name === inputValues.name)
+        const query = this.toQueries(this.state.inputValues)
         if (found) found.query = query
-        else savedSearchs.push({ id: this.genId(), name: values.name, query })
+        else
+          savedSearchs.push({ id: this.genId(), name: inputValues.name, query })
         this.props.onUpdate(savedSearchs)
       },
     })
