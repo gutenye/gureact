@@ -1,8 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import s from '../../theme'
 import { merge } from 'lodash'
-import { ThemeProvider } from 'styled-components'
 import Header from './Header'
 import Drawer from './Drawer'
 import { Content, Left, Right } from './Content'
@@ -17,13 +16,7 @@ import { Content, Left, Right } from './Content'
 //
 // body { background-color: rgb(235, 238, 240); }
 //
-const theme = {
-  primary: {
-    background: '#3B5999',
-    backgroundDarken: '#344e87',
-    color: 'white',
-  },
-
+const DEFAULT_THEME = {
   drawer: {
     desktopWidth: '230px',
     tabletWidth: '80px',
@@ -43,7 +36,7 @@ class Layout extends React.Component {
     const { drawer, header, inner } = this.props
     const { drawerIsOpen } = this.state
     return (
-      <ThemeProvider theme={v => merge(theme, v)}>
+      <ThemeProvider theme={v => merge(DEFAULT_THEME, v)}>
         <Root>
           <Drawer
             isOpen={drawerIsOpen}
@@ -85,9 +78,7 @@ const DrawerRight = styled.div`
 `
 
 // use padding-top, for margin can be collapsed.
-const HeaderDown = styled.div`
-  padding-top: ${p => p.theme.header.height};
-`
+const HeaderDown = styled.div`padding-top: ${p => p.theme.header.height};`
 
 const HeaderDownInner = styled.div`
   ${p =>
@@ -102,7 +93,7 @@ const HeaderDownInner = styled.div`
       margin-left: 24px;
       margin-right: 24px;
     }
-  `}
+  `};
 `
 
 Layout.Header = Header

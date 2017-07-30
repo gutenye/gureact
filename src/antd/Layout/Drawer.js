@@ -12,11 +12,11 @@ const menuMode = isTablet ? 'vertical' : 'inline'
 @withRouter
 class Drawer extends React.Component {
   render() {
-    const { appName, menu, isOpen } = this.props
+    const { appName, menu, isOpen, closeDrawer } = this.props
     return (
       <Root {...this.props} onClick={this.onRootClick}>
-        <div className="drawer" onClick={this.onDrawerClick}>
-          <Link className="logo" to="/">
+        <div className="Drawer-drawer" onClick={this.onDrawerClick}>
+          <Link className="Drawer-logo" to="/">
             {appName}
           </Link>
           <Menu mode={menuMode}>
@@ -34,7 +34,7 @@ class Drawer extends React.Component {
               >
                 {v.children.map(c =>
                   <Menu.Item key={c.title}>
-                    <Link to={c.to}>
+                    <Link to={c.to} onClick={closeDrawer}>
                       {c.title}
                     </Link>
                   </Menu.Item>
@@ -63,7 +63,7 @@ const Root = styled.aside`
   z-index: 20;
   height: 100%;
 
-  .drawer {
+  .Drawer-drawer {
     height: 100%;
     background-color: white;
   }
@@ -87,7 +87,7 @@ const Root = styled.aside`
       will-change: opacity;
     }
 
-    > .drawer {
+    .Drawer-drawer {
       background: #fff;
       box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
         0px 16px 24px 2px rgba(0, 0, 0, 0.14),
@@ -107,7 +107,7 @@ const Root = styled.aside`
     }
   }
 
-  > .drawer {
+  .Drawer-drawer {
     ${s.tabletMin} {
       width: ${p => p.theme.drawer.tabletWidth};
       border-right: 1px solid #e4e4e4;
@@ -117,14 +117,14 @@ const Root = styled.aside`
       width: ${p => p.theme.drawer.desktopWidth};
     }
 
-    > .logo {
+    .Drawer-logo {
       display: inline-flex;
       height: 64px;
       width: 100%;
       align-items: center;
       justify-content: center;
-      background-color: ${p => p.theme.primary.background};
-      color: ${p => p.theme.primary.color};
+      background-color: ${p => p.theme.primary};
+      color: ${p => p.theme.textPrimaryOnPrimary};
     }
   }
 

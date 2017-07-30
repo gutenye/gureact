@@ -42,11 +42,6 @@ const shared = css`
     `
     color: ${p.theme.textPrimaryOnPrimary};
     background: ${p.theme.primary};
-
-    &:hover {
-      color: ${p.theme.primary.color};
-      background: ${p.theme.primary.backgroundDarken};
-    }
   `}
 `
 

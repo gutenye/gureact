@@ -8,6 +8,8 @@ import INPUTS from '../Inputs/Inputs'
 import FormModal from '../FormModal/FormModal'
 import NavLink from '../../core/NavLink/NavLink'
 
+const OMIT_FIELDS = ['page', 'limit']
+
 //
 // /posts?q=x&tags=x
 //
@@ -25,7 +27,8 @@ import NavLink from '../../core/NavLink/NavLink'
 class SavedSearchBar extends React.Component {
   // state: {
   //   status: 'root', saved', 'custom'    // show differnt menu based on it
-  //   inputValues: { [name]: value },  // for value/onChange
+  //   currentSavedSearch                  // for delete
+  //   inputValues: { [name]: value },     // for value/onChange
   // }
   state = this.getState(this.props)
 
@@ -49,19 +52,23 @@ class SavedSearchBar extends React.Component {
       <Root>
         <div className="tabbar">
           <div className="tabs">
-            <NavLink to={match.url} exact>
+            <NavLink to={match.url} exact omit={OMIT_FIELDS}>
               {t.all}
             </NavLink>
             {savedSearchs.map(v =>
               <NavLink
                 key={v.name}
                 to={{ pathname: match.url, query: v.query }}
+                omit={OMIT_FIELDS}
               >
                 {v.name}
               </NavLink>
             )}
             {status === 'custom' &&
-              <NavLink to={{ pathname: match.url, query: location.query }}>
+              <NavLink
+                to={{ pathname: match.url, query: location.query }}
+                omit={OMIT_FIELDS}
+              >
                 {t.customSearch}
               </NavLink>}
           </div>
@@ -97,26 +104,20 @@ class SavedSearchBar extends React.Component {
     this.setState(this.getState(nextProps))
   }
 
-  // return { inputValues, status }
+  // return { inputValues, status, currentSavedSearch }
   getState(props) {
-    const { location, items } = this.props
+    const { savedSearchs, location, items } = props
+    const locationQuery = omit(location.query, ...OMIT_FIELDS)
 
     // if loading, savedSearchs is [].
     // if deleted, savedSearch is null
-    const found = this.findSavedSearch(props)
+    const found = savedSearchs.find(v => isEqual(v.query, locationQuery))
     const query = found ? found.query : location.query
     const inputValues = this.parseQueries(query, items)
 
-    const status = isEmpty(location.query) ? 'root' : found ? 'saved' : 'custom'
+    const status = isEmpty(locationQuery) ? 'root' : found ? 'saved' : 'custom'
 
-    return { inputValues, status }
-  }
-
-  // find savedSearch in savedSearchs with location.query
-  findSavedSearch(props) {
-    const { location, savedSearchs } = props
-    const query = omit(location.query, 'page', 'limit')
-    return savedSearchs.find(v => isEqual(v.query, query))
+    return { inputValues, status, currentSavedSearch: found }
   }
 
   onChange = name => value => {
@@ -167,6 +168,7 @@ class SavedSearchBar extends React.Component {
         },
       ],
       onSave: inputValues => {
+        const { savedSearchs } = this.props
         const found = savedSearchs.find(v => v.name === inputValues.name)
         const query = this.toQueries(this.state.inputValues)
         if (found) found.query = query
@@ -180,8 +182,9 @@ class SavedSearchBar extends React.Component {
     Modal.confirm({
       title: t.confirmDelete,
       onOk: () => {
-        const found = this.findSavedSearch(this.props)
-        remove(this.props.savedSearchs, { name: found.name })
+        const { savedSearchs } = this.props
+        const { currentSavedSearch } = this.state
+        remove(savedSearchs, { name: currentSavedSearch.name })
         this.props.onUpdate(this.props.savedSearchs)
       },
     })

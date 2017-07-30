@@ -31,7 +31,12 @@ class Header extends React.Component {
         </div>
         <div className="actions">
           {actions.map(({ title, action, ...rest }) =>
-            <Button key={title} action={this.getAction(action)} {...rest}>
+            <Button
+              primary
+              key={title}
+              action={this.getAction(action)}
+              {...rest}
+            >
               {title}
             </Button>
           )}
