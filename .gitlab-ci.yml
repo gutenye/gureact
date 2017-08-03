@@ -7,14 +7,12 @@ variables:
 pages:
   stage: docs
   script:
-    - mkdir public2
-    - date > public2/index.html
-    #- yarn
-    #- yarn run build:docs
-    #- mv build.docs public
+    - yarn
+    - yarn run build:docs
+    - mv build.docs public
   artifacts:
     paths:
-      - public2
+      - public
   only:
     - docs
   image: gutenye/node
