@@ -7,9 +7,11 @@ variables:
 pages:
   stage: docs
   script:
-    - yarn
-    - yarn run build:docs
-    - mv build.docs public
+    - mkdir public
+    - date > public/index.html
+    #- yarn
+    #- yarn run build:docs
+    #- mv build.docs public
   artifacts:
     paths:
       - public
