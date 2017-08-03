@@ -4,17 +4,17 @@ stages:
 variables:
   GIT_SSL_NO_VERIFY: "1"
 
-pages2:
+pages:
   stage: docs
   script:
-    - mkdir public
-    - date > public/index.html
+    - mkdir public2
+    - date > public2/index.html
     #- yarn
     #- yarn run build:docs
     #- mv build.docs public
   artifacts:
     paths:
-      - public
+      - public2
   only:
     - docs
   image: gutenye/node
