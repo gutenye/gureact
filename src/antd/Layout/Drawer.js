@@ -11,8 +11,20 @@ const menuMode = isTablet ? 'vertical' : 'inline'
 
 @withRouter
 class Drawer extends React.Component {
+  props: {
+    isOpen: boolean,
+    closeDrawer: Function,
+    appName: string,
+    /** [
+     * { title, icon, children: [{ title, to }]}
+     * { title, onClick }
+     */
+    menu: Array<*>,
+    end: Array<*>,
+  }
+
   render() {
-    const { appName, menu, isOpen, closeDrawer } = this.props
+    const { appName, menu, isOpen, closeDrawer, end } = this.props
     return (
       <Root {...this.props} onClick={this.onRootClick}>
         <div className="Drawer-drawer" onClick={this.onDrawerClick}>

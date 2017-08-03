@@ -30,6 +30,7 @@ docs() {
 
 build-docs() {
   styleguidist build
+  styleguidist build
 }
 
 push-docs() {

@@ -1,14 +1,15 @@
 stages:
-  - deploy
+  - docs
   - mirror
 variables:
   GIT_SSL_NO_VERIFY: "1"
 
 pages:
-  stage: deploy
+  stage: docs
   script:
     - yarn
-    - yarn run build-docs
+    - yarn run build:docs
+    - mv build.docs public
   artifacts:
     paths:
       - public
@@ -20,4 +21,6 @@ mirror:
   stage: mirror
   script:
     - git-push git@github.com:gutenye/gureact.git
+  only:
+    - master
   image: ilyasemenov/gitlab-ci-git-push

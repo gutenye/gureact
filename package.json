@@ -3,7 +3,7 @@
   "version": "1.0.9",
   "main": "",
   "scripts": {
-    "build-docs": "NODE_ENV=production ./ake build-docs",
+    "build:docs": "NODE_ENV=production styleguidist build",
     "test": "jest"
   },
   "dependencies": {

@@ -16,16 +16,6 @@ import { Content, Left, Right } from './Content'
 //
 // body { background-color: rgb(235, 238, 240); }
 //
-const DEFAULT_THEME = {
-  drawer: {
-    desktopWidth: '230px',
-    tabletWidth: '80px',
-  },
-
-  header: {
-    height: '50px',
-  },
-}
 
 class Layout extends React.Component {
   state = {
@@ -95,6 +85,17 @@ const HeaderDownInner = styled.div`
     }
   `};
 `
+
+const DEFAULT_THEME = {
+  drawer: {
+    desktopWidth: '230px',
+    tabletWidth: '80px',
+  },
+
+  header: {
+    height: '50px',
+  },
+}
 
 Layout.Header = Header
 Layout.Content = Content
