@@ -5,8 +5,12 @@ import { Form, Modal, Button } from 'antd'
 
 // CustomModal.open({
 //   component: Button,
-//   <prop>
+//   onOk, onCancel, onClose,
+//   <rest>          // passed to component
 // })
+//
+// CustomModal.ok()
+// CustomModal.cancel()
 // CustomModal.close()
 class CustomModal extends React.Component {
   render() {
@@ -20,18 +24,36 @@ class CustomModal extends React.Component {
 }
 
 CustomModal.open = function(options) {
-  let div = document.createElement('div')
+  options = Object.assign(
+    {
+      onOpen() {},
+      onOk() {},
+      onCancel() {},
+      onClose() {},
+    },
+    options
+  )
+
+  const div = document.createElement('div')
   document.body.appendChild(div)
 
-  function close() {
+  function close(arg) {
+    arg && arg.isOk ? options.onOk() : options.onCancel()
+    options.onClose()
     const unmountResult = ReactDOM.unmountComponentAtNode(div)
     if (unmountResult && div.parentNode) {
       div.parentNode.removeChild(div)
     }
   }
   CustomModal.close = close
+  CustomModal.ok = () => {
+    close({ isOk: true })
+  }
+  CustomModal.cancel = close
 
-  ReactDOM.render(<CustomModal {...options} close={close} />, div)
+  const { onOpen, onOk, onCancel, onClose, ...rest } = options
+  options.onOpen()
+  ReactDOM.render(<CustomModal {...rest} close={close} />, div)
 }
 
 export default CustomModal
