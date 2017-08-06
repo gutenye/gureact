@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 export PATH="node_modules/.bin:$PATH"
 
 test() {
@@ -35,7 +36,6 @@ build-docs() {
 deploy() {
   git push origin master:$1
 }
-
 
 case "$1" in
   t | test ) test ;;
