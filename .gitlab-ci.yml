@@ -11,8 +11,6 @@ cache:
 pages:
   stage: docs
   script:
-    - mkdir -p node_modules
-    - ls node_modules
     - yarn
     - yarn run build:docs
     - mv build.docs public
