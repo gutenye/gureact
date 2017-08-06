@@ -3,6 +3,10 @@ stages:
   - mirror
 variables:
   GIT_SSL_NO_VERIFY: "1"
+cache:
+  key: "$CI_PROJECT_ID"
+  paths:
+    - node_modules/
 
 pages:
   stage: docs
