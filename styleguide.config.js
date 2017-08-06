@@ -7,19 +7,20 @@ const Compression = require('compression-webpack-plugin')
 module.exports = {
   title: 'gureact docs',
   styleguideDir: 'build.docs',
-  //assetsDir: 'static',
-  template: './template.html',
-  require: ['./docs.js', './docs.css'],
+  assetsDir: 'static',
+  template: './src/styleguide.html',
+  require: ['./src/styleguide.js', './src/styleguide.css'],
   serverPort: 6007,
 
   // prettier-ignore
   sections: [
     //{name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
     { name: 'MDC', sections: [
-      { name: 'Settings', content: '../src/mdc/Settings/README.md', components: '../src/mdc/Settings/[A-Z]*.js' },
+      { name: 'Settings', content: './src/mdc/Settings/README.md', components: './src/mdc/Settings/[A-Z]*.js' },
     ]},
-    { name: 'Commerce', content: '../src/commerce/commerce.md', sections:  [
-      { name: 'StockQtyEdit', content: '../src/commerce/StockQtyEdit/README.md', components: '../src/commerce/StockQtyEdit/[A-Z]*.js' },
+    { name: 'Commerce', sections:  [
+      { name: 'StockQtyEdit', content: './src/commerce/StockQtyEdit/README.md', components: './src/commerce/StockQtyEdit/[A-Z]*.js' },
+      { name: 'GridListItem', content: './src/commerce/GridListItem/README.md', components: './src/commerce/GridListItem/[A-Z]*.js' },
     ]},
     //{name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
   ],
