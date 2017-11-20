@@ -10,19 +10,22 @@ module.exports = {
   assetsDir: 'static',
   template: './src/styleguide.html',
   require: ['./src/styleguide.js', './src/styleguide.css'],
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'src/styleguideWrapper'),
+  },
   serverPort: 6007,
 
   // prettier-ignore
   sections: [
-    //{name: 'Core', content: 'src/core/core.md', components: 'src/core/**/[A-Z]*.js'},
+    { name: 'Styles', content: './src/STYLES.md' },
     { name: 'MDC', sections: [
       { name: 'Settings', content: './src/mdc/Settings/README.md', components: './src/mdc/Settings/[A-Z]*.js' },
+      { name: 'BottomNavigation', content: './src/mdc/BottomNavigation/README.md', components: './src/mdc/BottomNavigation/[A-Z]*.js' }
     ]},
     { name: 'Commerce', sections:  [
       { name: 'StockQtyEdit', content: './src/commerce/StockQtyEdit/README.md', components: './src/commerce/StockQtyEdit/[A-Z]*.js' },
       { name: 'GridListItem', content: './src/commerce/GridListItem/README.md', components: './src/commerce/GridListItem/[A-Z]*.js' },
     ]},
-    //{name: 'Antd', content: 'src/antd/antd.md', components: 'src/antd/**/[A-Z]*.js'},
   ],
 
   // remove default README.md
@@ -35,26 +38,50 @@ module.exports = {
       heading: {
         '& + ul > $isChild': {
           display: 'none',
-        }
+        },
       },
     },
   },
 
-
   webpackConfig: {
     module: {
       rules: [
-        {test: /\.js$/, exclude: /node_modules/, use: ['babel-loader']},
-        {test: /\.css$/, use: ['style-loader', 'css-loader']},
-        {test: /\.scss$/, use: ['style-loader', 'css-loader', {loader: 'sass-loader', options: {
-          includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
-        }}]},
-        { test: /\.svg$/, use: ['babel-loader', {loader: '@gutenye/react-svg-loader', options: {es5: false, svgo: { pretty: true, plugins: [ { removeStyleElement: true } ] } }}] }
-      ]
+        { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
+        { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+        {
+          test: /\.scss$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: [
+                  path.resolve(__dirname, 'src'),
+                  path.resolve(__dirname, 'node_modules'),
+                ],
+              },
+            },
+          ],
+        },
+        {
+          test: /\.svg$/,
+          use: [
+            'babel-loader',
+            {
+              loader: '@gutenye/react-svg-loader',
+              options: {
+                es5: false,
+                svgo: { pretty: true, plugins: [{ removeStyleElement: true }] },
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new Compression(),
       //new Copy([{from: 'static'}])
-    ]
-  }
+    ],
+  },
 }

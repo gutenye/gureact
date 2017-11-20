@@ -5,32 +5,31 @@ import { times } from 'lodash'
 window.pd = console.log.bind(console)
 window.log = console.log.bind(console)
 
-
-window.DemoMobile = ({children}) =>
+window.DemoMobile = ({ children }) => (
   <demo-canvas>
-    <demo-artboard>
-      {children}
-    </demo-artboard>
+    <demo-artboard>{children}</demo-artboard>
   </demo-canvas>
+)
 
-window.DemoParagraphs = ({ count }) =>
+window.DemoParagraphs = ({ count }) => (
   <div>
-    {times(count).map(v =>
+    {times(count).map(v => (
       <p key={v}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
-    )}
+    ))}
   </div>
+)
 
 // eslint-disable-next-line
 DemoParagraphs.defaultProps = {
   count: 1,
 }
 
-window.DemoFrame = ({ fullWidth, children }) =>
+window.DemoFrame = ({ fullWidth, children }) => (
   <Frame style={{ width: fullWidth ? '100%' : 320 }}>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -46,7 +45,6 @@ window.DemoFrame = ({ fullWidth, children }) =>
     p { padding: 16px; margin: 0; }
       `}
     </style>
-    <div>
-      {children}
-    </div>
+    <div>{children}</div>
   </Frame>
+)

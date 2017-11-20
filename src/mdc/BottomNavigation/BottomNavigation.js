@@ -8,7 +8,7 @@ class BottomNavigation extends React.Component {
   props: {
     items: [
       {
-        label: string,
+        label?: string,
         icon?: any,
         to?: string,
       },
@@ -26,19 +26,22 @@ class BottomNavigation extends React.Component {
     const { selectedIndex } = this.state
     return (
       <Root {...this.props}>
-        {items.map((item, index) => {
-          return (
-            <NavLink
-              key={item.label}
-              className="BottomNavigation-item"
-              activeClassName="active"
-              to={item.to}
-              exact
-            >
-              {item.label}
-            </NavLink>
-          )
-        })}
+        <div className="BottomNavigation-items">
+          {items.map((item, index) => {
+            return (
+              <NavLink
+                key={item.label}
+                className="BottomNavigation-item"
+                activeClassName="active"
+                to={item.to || ''}
+                exact
+              >
+                {item.icon}
+                <div className="BottomNavigation-label">{item.label}</div>
+              </NavLink>
+            )
+          })}
+        </div>
       </Root>
     )
   }
@@ -51,23 +54,44 @@ class BottomNavigation extends React.Component {
 }
 
 const Root = styled.div`
-  display: flex;
-  height: 49px;
-  background-color: white;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 56px;
+  background-color: white;
+
+  .BottomNavigation-items {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
 
   .BottomNavigation-item {
+    cursor: pointer;
     flex: 1;
+    min-width: 80px;
+    max-width: 168px;
     display: flex;
+    padding: 6px 12px 10px 12px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    text-decoration: none;
+
+    &,
+    &:hover,
+    &:visited {
+      color: ${p => p.theme.textIconOnBackground};
+    }
 
     &.active {
       color: ${p => p.theme.primary};
+    }
+
+    & > .icon {
+      width: 24px;
+      height: 24px;
     }
   }
 `
