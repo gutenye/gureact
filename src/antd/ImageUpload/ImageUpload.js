@@ -5,9 +5,9 @@ import { MdCreate, MdVisibility } from 'react-icons'
 import PreviewModal from '../PreviewModal/PreviewModal'
 
 // <ImageUpload>
-//    children: 'Upload Image'
 //    value onChange(value)       // value: a.png
 //    action: '/upload'
+//    children: 'Upload Image'
 //    ---
 //    baseUrl: ''                 // imageUrl is baseUrl/value
 //    valueExtractor(response)    // by default value is response.path

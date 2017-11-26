@@ -5,7 +5,7 @@ export default () => (
   <Root>
     <div>
       <Primary>primary</Primary>
-      <Accent>accent</Accent>
+      <Secondary>secondary</Secondary>
       <Background>background</Background>
     </div>
     <div>
@@ -16,11 +16,11 @@ export default () => (
       <TextIconOnPrimary>textIconOnPrimary</TextIconOnPrimary>
     </div>
     <div>
-      <TextPrimaryOnAccent>textPrimaryOnAccent</TextPrimaryOnAccent>
-      <TextSecondaryOnAccent>textSecondaryOnAccent</TextSecondaryOnAccent>
-      <TextHitOnAccent>textHitOnAccent</TextHitOnAccent>
-      <TextDisabledOnAccent>textDisabledOnAccent</TextDisabledOnAccent>
-      <TextIconOnAccent>textIconOnAccent</TextIconOnAccent>
+      <TextPrimaryOnSecondary>textPrimaryOnSecondary</TextPrimaryOnSecondary>
+      <TextSecondaryOnSecondary>textSecondaryOnSecondary</TextSecondaryOnSecondary>
+      <TextHitOnSecondary>textHitOnSecondary</TextHitOnSecondary>
+      <TextDisabledOnSecondary>textDisabledOnSecondary</TextDisabledOnSecondary>
+      <TextIconOnSecondary>textIconOnSecondary</TextIconOnSecondary>
     </div>
     <div>
       <TextPrimaryOnBackground>textPrimaryOnBackground</TextPrimaryOnBackground>
@@ -42,7 +42,7 @@ const Root = styled.div`
   }
 `
 const Primary = styled.span`color: ${p => p.theme.primary};`
-const Accent = styled.span`color: ${p => p.theme.accent};`
+const Secondary = styled.span`color: ${p => p.theme.secondary};`
 const Background = styled.span`color: ${p => p.theme.background};`
 
 const TextPrimaryOnPrimary = styled.span`
@@ -66,25 +66,25 @@ const TextIconOnPrimary = styled.span`
   color: ${p => p.theme.textIconOnPrimary};
 `
 
-const TextPrimaryOnAccent = styled.span`
-  background-color: ${p => p.theme.accent};
-  color: ${p => p.theme.textPrimaryOnAccent};
+const TextPrimaryOnSecondary = styled.span`
+  background-color: ${p => p.theme.secondary};
+  color: ${p => p.theme.textPrimaryOnSecondary};
 `
-const TextSecondaryOnAccent = styled.span`
-  background-color: ${p => p.theme.accent};
-  color: ${p => p.theme.textSecondaryOnAccent};
+const TextSecondaryOnSecondary = styled.span`
+  background-color: ${p => p.theme.secondary};
+  color: ${p => p.theme.textSecondaryOnSecondary};
 `
-const TextHitOnAccent = styled.span`
-  background-color: ${p => p.theme.accent};
-  color: ${p => p.theme.textHitOnAccent};
+const TextHitOnSecondary = styled.span`
+  background-color: ${p => p.theme.secondary};
+  color: ${p => p.theme.textHitOnSecondary};
 `
-const TextDisabledOnAccent = styled.span`
-  background-color: ${p => p.theme.accent};
-  color: ${p => p.theme.textDisabledOnAccent};
+const TextDisabledOnSecondary = styled.span`
+  background-color: ${p => p.theme.secondary};
+  color: ${p => p.theme.textDisabledOnSecondary};
 `
-const TextIconOnAccent = styled.span`
-  background-color: ${p => p.theme.accent};
-  color: ${p => p.theme.textIconOnAccent};
+const TextIconOnSecondary = styled.span`
+  background-color: ${p => p.theme.secondary};
+  color: ${p => p.theme.textIconOnSecondary};
 `
 
 const TextPrimaryOnBackground = styled.span`

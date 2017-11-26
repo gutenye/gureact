@@ -23,8 +23,8 @@ const ColorRoot = styled.div`
   .primary {
     background-color: ${p => p.theme.primary};
   }
-  .accent {
-    background-color: ${p => p.theme.accent};
+  .secondary {
+    background-color: ${p => p.theme.secondary};
   }
 `
 
