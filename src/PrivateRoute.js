@@ -3,9 +3,11 @@ import { Route, Redirect } from 'react-router-dom'
 import { auth } from 'states'
 
 /**
+ * <PrivateRoute path='/add' component=x />
+ * 
  * Requires states, auth.isLoggedIn() 
  */
-export const PrivateRoute = ({ component, ...rest }) =>
+export default ({ component, ...rest }) =>
   <Route
     {...rest}
     render={props => {

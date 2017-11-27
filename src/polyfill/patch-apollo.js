@@ -13,8 +13,8 @@ import { get } from 'lodash'
 //       id
 //     }
 //   }`, {
-//    initVariables: {q: undefined},   // for apollo is merging variables with old one
-//    initData: {products: []},        // default data when loading
+//    // initVariables: {q: undefined},   // reset variabel when called again. for apollo is merging variables with old one
+//    // initData: {products: []},        // give array default value. default data when loading.
 //    // use params and location.query as variables
 //    // props is data
 //   })(App)

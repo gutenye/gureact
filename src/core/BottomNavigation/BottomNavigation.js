@@ -30,7 +30,7 @@ class BottomNavigation extends React.Component {
           {items.map((item, index) => {
             return (
               <NavLink
-                key={item.label}
+                key={index}
                 className="BottomNavigation-item"
                 activeClassName="active"
                 to={item.to || ''}
