@@ -42,19 +42,21 @@ class ImageUpload extends React.Component {
     return (
       <Root>
         <div className="upload">
-          {value
-            ? <div className="filled">
-                <img className="thumb" src={imageUrl} alt="" />
-                <div className="overlay">
-                  <MdVisibility onClick={this.openPreview} />
-                  <Upload {...uploadProps}>
-                    <MdCreate />
-                  </Upload>
-                </div>
+          {value ? (
+            <div className="filled">
+              <img className="thumb" src={imageUrl} alt="" />
+              <div className="overlay">
+                <MdVisibility onClick={this.openPreview} />
+                <Upload {...uploadProps}>
+                  <MdCreate />
+                </Upload>
               </div>
-            : <Upload className="empty" {...uploadProps}>
-                {this.props.children}
-              </Upload>}
+            </div>
+          ) : (
+            <Upload className="empty" {...uploadProps}>
+              {this.props.children}
+            </Upload>
+          )}
         </div>
         <PreviewModal
           width="512"
@@ -108,7 +110,7 @@ const Root = styled.div`
     position: relative;
 
     .overlay {
-      background: rgba(49,55,61,0.75);
+      background: rgba(49, 55, 61, 0.75);
       position: absolute;
       top: 0;
       width: 100%;
@@ -125,7 +127,8 @@ const Root = styled.div`
         cursor: pointer;
       }
 
-      .ant-upload, .ant-upload .icon {
+      .ant-upload,
+      .ant-upload .icon {
         width: 100%;
         height: 100%;
       }
@@ -135,7 +138,6 @@ const Root = styled.div`
       opacity: 1;
     }
   }
-
 `
 
 export default ImageUpload

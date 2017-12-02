@@ -1,33 +1,64 @@
 import React from 'react'
 import styled from 'styled-components'
-import { MdAdd } from 'react-icons'
 import { UploadField } from '@navjobs/upload'
 import { isEqual } from 'lodash'
 
 // <UploadFileWithThumb
-//  value, onChange(file)    
-//  accept: '.jpg,.png'
+//  value, onChange(file), onLoad(img), onLoadedMetadata(video)
+//  ---
+//  placeholder: 'Upload'
+//  accept: '.jpg,.png,.mov'
+//  className style width
 class UploadFieldWithThumb extends React.Component {
   static defaultProps = {
-    onChange() {},  
+    className: '',
+    placeholder: 'Upload',
+    onChange() {},
+    onLoadedMetadata() {},
+    onLoad() {},
   }
 
   state = {
-    imageUrl: null
+    mediaUrl: null,
+    mediaType: null,
   }
 
   render() {
-    const { accept } = this.props
-    const { imageUrl } = this.state
+    const {
+      value,
+      accept,
+      placeholder,
+      onChange,
+      className,
+      style,
+      width,
+    } = this.props
+    const { mediaUrl, mediaType } = this.state
     return (
-      <Root>
-        <UploadField
-          onFiles={this.onFiles}
-          uploadProps={{accept}}
-        >
-          {imageUrl ?
-          <img src={imageUrl} /> :
-          <div className='placeholder'>Upload Image</div>}
+      <Root {...{ className, style, width }}>
+        <UploadField onFiles={this.onFiles} uploadProps={{ accept }}>
+          {mediaUrl ? (
+            mediaType === 'image' ? (
+              <img
+                src={mediaUrl}
+                onLoad={e => {
+                  URL.revokeObjectURL(mediaUrl)
+                  this.props.onLoad(e.target)
+                }}
+              />
+            ) : (
+              <video
+                src={mediaUrl}
+                controls
+                onLoadedMetadata={e => {
+                  URL.revokeObjectURL(mediaUrl)
+                  this.props.onLoadedMetadata(e.target)
+                }}
+              />
+            )
+          ) : (
+            <div className="placeholder">{placeholder}</div>
+          )}
         </UploadField>
       </Root>
     )
@@ -47,25 +78,33 @@ class UploadFieldWithThumb extends React.Component {
     if (!value) {
       return
     }
-    const reader = new FileReader()
-    reader.addEventListener('load', () => this.setState({imageUrl: reader.result}))
-    reader.readAsDataURL(value)
+    const mediaType = value.type.split('/')[0]
+    const mediaUrl = URL.createObjectURL(value)
+    this.setState({ mediaUrl, mediaType })
   }
 
-  onFiles = (files) => {
+  onFiles = files => {
     const file = files[0]
     this.props.onChange(file)
   }
 }
 
 const Root = styled.div`
+  width: ${p => (p.width ? `${p.width}px` : '100%')};
+
+  & > div {
+    width: 100%;
+    height: 100%;
+  }
+
   .placeholder {
-    width: 100vw;
-    height: 100vw;
+    width: 100%;
+    height: ${p => (p.width ? `${p.width}px` : '100%')};
     display: flex;
     justify-content: center;
     align-items: center;
     color: ${p => p.theme.textDisabledOnBackground};
+    border: 1px solid ${p => p.theme.textDisabledOnBackground};
     cursor: pointer;
   }
 `
