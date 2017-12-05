@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components'
-import cx from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 class BottomNavigation extends React.Component {

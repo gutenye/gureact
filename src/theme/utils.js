@@ -1,32 +1,3 @@
-import tinycolor from 'tinycolor2'
-import { reduce } from 'lodash'
-
-/**
- * Determine whether to use dark or light text on top of given color.
- * Returns "dark" for dark text and "light" for light text.
- */
-export function lightOrDark(color) {
-  const minimumContrast = 3.1
-  const lightContrast = tinycolor.readability(color, 'white')
-  const darkContrast = tinycolor.readability(color, 'rgba(0, 0, 0, .87)')
-  if (lightContrast < minimumContrast && darkContrast > lightContrast) {
-    return 'dark'
-  } else {
-    return 'light'
-  }
-}
-
-export function genTones(colors) {
-  return reduce(
-    colors,
-    (result, color, name) => {
-      result[name] = lightOrDark(color)
-      return result
-    },
-    {}
-  )
-}
-
 export const textColors = {
   dark: {
     primary: 'rgba(0, 0, 0, .87)',
