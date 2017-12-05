@@ -2,46 +2,11 @@
 
 export PATH="node_modules/.bin:$PATH"
 
-test() {
-  jest --watch
-}
-
-build() {
-  rm -r lib 2>/dev/null
-  babel src -d lib --ignore __tests__ --copy-files
-}
-
-watch() {
-  rm -r lib 2>/dev/null
-  babel src -d lib --watch --ignore __tests__ --copy-files
-}
-
-publish() {
-  version=$1
-  git commit -am "publish $version"
-  git tag $version
-  git push
-  git push --tags
-}
-
-docs() {
-  styleguidist server
-}
-
-build-docs() {
-  styleguidist build
-}
-
-deploy() {
-  git push origin master:$1
-}
-
 case "$1" in
-  t | test ) test ;;
-  b | build ) build ;;
-  w | watch ) watch ;;
-  publish ) shift 1; publish "$@" ;;
-  docs ) docs ;;
-  build:docs ) build-docs ;;
-  deploy ) shift; deploy "$@";
+  t | test ) jest --watch ;;
+  b | build ) npm run build ;;
+  w | watch ) npm run watch ;;
+  docs ) styleguidist server ;;
+  build:docs ) styleguidist build ;;
+  deploy ) shift; git push origin master:$1;
 esac

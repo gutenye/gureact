@@ -1,15 +1,18 @@
 {
   "name": "gureact",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "",
   "scripts": {
+    "build": "rimraf lib && babel src --out-dir lib --ignore __tests__",
+    "watch": "babel -w src --out-dir lib --ignore __tests__",
+    "prepublish": "npm run build",
     "build:docs": "NODE_ENV=production styleguidist build",
     "test": "jest"
   },
   "peerDependencies": {
-    "react": "*",
     "classnames": "*",
     "lodash": "*",
+    "react": "*",
     "react-icons": "*",
     "recompose": "*",
     "styled-components": "*"
@@ -45,6 +48,7 @@
     "react-mc": "^0.15.5",
     "react-router-dom": "^4.1.1",
     "react-styleguidist": "^5.4.4",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "url-search-params": "^0.10.0",
