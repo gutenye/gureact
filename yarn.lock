@@ -4860,6 +4860,10 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+pdjs@^1.0.6:
+  version "1.0.6"
+  resolved "http://registry.npm.taobao.org/pdjs/download/pdjs-1.0.6.tgz#effeaf836f814ec328bc8edb26f0a9a1905a6c8f"
+
 performance-now@^0.2.0:
   version "0.2.0"
   resolved "http://registry.npm.taobao.org/performance-now/download/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"

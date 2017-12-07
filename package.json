@@ -1,6 +1,6 @@
 {
   "name": "gureact",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "",
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib --ignore __tests__",
@@ -9,6 +9,25 @@
     "build:docs": "NODE_ENV=production styleguidist build",
     "test": "jest"
   },
+  "eslintConfig": {
+    "extends": "@gutenye/react-app"
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "babel-jest",
+      "\\.css$": "jest-transforms/css",
+      "^(?!.*\\.(js|jsx|css|json)$)": "jest-transforms/file"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "scripts"
+  ],
+  "bin": {
+    "gureact": "./bin/gureact.js"
+  },
   "peerDependencies": {
     "classnames": "*",
     "lodash": "*",
@@ -16,6 +35,9 @@
     "react-icons": "*",
     "recompose": "*",
     "styled-components": "*"
+  },
+  "dependencies": {
+    "pdjs": "^1.0.6"
   },
   "devDependencies": {
     "@gutenye/babel-plugin-transform-imports": "^1.1.12",
@@ -54,19 +76,5 @@
     "url-search-params": "^0.10.0",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
-  },
-  "files": [
-    "lib"
-  ],
-  "eslintConfig": {
-    "extends": "@gutenye/react-app"
-  },
-  "jest": {
-    "transform": {
-      "\\.js$": "babel-jest",
-      "\\.css$": "jest-transforms/css",
-      "^(?!.*\\.(js|jsx|css|json)$)": "jest-transforms/file"
-    },
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
   }
 }
