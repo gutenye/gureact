@@ -1,5 +1,8 @@
 /lib
 /public
 node_modules
+
 *.swp
 .vscode
+.DS_Store
+*.log

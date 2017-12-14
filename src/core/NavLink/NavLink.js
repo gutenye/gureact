@@ -1,7 +1,7 @@
 import React from 'vendor'
 import { NavLink } from 'react-router-dom'
 import { isString, map, omit, isEqual } from 'lodash'
-import { toSearchString } from '../../polyfill'
+import { toSearchString } from '../../polyfill/webutils'
 
 /**
  * activeClassName='active'
@@ -44,10 +44,10 @@ class CoreNavLink extends React.Component {
   }
 
   /**
-   * 
+   *
    * /posts
    * /posts?a=1
-   * 
+   *
    * to='/posts'
    * to={query: {a: 1}}
    */

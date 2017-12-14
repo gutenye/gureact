@@ -32,27 +32,25 @@ class Drawer extends React.Component {
             {appName}
           </Link>
           <Menu mode={menuMode}>
-            {menu.map(v =>
+            {menu.map(v => (
               <Menu.SubMenu
                 key={v.title}
                 title={
                   <span>
                     {v.icon}
-                    <Title>
-                      {v.title}
-                    </Title>
+                    <Title>{v.title}</Title>
                   </span>
                 }
               >
-                {v.children.map(c =>
+                {v.children.map(c => (
                   <Menu.Item key={c.title}>
                     <Link to={c.to} onClick={closeDrawer}>
                       {c.title}
                     </Link>
                   </Menu.Item>
-                )}
+                ))}
               </Menu.SubMenu>
-            )}
+            ))}
           </Menu>
         </div>
       </Root>
@@ -94,7 +92,7 @@ const Root = styled.aside`
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.6);
-      content: "";
+      content: '';
       opacity: ${p => (p.isOpen ? 1 : 0)};
       will-change: opacity;
     }
@@ -145,5 +143,9 @@ const Root = styled.aside`
   }
 `
 
-const Title = styled.span`${s.tabletOnly} {display: none;}`
+const Title = styled.span`
+  ${s.tabletOnly} {
+    display: none;
+  }
+`
 export default Drawer
