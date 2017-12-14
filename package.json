@@ -1,6 +1,6 @@
 {
   "name": "gureact",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "main": "",
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib --ignore __tests__",
