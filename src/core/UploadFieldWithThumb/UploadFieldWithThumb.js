@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { UploadField } from '@navjobs/upload'
-import { isEqual } from 'lodash'
 
 // <UploadFileWithThumb
 //  value, onChange(file), onLoad(img), onLoadedMetadata(video)

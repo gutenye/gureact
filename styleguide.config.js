@@ -18,9 +18,11 @@ module.exports = {
   // prettier-ignore
   sections: [
     { name: 'Styles', content: './src/STYLES.md' },
+    { name: 'Core', sections: [
+      { name: 'BottomNavigation', content: './src/core/BottomNavigation/README.md', components: './src/core/BottomNavigation/[A-Z]*.js' }
+    ]},
     { name: 'MDC', sections: [
       { name: 'Settings', content: './src/mdc/Settings/README.md', components: './src/mdc/Settings/[A-Z]*.js' },
-      { name: 'BottomNavigation', content: './src/mdc/BottomNavigation/README.md', components: './src/mdc/BottomNavigation/[A-Z]*.js' }
     ]},
     { name: 'Commerce', sections:  [
       { name: 'StockQtyEdit', content: './src/commerce/StockQtyEdit/README.md', components: './src/commerce/StockQtyEdit/[A-Z]*.js' },

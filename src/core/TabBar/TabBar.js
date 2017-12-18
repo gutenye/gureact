@@ -3,7 +3,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-class BottomNavigation extends React.Component {
+// <TabBar
+//   items={[{label, icon, to}]}
+// />
+class TabBar extends React.Component {
   props: {
     items: [
       {
@@ -25,18 +28,18 @@ class BottomNavigation extends React.Component {
     const { selectedIndex } = this.state
     return (
       <Root {...this.props}>
-        <div className="BottomNavigation-items">
+        <div className="TabBar-items">
           {items.map((item, index) => {
             return (
               <NavLink
                 key={index}
-                className="BottomNavigation-item"
+                className="TabBar-item"
                 activeClassName="active"
                 to={item.to || ''}
                 exact
               >
                 {item.icon}
-                <div className="BottomNavigation-label">{item.label}</div>
+                <div className="TabBar-label">{item.label}</div>
               </NavLink>
             )
           })}
@@ -57,16 +60,17 @@ const Root = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: 50px;
   background-color: white;
+  border-top: 1px solid #e8e8e8;
 
-  .BottomNavigation-items {
+  .TabBar-items {
     width: 100%;
     height: 100%;
     display: flex;
   }
 
-  .BottomNavigation-item {
+  .TabBar-item {
     cursor: pointer;
     flex: 1;
     min-width: 80px;
@@ -97,6 +101,6 @@ const Root = styled.div`
 
 const Div = styled.div``
 
-BottomNavigation.Root = Root
+TabBar.Root = Root
 
-export default BottomNavigation
+export default TabBar

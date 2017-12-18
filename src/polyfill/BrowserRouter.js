@@ -34,7 +34,7 @@ class BrowserRouter extends React.Component {
         if (path.keep) {
           path.query = Object.assign(
             {},
-            this.history.location.query,
+            history.location.query,
             path.query
           )
         }

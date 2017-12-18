@@ -1,3 +1,5 @@
+/*.js
+!/styleguide.config.js
 /lib
 /public
 node_modules
