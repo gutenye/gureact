@@ -1,7 +1,7 @@
 import React from 'vendor'
 import { NavLink } from 'react-router-dom'
 import { isString, map, omit, isEqual } from 'lodash'
-import { toSearchString } from '../../polyfill/webutils'
+import { toSearchString } from '../../utils'
 
 /**
  * activeClassName='active'

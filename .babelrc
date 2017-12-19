@@ -9,7 +9,10 @@
     "transform-object-rest-spread",
     "transform-class-properties",
     "transform-decorators-legacy",
-    ["import", { libraryName: "antd", style: "css" }],
+    ["import", [
+      { libraryName: "antd", style: "css" },
+      { libraryName: "antd-mobile", style: "css" }
+    ],
     ["@gutenye/babel-plugin-transform-imports", {
       'react-icons': {
          transform: 'react-icons/lib/${member}',
