@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import styled from 'styled-components'
 import { UploadField } from '@navjobs/upload'
@@ -8,7 +9,27 @@ import { UploadField } from '@navjobs/upload'
 //  placeholder: 'Upload'
 //  accept: '.jpg,.png,.mov'
 //  className style width
-class UploadFieldWithThumb extends React.Component {
+
+type Value = null | string | File
+
+type Props = {
+  value: Value,
+  onChange: Function,
+  onLoad: Function,
+  onLoadedMetadata: Function,
+  placeholder?: string,
+  accept?: string,
+  className?: string,
+  style?: Object,
+  width?: number,
+}
+
+type State = {
+  mediaUrl: ?string,
+  mediaType: ?string,
+}
+
+class UploadFieldWithThumb extends React.Component<Props, State> {
   static defaultProps = {
     className: '',
     placeholder: 'Upload',
@@ -21,6 +42,8 @@ class UploadFieldWithThumb extends React.Component {
     mediaUrl: null,
     mediaType: null,
   }
+
+  videoEl: ?HTMLVideoElement
 
   render() {
     const {
@@ -68,25 +91,21 @@ class UploadFieldWithThumb extends React.Component {
     this.setImageUrlFromValue(this.props.value)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.value !== this.props.value) {
       this.setImageUrlFromValue(nextProps.value)
     }
   }
 
-  setImageUrlFromValue(value) {
-    // in new: value is null
-    // in edit: value is string path
-    // otherwise: value is <#File>
-    pd(1, value, value instanceof File)
-    if (!value) return
-    if (!(value instanceof File)) return
-    const mediaType = value.type.split('/')[0]
-    const mediaUrl = URL.createObjectURL(value)
-    this.setState({ mediaUrl, mediaType })
+  setImageUrlFromValue(value: Value) {
+    if (value instanceof File) {
+      const mediaType = value.type.split('/')[0]
+      const mediaUrl = URL.createObjectURL(value)
+      this.setState({ mediaUrl, mediaType })
+    }
   }
 
-  onFiles = files => {
+  onFiles = (files: Array<File>) => {
     const file = files[0]
     this.props.onChange(file)
   }

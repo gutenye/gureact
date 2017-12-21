@@ -9,6 +9,11 @@
     "build:docs": "NODE_ENV=production styleguidist build",
     "test": "jest"
   },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
   "eslintConfig": {
     "extends": "@gutenye/react-app"
   },
@@ -32,6 +37,7 @@
   "devDependencies": {
     "@gutenye/babel-plugin-transform-imports": "^1.1.12",
     "@gutenye/react-svg-loader": "^2.0.8",
+    "@navjobs/upload": "^3.1.2",
     "antd": "^3.0.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
@@ -62,7 +68,6 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-icons": "^2.2.7",
-    "react-mc": "^0.15.6",
     "react-router-dom": "^4.2.2",
     "react-styleguidist": "^6.0.33",
     "recompose": "^0.26.0",
