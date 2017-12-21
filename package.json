@@ -15,7 +15,10 @@
     "trailingComma": "es5"
   },
   "eslintConfig": {
-    "extends": "@gutenye/react-app"
+    "extends": "guten-react",
+    "rules": {
+      "import/no-extraneous-dependencies": false
+    }
   },
   "jest": {
     "transform": {
@@ -25,12 +28,7 @@
     },
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
   },
-  "files": [
-    "lib",
-    "bin",
-    "scripts",
-    "*.js"
-  ],
+  "files": ["lib", "bin", "scripts", "*.js"],
   "bin": {
     "gureact": "./bin/gureact.js"
   },
@@ -57,6 +55,8 @@
     "compression-webpack-plugin": "^1.1.0",
     "copy-webpack-plugin": "^4.3.0",
     "css-loader": "^0.28.7",
+    "eslint": "^4.13.1",
+    "eslint-config-guten-react": "1.1.16",
     "flow-bin": "^0.61.0",
     "flow-typed": "^2.2.3",
     "formik": "^0.11.0-beta.1",

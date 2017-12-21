@@ -3,29 +3,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-// <TabBar
-//   items={[{label, icon, to}]}
-// />
-class TabBar extends React.Component {
-  props: {
-    items: [
-      {
-        label?: string,
-        icon?: any,
-        to?: string,
-      },
-    ],
-    style?: Object,
-    className?: string,
-  }
+type Props = {
+  items: Array<{ label?: string, icon?: any, to?: string }>,
+  style?: Object,
+  className?: string,
+}
 
-  state = {
-    selectedIndex: 0,
-  }
+class TabBar extends React.Component<Props> {
+  static Root: any
 
   render() {
     const { items } = this.props
-    const { selectedIndex } = this.state
     return (
       <Root {...this.props}>
         <div className="TabBar-items">
@@ -46,12 +34,6 @@ class TabBar extends React.Component {
         </div>
       </Root>
     )
-  }
-
-  onClick = selectedIndex => {
-    return () => {
-      this.setState({ selectedIndex })
-    }
   }
 }
 

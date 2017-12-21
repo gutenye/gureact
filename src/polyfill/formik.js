@@ -44,6 +44,7 @@ const Field = props => {
 // formikSetLocale('zh-CN')
 export function formikSetLocale(name) {
   if (name !== 'zh-CN') throw new Error(`unkown locale name: '${name}'`)
+  /* eslint-disable no-template-curly-in-string */
   setLocale({
     mixed: {
       default: '${path}无效',

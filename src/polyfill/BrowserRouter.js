@@ -1,14 +1,16 @@
 // @flow
-import React from 'react'
+import * as React from 'react'
 import queryString from 'query-string'
 import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { omitBy } from 'lodash'
 
-class BrowserRouter extends React.Component {
-  constructor(props) {
+class BrowserRouter extends React.Component<any> {
+  history: any
+
+  constructor(props: any) {
     super(props)
-    this.history = createBrowserHistory(this.props)
+    this.history = createBrowserHistory(props)
     this.patchHistoryQuery(this.history)
     this.patchHistoryHashAnchor(this.history)
   }
@@ -17,7 +19,7 @@ class BrowserRouter extends React.Component {
     return <Router history={this.history} children={this.props.children} />
   }
 
-  patchHistoryQuery(history) {
+  patchHistoryQuery(history: any) {
     const historyListen = function() {
       history.location = Object.assign(history.location, {
         query: queryString.parse(history.location.search),
@@ -32,11 +34,7 @@ class BrowserRouter extends React.Component {
     history.push = function(path, state) {
       if (path.query) {
         if (path.keep) {
-          path.query = Object.assign(
-            {},
-            history.location.query,
-            path.query
-          )
+          path.query = Object.assign({}, history.location.query, path.query)
         }
         path.query = omitBy(path.query, v => v === undefined || v === '')
         path.search = queryString.stringify(path.query)
@@ -45,7 +43,7 @@ class BrowserRouter extends React.Component {
     }
   }
 
-  patchHistoryHashAnchor(history, timeout = 1000) {
+  patchHistoryHashAnchor(history: any, timeout: number = 1000) {
     let observer
     let timeoutId
 

@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components'
 import { isString, omit } from 'lodash'
 import { Link } from 'react-router-dom'
 
-class Button extends React.Component {
-  props: {
-    primary?: boolean,
-    /** href or onClick function */
-    action?: string | Function,
-    children?: any,
-  }
+type Props = {
+  primary?: boolean,
+  /** href or onClick function */
+  action?: string | Function,
+  children?: any,
+}
 
+class Button extends React.Component<Props> {
   render() {
     const { action, children, ...rest } = this.props
     if (isString(action)) {
@@ -42,17 +42,17 @@ const shared = css`
     `
     color: ${p.theme.textPrimaryOnPrimary};
     background: ${p.theme.primary};
-  `}
+  `};
 `
 
-const LinkStyled = styled(p =>
-  <Link {...omit(p, 'primary')}>
-    {p.children}
-  </Link>
-)`
-  ${shared}
+const LinkStyled = styled(p => (
+  <Link {...omit(p, 'primary')}>{p.children}</Link>
+))`
+  ${shared};
 `
 
-const Root = styled.div`${shared};`
+const Root = styled.div`
+  ${shared};
+`
 
 export default Button

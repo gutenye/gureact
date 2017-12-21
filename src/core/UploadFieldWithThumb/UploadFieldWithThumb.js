@@ -46,42 +46,37 @@ class UploadFieldWithThumb extends React.Component<Props, State> {
   videoEl: ?HTMLVideoElement
 
   render() {
-    const {
-      value,
-      accept,
-      placeholder,
-      onChange,
-      className,
-      style,
-      width,
-    } = this.props
+    const { accept, placeholder, className, style, width } = this.props
     const { mediaUrl, mediaType } = this.state
+    let field
+    if (mediaUrl && mediaType === 'image')
+      field = (
+        <img
+          src={mediaUrl}
+          onLoad={e => {
+            URL.revokeObjectURL(mediaUrl)
+            this.props.onLoad(e.target)
+          }}
+        />
+      )
+    else if (mediaUrl && mediaType === 'video')
+      field = (
+        <video
+          src={mediaUrl}
+          ref={v => (this.videoEl = v)}
+          controls
+          onLoadedMetadata={e => {
+            URL.revokeObjectURL(mediaUrl)
+            this.props.onLoadedMetadata(e.target)
+          }}
+        />
+      )
+    else field = <div className="placeholder">{placeholder}</div>
+
     return (
       <Root {...{ className, style, width }}>
         <UploadField onFiles={this.onFiles} uploadProps={{ accept }}>
-          {mediaUrl ? (
-            mediaType === 'image' ? (
-              <img
-                src={mediaUrl}
-                onLoad={e => {
-                  URL.revokeObjectURL(mediaUrl)
-                  this.props.onLoad(e.target)
-                }}
-              />
-            ) : (
-              <video
-                src={mediaUrl}
-                ref={v => (this.videoEl = v)}
-                controls
-                onLoadedMetadata={e => {
-                  URL.revokeObjectURL(mediaUrl)
-                  this.props.onLoadedMetadata(e.target)
-                }}
-              />
-            )
-          ) : (
-            <div className="placeholder">{placeholder}</div>
-          )}
+          {field}
         </UploadField>
       </Root>
     )
