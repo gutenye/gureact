@@ -99,8 +99,6 @@ const Root = styled.div`
   }
 `
 
-const Div = styled.div``
-
 TabBar.Root = Root
 
 export default TabBar

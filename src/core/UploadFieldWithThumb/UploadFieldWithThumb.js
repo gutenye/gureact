@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { UploadField } from '@navjobs/upload'
 
 // <UploadFileWithThumb
-//  value, onChange(file), onLoad(img), onLoadedMetadata(video)
+//  value=null | file, onChange(file), onLoad(img), onLoadedMetadata(video)
 //  ---
 //  placeholder: 'Upload'
 //  accept: '.jpg,.png,.mov'
@@ -48,6 +48,7 @@ class UploadFieldWithThumb extends React.Component {
             ) : (
               <video
                 src={mediaUrl}
+                ref={v => (this.videoEl = v)}
                 controls
                 onLoadedMetadata={e => {
                   URL.revokeObjectURL(mediaUrl)
@@ -74,9 +75,12 @@ class UploadFieldWithThumb extends React.Component {
   }
 
   setImageUrlFromValue(value) {
-    if (!value) {
-      return
-    }
+    // in new: value is null
+    // in edit: value is string path
+    // otherwise: value is <#File>
+    pd(1, value, value instanceof File)
+    if (!value) return
+    if (!(value instanceof File)) return
     const mediaType = value.type.split('/')[0]
     const mediaUrl = URL.createObjectURL(value)
     this.setState({ mediaUrl, mediaType })
