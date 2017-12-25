@@ -3,21 +3,21 @@
 export PATH="node_modules/.bin:$PATH"
 
 build() {
-  rimraf lib
-  babel src --out-dir lib --ignore __tests__
-  mv lib/polyfill/* .
+  rm -rf build/*
+  babel src --out-dir build/src --ignore __tests__
+  babel *.js --out-dir build --ignore __tests__
+  cp -r scripts bin package.json build
 }
 
-
-watch() {
-  babel -w src --out-dir lib --ignore __tests__ --ignore polyfill &
-  babel -w src/polyfill --out-dir . --ignore __tests__ 
+publish() {
+  build
+  cd build && npm publish
 }
 
 case "$1" in
   t | test ) jest --watch ;;
   b | build ) build ;;
-  w | watch ) watch ;;
+  publish ) publish ;;
   docs ) styleguidist server ;;
   build:docs ) styleguidist build ;;
   deploy ) shift; git push origin master:$1;

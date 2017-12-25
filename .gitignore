@@ -1,7 +1,7 @@
 /flow-typed
 /*.js
 !/styleguide.config.js
-/lib
+/build
 /public
 node_modules
 

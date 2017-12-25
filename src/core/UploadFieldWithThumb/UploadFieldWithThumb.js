@@ -10,10 +10,8 @@ import { UploadField } from '@navjobs/upload'
 //  accept: '.jpg,.png,.mov'
 //  className style width
 
-type Value = null | string | File
-
 type Props = {
-  value: Value,
+  value: null | string | File,
   onChange: Function,
   onLoad: Function,
   onLoadedMetadata: Function,
@@ -92,7 +90,7 @@ class UploadFieldWithThumb extends React.Component<Props, State> {
     }
   }
 
-  setImageUrlFromValue(value: Value) {
+  setImageUrlFromValue(value: $ElementType<Props, 'value'>) {
     if (value instanceof File) {
       const mediaType = value.type.split('/')[0]
       const mediaUrl = URL.createObjectURL(value)
