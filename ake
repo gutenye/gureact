@@ -4,9 +4,8 @@ export PATH="node_modules/.bin:$PATH"
 
 build() {
   rm -rf build/*
-  babel src --out-dir build/src --ignore __tests__
-  babel *.js --out-dir build --ignore __tests__
-  cp -r scripts bin package.json build
+  babel . --out-dir build --ignore __tests__,build,flow-typed,node_modules,manualtest
+  cp package.json build
 }
 
 publish() {

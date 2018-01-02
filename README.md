@@ -1,37 +1,77 @@
-- [Github](https://github.com/gutenye/react-mc)
-- [Theming Guide](https://material.io/components/web/docs/theming)
-- [Implementation Details](https://github.com/gutenye/react-mc/blob/master/docs/Implementation Details.md)
+Philosophy: each compnent is independent.
 
-**Install**
+```
+import { Button } from 'gureact'
+import { TextField } from 'gureact/antd'
 
-```shell
-$ yarn add react-mc
+<ThemeProvider theme={theme}>
+  <Button />
+</ThemeProvider>
+
+const theme = { primary }
 ```
 
-**App.js**
+## Install
 
-```jsx
-import Button from '@react-mc/button'
+```
+$ yarn add gureact
+MDC: yarn add material-components-web react-material-components-web
+Antd: yarn add antd
 
-<Button raised primary>Hello</Button>
+# src/_variables.scss
+
+  $mdc-theme-primary: #3b5999;
+
+# webpack.config.js
+
+  {
+    loader: 'sass-loader',
+    options: {
+      includePaths: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'node_modules')]
+    }
+  }
 ```
 
-**mdc.scss**
+```
+# .babelrc
+  plugins: [
+    ['transform-imports', {
+      'gureact': { transfrom: 'gureact/lib/core/${member}/${member} },
+      'gureact/antd': { transfrom: 'gureact/lib/antd/${member}/${member} },
 
-```scss
-$mdc-theme-primary: #9c27b0;
-$mdc-theme-accent: #76ff03;
-$mdc-theme-background: #fff;
+import { Button } from 'gureact'
 
-@import "@material/button/mdc-button";
+yarn add lodash styled-components classnames react-icons recompose react-router react-router-dom
 ```
 
+### Setup global styles
 
-## Other Projects implement material-components-web
-> Learn from [others](https://github.com/search?q=topic%3Amaterial-components-web)
+```
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a, a:hover, a:visited {
+  text-decoration: none;
+}
+```
 
-- [hardtack/react-material-components-web](https://github.com/react-mdc/react-material-components-web)
-- [haoxins/react-mdc](https://github.com/haoxins/react-mdc)
-- [mewa/react-material-components-web](https://github.com/mewa/react-material-components-web)
-- [hartorn/react-material-web](https://github.com/hartorn/react-material-web)
-- [reactivers/react-mcw](https://github.com/reactivers/react-mcw)
+```
+Setup react-icons
+
+class App extends React.Component {
+  static childContextTypes = {
+    reactIconBase: PropTypes.object
+  }
+
+  getChildContext() {
+    return {
+      reactIconBase: {
+        size: 32,
+        className: 'icon',
+      }
+    }
+  }
+```
+
