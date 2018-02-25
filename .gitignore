@@ -1,5 +1,4 @@
 /flow-typed
-/*.js
 !/styleguide.config.js
 /build
 /public
