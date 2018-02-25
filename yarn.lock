@@ -89,6 +89,10 @@
   version "3.1.2"
   resolved "http://registry.npm.taobao.org/@navjobs/upload/download/@navjobs/upload-3.1.2.tgz#dacd3c9b7bd083dee477d6c9587e4c2d0e29212b"
 
+"@types/history@^4.6.2":
+  version "4.6.2"
+  resolved "http://registry.npm.taobao.org/@types/history/download/@types/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/abab/download/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"

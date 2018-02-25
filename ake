@@ -3,8 +3,8 @@
 export PATH="node_modules/.bin:$PATH"
 
 build() {
-  rm -rf build/*
-  babel . --out-dir build --ignore __tests__,build,flow-typed,node_modules,manualtest
+  #rm -rf build/*
+  babel . --out-dir build --ignore __tests__,build,flow-typed,node_modules,manualtest --copy-files
   cp package.json build
 }
 

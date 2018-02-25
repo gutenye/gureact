@@ -7,12 +7,12 @@ process.env.NODE_ENV = 'development'
 const webpack = require('webpack')
 const webpackDevServer = require('webpack-dev-server')
 const path = require('path')
-const config = require('react-scripts/config/webpack.config.dev')
+let config = require('react-scripts/config/webpack.config.dev')
 const createDevServerConfig = require('react-scripts/config/webpackDevServer.config')
 const override = require(`${process.cwd()}/config-overrides.js`)
 
 config = override(config, 'development')
-config.entry[config.entry.length-1] = path.join(process.cwd(), 'src/index.design')
+config.resolve.extensions.unshift('.design.js', '.design.tsx')
 
 const PORT = parseInt(process.env.PORT, 10) || 3000
 const HOST = process.env.HOST || '0.0.0.0'

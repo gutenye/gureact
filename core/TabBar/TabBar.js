@@ -38,6 +38,7 @@ class TabBar extends React.Component<Props> {
 }
 
 const Root = styled.div`
+  z-index: 10;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -54,9 +55,7 @@ const Root = styled.div`
 
   .TabBar-item {
     cursor: pointer;
-    flex: 1;
-    min-width: 80px;
-    max-width: 168px;
+    flex: 1 1 0;
     display: flex;
     padding: 6px 12px 10px 12px;
     flex-direction: column;
