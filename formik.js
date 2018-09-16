@@ -6,11 +6,11 @@ import {
   Field as FormikField,
   FieldArray,
 } from 'formik'
-import { setLocale } from 'yup/lib/customLocale'
+import { setLocale } from 'yup'
 
 /**
  * 1. Field: supports custom component onChange(value), onBlur()
- * 2. formikSetLocal('zh-CN'): yup support zh-CN locale
+ * 2. formikSetLocale('zh-CN'): yup support zh-CN locale
  */
 
 const Field = props => {

@@ -1,3 +1,10 @@
+Don't use it, use project/gureact2 
+  - development is hard: use yarn link
+  - what happends when two project use different dependencies
+  - typescript not work
+  - each project has its own ui standard.
+
+
 Philosophy: each compnent is independent.
 
 ```
