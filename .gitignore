@@ -3,6 +3,7 @@
 /build
 /public
 node_modules
+yarn.lock
 
 *.swp
 .vscode

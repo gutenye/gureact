@@ -1,6 +1,6 @@
 {
   "name": "gureact",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "",
   "types": "index.d.ts",
   "scripts": {
@@ -29,12 +29,6 @@
     },
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
   },
-  "files": [
-    "src",
-    "bin",
-    "scripts",
-    "*.js"
-  ],
   "bin": {
     "gureact": "./bin/gureact.js"
   },
