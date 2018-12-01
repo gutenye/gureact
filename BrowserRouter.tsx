@@ -4,6 +4,11 @@ import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { omitBy } from 'lodash'
 
+/**
+ * add query prop
+ * - location.query
+ * - push({query: {q: 'a', removed: undefined|''}})    // always remove isEmpty query string
+ * - push({query: {page: 1}, keep: true})              // keep other queries
 class BrowserRouter extends React.Component<any> {
   history: any
 
@@ -27,8 +32,6 @@ class BrowserRouter extends React.Component<any> {
     history.listen(historyListen)
     historyListen()
 
-    // push({query: {q: 'a', removed: undefined|''}})    // always remove isEmpty query string
-    // push({query: {page: 1}, keep: true})         // keep other queries
     const originalPush = history.push
     history.push = function(path, state) {
       if (path.query) {
