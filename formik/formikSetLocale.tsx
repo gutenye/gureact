@@ -1,48 +1,7 @@
-import React from 'react'
-import {
-  withFormik,
-  Form,
-  Formik,
-  Field as FormikField,
-  FieldArray,
-} from 'formik'
 import { setLocale } from 'yup'
 
-/**
- * 1. Field: supports custom component onChange(value), onBlur()
- * 2. formikSetLocale('zh-CN'): yup support zh-CN locale
- */
-
-const Field = props => {
-  if (props.component && typeof props.component !== 'string') {
-    const { name, component, innerRef, ...rest } = props
-    return (
-      <FormikField
-        name={name}
-        render={bag => {
-          const { field: { name, value }, form } = bag
-          return React.createElement(component, {
-            ...rest,
-            ref: innerRef,
-            name,
-            value,
-            onChange(v) {
-              form.setFieldValue(name, v)
-            },
-            onBlur() {
-              form.setFieldTouched(name, true)
-            },
-          })
-        }}
-      />
-    )
-  } else {
-    return <FormikField {...props} />
-  }
-}
-
 // formikSetLocale('zh-CN')
-export function formikSetLocale(name) {
+export default function formikSetLocale(name) {
   if (name !== 'zh-CN') throw new Error(`unkown locale name: '${name}'`)
   /* eslint-disable no-template-curly-in-string */
   setLocale({
@@ -89,5 +48,3 @@ export function formikSetLocale(name) {
     },
   })
 }
-
-export { withFormik, Field, Form, Formik, FieldArray }

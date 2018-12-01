@@ -1,16 +1,12 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+import { auth } from '@/state'
 
 /**
  * <PrivateRoute path='/add' component=x />
  * <PrivateRoute [wrapper]> <Route> ..
  */
-export default function PrivateRoute({
-  component: Component,
-  wrapper: Wrapper,
-  children,
-  ...rest
-}) {
+export default function PrivateRoute({ component: Component, wrapper: Wrapper, children, ...rest }) {
   return (
     <Route
       {...rest}
@@ -19,7 +15,10 @@ export default function PrivateRoute({
         if (Component) result = <Component {...props} />
         else if (Wrapper) result = <Wrapper {...props}>{children}</Wrapper>
         else if (children) result = children
-        return result
+
+        const redirect = <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+
+        return auth.isLoggedIn() ? result : redirect
       }}
     />
   )

@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import queryString from 'query-string'
 import { Router } from 'react-router-dom'
