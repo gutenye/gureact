@@ -4,13 +4,12 @@ import { MenuProps } from 'antd/lib/menu'
 import { Link } from 'react-router-dom'
 
 /**
- *  <MenuWithItems
+ * Supports routes, authorization
+ *
+ *  <MenuWithConfig
  *    items: [
- *      { text, [icon, to] },
- *      { text, [icon, to], items }
+ *      { name, icon, path, items }
  *    ]
- *    linkRender
- *    iconRender
  *    ...rest
  *  />
  */
@@ -19,10 +18,11 @@ interface Props extends MenuProps {
   items: any[]
 }
 
-class MenuWithItems extends React.PureComponent<Props> {
+class MenuWithConfig extends React.PureComponent<Props> {
   render() {
     const { items, ...rest } = this.props
-    return <Menu {...rest}>{this.renderItems(items)}</Menu>
+    const rootDrawerItems = items.find(v => v.rootDrawer).routes
+    return <Menu {...rest}>{this.renderItems(rootDrawerItems)}</Menu>
   }
 
   // I'm recursive
@@ -30,12 +30,12 @@ class MenuWithItems extends React.PureComponent<Props> {
     return items.map(item => {
       if (item.items) {
         return (
-          <Menu.SubMenu key={item.text} title={this.renderText(item)}>
+          <Menu.SubMenu key={item.name} title={this.renderText(item)}>
             {this.renderItems(item.items)}
           </Menu.SubMenu>
         )
       } else {
-        return <Menu.Item key={item.text}>{this.renderText(item)}</Menu.Item>
+        return <Menu.Item key={item.name}>{this.renderText(item)}</Menu.Item>
       }
     })
   }
@@ -44,15 +44,15 @@ class MenuWithItems extends React.PureComponent<Props> {
     const text = (
       <>
         {item.icon}
-        {item.text}
+        {item.name}
       </>
     )
-    if (item.to) {
-      return <Link to={item.to}>{text}</Link>
+    if (item.path) {
+      return <Link to={item.path}>{text}</Link>
     } else {
       return text
     }
   }
 }
 
-export default MenuWithItems
+export default MenuWithConfig

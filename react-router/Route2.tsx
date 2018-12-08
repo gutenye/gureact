@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, RouteProps } from 'react-router-dom'
+import { castArray, clone } from 'lodash'
 
 interface Props {
   layout?: any
@@ -7,23 +8,27 @@ interface Props {
 }
 
 // <Route2 component />
-// <Route2 component layout />
+// <Route2 component layout: x | [] />
 // <Route2 layout> ..
 export default ({
-  layout: Layout,
+  layout,
   component: Component,
   children,
   ...rest
 }: Props & RouteProps) => {
-  if (Layout) {
+  if (layout) {
     return (
       <Route
         {...rest}
-        render={props => (
-          <Layout {...props}>
-            {Component ? <Component {...props} /> : children}
-          </Layout>
-        )}
+        render={routeProps => {
+          const layouts = clone(castArray(layout)).reverse()
+          children = Component ? <Component {...routeProps} /> : children
+          for (let Layout of layouts) {
+            const newChildren = <Layout {...routeProps}>{children}</Layout>
+            children = newChildren
+          }
+          return children
+        }}
       />
     )
   } else {

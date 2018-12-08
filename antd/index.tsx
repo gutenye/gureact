@@ -1,1 +1,1 @@
-export { default as MenuWithItems } from './Menu/MenuWithItems'
+export { default as MenuWithConfig } from './Menu/MenuWithConfig'
