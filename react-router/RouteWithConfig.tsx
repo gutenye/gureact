@@ -1,7 +1,7 @@
 import React from 'react'
 import Route2 from './Route2'
 import PrivateRoute from './PrivateRoute'
-import { Switch, RouteProps } from 'react-router-dom'
+import { Switch, Redirect } from 'react-router-dom'
 
 /**
  *  <RouteWithConfig
@@ -38,13 +38,15 @@ class RouteWithConfig extends React.PureComponent<Props> {
 
   renderRoutes(routes) {
     return routes.map(route => {
-      const { routes, ...rest } = route
+      const { routes, redirect, ...rest } = route
       if (routes) {
         return (
           <Route2 key={rest.path} {...rest}>
             {this.renderRoutes(routes)}
           </Route2>
         )
+      } else if (redirect) {
+        return <Redirect from={rest.path} to={redirect} />
       } else {
         return <Route2 key={rest.path} exact {...rest} />
       }
