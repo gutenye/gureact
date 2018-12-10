@@ -1,11 +1,17 @@
 import Select from 'react-select'
-import { compose, withProps } from 'recompose'
+import { compose, withProps, defaultProps } from 'recompose'
 
 /**
- * <SelectSimple value onChange(value) getOptionValue />
+ * - Given options: [{value, label}]
+ * - value and onChange(value) is value now, not option
+ *
+ * <SelectValue value onChange(value) />
  *   isMulti
  */
-const SelectSimple = compose<any, any>(
+const SelectValue = compose<any, any>(
+  defaultProps({
+    getOptionValue: v => v.value,
+  }),
   withProps((props: any) => {
     return {
       value: props.options.find(v => props.getOptionValue(v) === props.value),
@@ -13,6 +19,7 @@ const SelectSimple = compose<any, any>(
         if (props.isMulti) {
           props.onChange(option.map(o => props.getOptionValue(o)))
         } else {
+          pd('Select', props.getOptionValue(option), option)
           props.onChange(props.getOptionValue(option))
         }
       },
@@ -20,4 +27,4 @@ const SelectSimple = compose<any, any>(
   })
 )(Select)
 
-export default SelectSimple
+export default SelectValue

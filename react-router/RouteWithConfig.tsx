@@ -46,7 +46,7 @@ class RouteWithConfig extends React.PureComponent<Props> {
           </Route2>
         )
       } else if (redirect) {
-        return <Redirect from={rest.path} to={redirect} />
+        return <Redirect key={rest.path} from={rest.path} to={redirect} />
       } else {
         return <Route2 key={rest.path} exact {...rest} />
       }

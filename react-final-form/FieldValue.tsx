@@ -2,10 +2,12 @@ import * as React from 'react'
 import { Field } from 'react-final-form'
 
 /**
- * component supports antd input directly.
+ *
+ * <FieldValue component={CommonComponent} />
+ * - Support CommonComponent: <Component value onChange />
  */
 
-const FieldWithAntd = props => {
+const FieldValue = props => {
   if (props.component && typeof props.component !== 'string') {
     const { component: Component, ...rest } = props
     return (
@@ -27,4 +29,4 @@ const FieldWithAntd = props => {
   }
 }
 
-export default FieldWithAntd
+export default FieldValue
