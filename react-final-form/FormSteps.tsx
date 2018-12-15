@@ -14,9 +14,8 @@ import { Form, FormProps } from 'react-final-form'
  *     </div>
  *   )
  * >
- *   <FormSteps.Page validate>  // Page-level validation
- *    <Field name="title" component="input" />
- *   </FormSteps.Page>
+ *   <FormSteps.Page validate render component children />  // Page-level validation
+ *   ...
  * </FormSteps>
  *
  */
@@ -34,15 +33,20 @@ class FormSteps extends React.Component<Props> {
 
   render() {
     const { page, onPageChange, children, ...rest } = this.props
-    const activePage = React.Children.toArray(children)[page]
+    const activePage = React.Children.toArray(children)[page] as any
     const isLastPage = page === React.Children.count(children) - 1
     const isFirstPage = page === 0
     return (
       <Form {...rest} validate={this.validate} onSubmit={this.onSubmit}>
-        {({ handleSubmit, ...rest }) => (
+        {({ handleSubmit, ...renderRest }) => (
           <form onSubmit={handleSubmit}>
-            {activePage}
-            {this.props.Buttons({ isFirstPage, isLastPage, previous: this.previous, ...rest })}
+            {renderComponent({ ...activePage.props, ...renderRest })}
+            {this.props.Buttons({
+              isFirstPage,
+              isLastPage,
+              previous: this.previous,
+              ...rest,
+            })}
           </form>
         )}
       </Form>
@@ -84,6 +88,16 @@ class FormSteps extends React.Component<Props> {
   }
 }
 
-FormSteps.Page = ({ children }) => children
+FormSteps.Page = () => {}
+
+function renderComponent({ component, render, children, ...rest }) {
+  if (component) {
+    return React.createElement(component, { render, children, ...rest })
+  } else if (render) {
+    return render({ children, ...rest })
+  } else {
+    return children
+  }
+}
 
 export default FormSteps
