@@ -15,6 +15,7 @@ import { Form, FormProps } from 'react-final-form'
  *   )
  * >
  *   <FormSteps.Page validate render component children />  // Page-level validation
+ *     props: { values, .. }  // from react-final-form
  *   ...
  * </FormSteps>
  *
