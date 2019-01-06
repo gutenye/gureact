@@ -9,7 +9,7 @@ export const Content = styled.div`
   margin-top: 24px;
   padding: 24px;
   border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   ${s.tabletMin} {
     display: flex;

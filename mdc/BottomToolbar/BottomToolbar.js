@@ -91,9 +91,9 @@ const Item = styled.div`
   ${ItemStyle}
 `
 
-const ItemWithLink = styled(p =>
+const ItemWithLink = styled(p => (
   <Link {...omit(p, ['primary', 'marginLeft'])} />
-)`
+))`
   ${ItemStyle}
 `
 

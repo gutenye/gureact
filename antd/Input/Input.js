@@ -12,16 +12,16 @@ class AntdInput extends React.Component {
   }
 
   render() {
-    const {onChange, onSearch, onPressEnter, ...rest} = this.props
+    const { onChange, onSearch, onPressEnter, ...rest } = this.props
     if (onChange)
-      rest.onChange = (e) => {
+      rest.onChange = e => {
         onChange(e.target.value)
       }
-    rest.onPressEnter = (e) => {
+    rest.onPressEnter = e => {
       onSearch(e.target.value)
       onPressEnter(e.target.value)
     }
-    return <Input ref={v => this.input = v} {...rest} />
+    return <Input ref={v => (this.input = v)} {...rest} />
   }
 
   focus() {

@@ -55,14 +55,16 @@ class Layout extends React.Component {
     }
     return (
       <div>
-        {top &&
+        {top && (
           <header className={topClassName} style={{ ...s.top, ...topStyle }}>
             {top}
-          </header>}
-        {side &&
+          </header>
+        )}
+        {side && (
           <aside className={sideClassName} style={{ ...s.side, ...sideStyle }}>
             {side}
-          </aside>}
+          </aside>
+        )}
         <main className={mainClassName} style={{ ...s.main, ...mainStyle }}>
           {main}
         </main>

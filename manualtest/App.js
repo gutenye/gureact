@@ -3,20 +3,21 @@ import { render } from 'react-dom'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Home = (props) =>
+const Home = props => (
   <div>
     <Links>
-      <Link to='/grid'>Grid</Link>
-      <Link to='/device-viewer'>DeviceViewer</Link>
+      <Link to="/grid">Grid</Link>
+      <Link to="/device-viewer">DeviceViewer</Link>
     </Links>
     <Links>
-      <Link to='/antd/layout'>Layout</Link>
+      <Link to="/antd/layout">Layout</Link>
     </Links>
   </div>
+)
 
 class App extends React.Component {
   static childContextTypes = {
-    reactIconBase: PropTypes.object
+    reactIconBase: PropTypes.object,
   }
 
   getChildContext() {
@@ -24,7 +25,7 @@ class App extends React.Component {
       reactIconBase: {
         size: 32,
         className: 'icon',
-      }
+      },
     }
   }
 
@@ -32,10 +33,16 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Route path='/' component={Home} exact />
-          <Route path='/grid' component={require('./Grid').default} />
-          <Route path='/device-viewer' component={require('./DeviceViewer').default} />
-          <Route path='/antd/layout' component={require('./antd/Layout').default} />
+          <Route path="/" component={Home} exact />
+          <Route path="/grid" component={require('./Grid').default} />
+          <Route
+            path="/device-viewer"
+            component={require('./DeviceViewer').default}
+          />
+          <Route
+            path="/antd/layout"
+            component={require('./antd/Layout').default}
+          />
         </div>
       </BrowserRouter>
     )

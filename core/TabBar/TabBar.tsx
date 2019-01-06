@@ -1,12 +1,11 @@
-// @flow
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-type Props = {
-  items: Array<{ label?: string, icon?: any, to?: string }>,
-  style?: Object,
-  className?: string,
+interface Props {
+  items: Array<{ label?: string; icon?: any; to?: string }>
+  style?: Object
+  className?: string
 }
 
 class TabBar extends React.Component<Props> {

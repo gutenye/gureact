@@ -14,15 +14,13 @@ type props = {
 const ArtboardDefault = ({ title, children, ...rest }) => {
   return (
     <Root {...rest}>
-      <h3 className="Styleguide-header">
-        {title}
-      </h3>
+      <h3 className="Styleguide-header">{title}</h3>
       <div>
-        {castArray(children).map((v, i) =>
+        {castArray(children).map((v, i) => (
           <div key={i} className="Styleguide-item">
             {v}
           </div>
-        )}
+        ))}
       </div>
     </Root>
   )

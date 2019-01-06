@@ -21,9 +21,13 @@ const proxy = {}
 const host = '0.0.0.0'
 const serverConfig = createDevServerConfig(proxy, host)
 
-new webpackDevServer(webpack(config), serverConfig).listen(PORT, HOST, (err, result) => {
-  if (err) {
-    return console.log(err)
+new webpackDevServer(webpack(config), serverConfig).listen(
+  PORT,
+  HOST,
+  (err, result) => {
+    if (err) {
+      return console.log(err)
+    }
+    console.log(`Listening at http://${HOST}:${PORT}`)
   }
-  console.log(`Listening at http://${HOST}:${PORT}`)
-})
+)

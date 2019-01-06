@@ -19,11 +19,11 @@ class MasonryList extends React.Component {
     const { children } = this.props
     return (
       <Root {...this.props}>
-        {children.map((v, i) =>
+        {children.map((v, i) => (
           <div className="item" key={i}>
             {v}
           </div>
-        )}
+        ))}
       </Root>
     )
   }

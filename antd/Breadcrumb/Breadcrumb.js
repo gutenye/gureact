@@ -14,11 +14,11 @@ class BreadcrumbComp extends React.Component {
     items = isString(items) ? [items] : items
     return (
       <Breadcrumb>
-        {items.map((v, i) =>
+        {items.map((v, i) => (
           <Breadcrumb.Item key={i}>
             {isString(v) ? <span>{v}</span> : <Link to={v[1]}>{v[0]}</Link>}
           </Breadcrumb.Item>
-        )}
+        ))}
       </Breadcrumb>
     )
   }

@@ -20,7 +20,11 @@ class AntdSelect extends React.Component {
     if (isPlainObject(options[0])) options = options.map(v => v[field])
     return (
       <Select onChange={this.onChange} {...rest}>
-        {options.map(v => <Select.Option key={v} value={v}>{v}</Select.Option>)}
+        {options.map(v => (
+          <Select.Option key={v} value={v}>
+            {v}
+          </Select.Option>
+        ))}
       </Select>
     )
   }

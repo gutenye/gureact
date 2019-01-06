@@ -68,7 +68,9 @@ const DrawerRight = styled.div`
 `
 
 // use padding-top, for margin can be collapsed.
-const HeaderDown = styled.div`padding-top: ${p => p.theme.header.height};`
+const HeaderDown = styled.div`
+  padding-top: ${p => p.theme.header.height};
+`
 
 const HeaderDownInner = styled.div`
   ${p =>

@@ -3,7 +3,7 @@ import { compose, defaultProps } from 'recompose'
 
 const AntdTextarea = compose(
   defaultProps({
-    type: 'textarea'
+    type: 'textarea',
   })
 )(Input)
 

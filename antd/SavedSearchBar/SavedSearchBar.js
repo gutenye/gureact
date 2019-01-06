@@ -37,14 +37,12 @@ class SavedSearchBar extends React.Component {
     const { inputValues, status } = this.state
     const dropdownMenu = (
       <Menu onClick={this.onMenuClick}>
-        {status === 'custom' &&
-          <Menu.Item key="saveSearch">
-            {t.saveSearch}
-          </Menu.Item>}
-        {status === 'saved' &&
-          <Menu.Item key="deleteSearch">
-            {t.deleteSearch}
-          </Menu.Item>}
+        {status === 'custom' && (
+          <Menu.Item key="saveSearch">{t.saveSearch}</Menu.Item>
+        )}
+        {status === 'saved' && (
+          <Menu.Item key="deleteSearch">{t.deleteSearch}</Menu.Item>
+        )}
       </Menu>
     )
 
@@ -55,7 +53,7 @@ class SavedSearchBar extends React.Component {
             <NavLink to={match.url} exact omit={OMIT_FIELDS}>
               {t.all}
             </NavLink>
-            {savedSearchs.map(v =>
+            {savedSearchs.map(v => (
               <NavLink
                 key={v.name}
                 to={{ pathname: match.url, query: v.query }}
@@ -63,23 +61,25 @@ class SavedSearchBar extends React.Component {
               >
                 {v.name}
               </NavLink>
-            )}
-            {status === 'custom' &&
+            ))}
+            {status === 'custom' && (
               <NavLink
                 to={{ pathname: match.url, query: location.query }}
                 omit={OMIT_FIELDS}
               >
                 {t.customSearch}
-              </NavLink>}
+              </NavLink>
+            )}
           </div>
-          {status !== 'root' &&
+          {status !== 'root' && (
             <Dropdown
               overlay={dropdownMenu}
               trigger={['click']}
               placement="bottomRight"
             >
               <MdMoreVert className="dropdown" button />
-            </Dropdown>}
+            </Dropdown>
+          )}
         </div>
         <div className="searchItems">
           {items.map(({ type, name, ...rest }) => {

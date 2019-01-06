@@ -44,7 +44,9 @@ class StockQtyEdit extends React.Component {
         <thead>
           <tr>
             <th />
-            {colors.map(color => <th key={color}>{color}</th>)}
+            {colors.map(color => (
+              <th key={color}>{color}</th>
+            ))}
             <th>合计</th>
           </tr>
         </thead>
@@ -72,7 +74,9 @@ class StockQtyEdit extends React.Component {
           ])}
           <tr>
             <td>合计</td>
-            {colors.map(color => <td key={color}>{colorMap[color]}</td>)}
+            {colors.map(color => (
+              <td key={color}>{colorMap[color]}</td>
+            ))}
           </tr>
         </tbody>
       </Table>

@@ -16,8 +16,7 @@ class MDCToolbar extends React.Component {
 
   render() {
     const { title, back, children } = this.props
-    const backEl =
-      back &&
+    const backEl = back && (
       <Toolbar.Icon
         menu
         className="Toolbar-back-icon"
@@ -25,21 +24,18 @@ class MDCToolbar extends React.Component {
       >
         <MdArrowBack />
       </Toolbar.Icon>
+    )
     return (
       <Root>
         <Toolbar fixed waterfall>
           <Toolbar.Row>
             <Toolbar.Section align="start">
               {backEl}
-              <Toolbar.Title>
-                {title}
-              </Toolbar.Title>
+              <Toolbar.Title>{title}</Toolbar.Title>
             </Toolbar.Section>
           </Toolbar.Row>
         </Toolbar>
-        <Toolbar.FixedAdjust>
-          {children}
-        </Toolbar.FixedAdjust>
+        <Toolbar.FixedAdjust>{children}</Toolbar.FixedAdjust>
       </Root>
     )
   }

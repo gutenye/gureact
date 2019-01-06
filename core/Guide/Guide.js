@@ -15,11 +15,11 @@ import Color from './Color'
 const Guide = ({ children }) => {
   return (
     <Root>
-      {castArray(children).map((item, i) =>
+      {castArray(children).map((item, i) => (
         <div key={i} className="Guide-item">
           {item}
         </div>
-      )}
+      ))}
     </Root>
   )
 }

@@ -30,7 +30,7 @@ class Header extends React.Component {
           <Breadcrumb items={title} />
         </div>
         <div className="actions">
-          {actions.map(({ title, action, ...rest }) =>
+          {actions.map(({ title, action, ...rest }) => (
             <Button
               primary
               key={title}
@@ -39,7 +39,7 @@ class Header extends React.Component {
             >
               {title}
             </Button>
-          )}
+          ))}
         </div>
       </Root>
     )

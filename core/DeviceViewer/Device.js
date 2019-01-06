@@ -58,7 +58,7 @@ const Root = styled.div`
   &.phone:before,
   &.tablet:before {
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
@@ -77,7 +77,7 @@ const Root = styled.div`
   &.phone:after,
   &.tablet:after {
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     bottom: -76px;
     left: 50%;
@@ -99,7 +99,7 @@ const Root = styled.div`
 
   &.laptop:before {
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;
@@ -112,7 +112,7 @@ const Root = styled.div`
 
   &.laptop:after {
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     right: 0;
     bottom: -56px;

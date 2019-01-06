@@ -1,23 +1,23 @@
 module.exports = {
-  entry: "./App",
+  entry: './App',
 
   output: {
     path: `${__dirname}/build`,
-    filename: "app.js",
+    filename: 'app.js',
   },
 
   module: {
     rules: [
-      { test: /\.js$/, use: "babel-loader", include: /App.js|gureact/ },
+      { test: /\.js$/, use: 'babel-loader', include: /App.js|gureact/ },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-    ]
+    ],
   },
 
   devServer: {
     port: 3011,
-    host: "0.0.0.0",
+    host: '0.0.0.0',
     historyApiFallback: true,
   },
 
-  devtool: "cheap-module-eval-source-map",
+  devtool: 'cheap-module-eval-source-map',
 }

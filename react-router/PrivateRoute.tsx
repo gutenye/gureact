@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { auth } from '@/states'
+import { auth } from '@/state'
 
 /**
  * <PrivateRoute path='/add' component=x />

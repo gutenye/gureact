@@ -21,28 +21,30 @@ class Settings extends React.Component {
     return (
       <Root className={className}>
         {items.map(group => [
-          group.title &&
-            <List.Group.Subheader>
-              {group.title}
-            </List.Group.Subheader>,
+          group.title && (
+            <List.Group.Subheader>{group.title}</List.Group.Subheader>
+          ),
           <List avatarList={group.avatar}>
             {group.items.map((subitem, i) => {
               const { icon, avatar, text, secondaryText, to, ...rest } = subitem
               const linkProps = to ? { component: Link, to } : {}
               return [
                 <List.Item key={i} {...linkProps} {...rest}>
-                  {group.avatar
-                    ? <List.Item.StartDetail component="img" src={avatar} />
-                    : <List.Item.StartDetail className="material-icons">
-                        {icon}
-                      </List.Item.StartDetail>}
+                  {group.avatar ? (
+                    <List.Item.StartDetail component="img" src={avatar} />
+                  ) : (
+                    <List.Item.StartDetail className="material-icons">
+                      {icon}
+                    </List.Item.StartDetail>
+                  )}
 
                   <List.Item.Text>
                     {text}
-                    {secondaryText &&
+                    {secondaryText && (
                       <List.Item.Text.Secondary>
                         {secondaryText}
-                      </List.Item.Text.Secondary>}
+                      </List.Item.Text.Secondary>
+                    )}
                   </List.Item.Text>
                   <List.Item.EndDetail className="material-icons">
                     keyboard_arrow_right
@@ -62,8 +64,8 @@ const Root = styled(List.Group)`
   padding: 0;
 
   .mdc-list {
-    border-top: 1px solid rgba(0, 0, 0, .12);
-    border-bottom: 1px solid rgba(0, 0, 0, .12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     background-color: white;
     padding: 0 0 0 16px;
   }
@@ -81,7 +83,7 @@ const Root = styled(List.Group)`
   }
 
   .mdc-list-group__subheader {
-    color: #8F8F8F;
+    color: #8f8f8f;
     margin: 0;
     padding-left: 16px;
     font-weight: normal;

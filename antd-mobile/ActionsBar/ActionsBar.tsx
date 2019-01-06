@@ -6,11 +6,11 @@ import { ButtonProps } from 'antd-mobile/lib/button'
 /*
  * <ActionsBar
  *   items: [
- *     { label: 'Save', primary: true }  onClick, disabled, loading 
+ *     { label: 'Save', primary: true }  onClick, disabled, loading
  *     { label: 'Edit' },
  *     { label: 'Delete', left: true }
  *   ]
- * 
+ *
  * In AppNewComponent: actionBars: {items: [{label: 'Save', special: 'submit'}]}
  */
 
@@ -35,16 +35,27 @@ class ActionsBar extends React.Component<Props> {
     return (
       <Root {...rest}>
         {items.map(({ label, primary, left, ...rest }) => {
-          const type = primary ? 'ghost' : null
+          const type = primary ? 'ghost' : undefined
           if (left) {
             return (
-              <div className="ActionsBar-item" style={{ marginRight: 'auto' }} {...rest}>
+              <div
+                className="ActionsBar-item"
+                style={{ marginRight: 'auto' }}
+                {...rest}
+              >
                 {label}
               </div>
             )
           } else {
             return (
-              <Button className="ActionsBar-item" key={label} type={type} inline size="small" {...rest}>
+              <Button
+                className="ActionsBar-item"
+                key={label}
+                type={type}
+                inline
+                size="small"
+                {...rest}
+              >
                 {label}
               </Button>
             )

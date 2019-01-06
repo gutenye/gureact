@@ -27,9 +27,7 @@ class FormModal extends React.Component {
             )
           })}
           <Form.Item className="actions">
-            <Button onClick={close}>
-              {t.cancel}
-            </Button>
+            <Button onClick={close}>{t.cancel}</Button>
             <Button type="primary" htmlType="submit">
               {t.save}
             </Button>

@@ -17,29 +17,28 @@ class MyLayout extends React.Component {
   render() {
     const header = {
       title: 'Sharon',
-      actions: [
-        {title: 'Create Post', to: '/posts/new', primary: true},
-      ]
+      actions: [{ title: 'Create Post', to: '/posts/new', primary: true }],
     }
 
     const drawer = {
       appName: 'Sharon',
-      menu: [{
-        title: 'Products Manager', icon: <MdHome />, children: [
-          {title: 'Stock', to: '/product'}
-        ]
-      }]
+      menu: [
+        {
+          title: 'Products Manager',
+          icon: <MdHome />,
+          children: [{ title: 'Stock', to: '/product' }],
+        },
+      ],
     }
 
     return (
       <Layout drawer={drawer} header={header}>
         <Layout.Content>
           <Layout.Left>
-            content sharon, and guten tag, ich bin sharon, where have you been, from yiwu to china.
+            content sharon, and guten tag, ich bin sharon, where have you been,
+            from yiwu to china.
           </Layout.Left>
-          <Layout.Right>
-            my pictures
-          </Layout.Right>
+          <Layout.Right>my pictures</Layout.Right>
         </Layout.Content>
       </Layout>
     )
@@ -47,4 +46,3 @@ class MyLayout extends React.Component {
 }
 
 export default MyLayout
-

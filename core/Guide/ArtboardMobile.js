@@ -6,9 +6,7 @@ const ArtboardMobile = ({ children }) => {
   return (
     <Root>
       <Statusbar />
-      <div className="ArtboardMobile-children">
-        {children}
-      </div>
+      <div className="ArtboardMobile-children">{children}</div>
     </Root>
   )
 }

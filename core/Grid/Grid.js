@@ -9,11 +9,7 @@ class Col extends React.Component {
 
   render() {
     const { children } = this.props
-    return (
-      <ColStyled {...this.props}>
-        {children}
-      </ColStyled>
-    )
+    return <ColStyled {...this.props}>{children}</ColStyled>
   }
 }
 
@@ -34,12 +30,10 @@ const ColStyled = styled.div`
 
 class Container extends React.Component {
   render() {
-    const { props: { children } } = this
-    return (
-      <ContainerStyled>
-        {children}
-      </ContainerStyled>
-    )
+    const {
+      props: { children },
+    } = this
+    return <ContainerStyled>{children}</ContainerStyled>
   }
 }
 

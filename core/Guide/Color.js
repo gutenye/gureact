@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Color = ({ code, label }) =>
+const Color = ({ code, label }) => (
   <ColorRoot>
     <div className={`color ${code}`} />
-    <div>
-      {label}
-    </div>
+    <div>{label}</div>
   </ColorRoot>
+)
 
 const ColorRoot = styled.div`
   display: flex;

@@ -17,11 +17,11 @@ class GridList extends React.Component {
     const { className, children } = this.props
     return (
       <Root className={className} {...this.props}>
-        {children.map((v, i) =>
+        {children.map((v, i) => (
           <div key={i} className="item">
             {v}
           </div>
-        )}
+        ))}
       </Root>
     )
   }

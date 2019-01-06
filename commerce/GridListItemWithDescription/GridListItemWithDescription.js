@@ -7,9 +7,7 @@ class GridListItemWithDescription extends React.Component {
     return (
       <Root className={className} style={style}>
         <img src={image} alt="product" />
-        <div className="description">
-          {description}
-        </div>
+        <div className="description">{description}</div>
       </Root>
     )
   }
