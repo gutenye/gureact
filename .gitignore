@@ -6,6 +6,5 @@ node_modules
 yarn.lock
 
 *.swp
-.vscode
 .DS_Store
 *.log
