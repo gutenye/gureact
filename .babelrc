@@ -4,7 +4,6 @@
     "react"
   ],
   "plugins": [
-    "transform-flow-strip-types",
     "styled-components",
     "transform-object-rest-spread",
     "transform-class-properties",
