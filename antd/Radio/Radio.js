@@ -1,18 +1,16 @@
 import React from 'react'
 import { isPlainObject, isFunction } from 'lodash'
-import { Select } from 'antd'
+import { Radio } from 'antd'
 
-//
-// <Select
+// <Radio
 //   options = [value], [{FIELD: value}], fn
 //   field = 'name'*
 //   onSearch
 //
-class AntdSelect extends React.Component {
+class AntdRadio extends React.Component {
   static defaultProps = {
     options: [],
     field: 'name',
-    tokenSeparators: [','],
   }
 
   render() {
@@ -24,13 +22,13 @@ class AntdSelect extends React.Component {
       options = options.map(v => v[field])
     }
     return (
-      <Select onChange={this.onChange} {...rest}>
+      <Radio.Group onChange={this.onChange} {...rest}>
         {options.map(v => (
-          <Select.Option key={v} value={v}>
+          <Radio.Button key={v} value={v}>
             {v}
-          </Select.Option>
+          </Radio.Button>
         ))}
-      </Select>
+      </Radio.Group>
     )
   }
 
@@ -40,4 +38,4 @@ class AntdSelect extends React.Component {
   }
 }
 
-export default AntdSelect
+export default AntdRadio

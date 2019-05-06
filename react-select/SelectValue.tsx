@@ -19,7 +19,6 @@ const SelectValue = compose<any, any>(
         if (props.isMulti) {
           props.onChange(option.map(o => props.getOptionValue(o)))
         } else {
-          pd('Select', props.getOptionValue(option), option)
           props.onChange(props.getOptionValue(option))
         }
       },

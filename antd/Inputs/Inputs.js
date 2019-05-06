@@ -8,6 +8,7 @@ import Textarea from '../Textarea/Textarea'
 import InputTree from '../InputTree/InputTree'
 import Tags from '../Tags/Tags'
 import ImageUpload from '../ImageUpload/ImageUpload'
+import Radio from '../Radio/Radio'
 
 /*
 Goals
@@ -34,4 +35,5 @@ export default {
   Select: stringQuerier(Select),
   InputTree: stringQuerier(InputTree),
   ImageUpload: stringQuerier(ImageUpload),
+  Radio: stringQuerier(Radio),
 }
