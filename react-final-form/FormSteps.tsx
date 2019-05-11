@@ -35,6 +35,7 @@ class FormSteps extends React.Component<Props> {
   render() {
     const { page, onPageChange, children, ...rest } = this.props
     const activePage = React.Children.toArray(children)[page] as any
+    const totalPage = React.Children.toArray(children).length
     const isLastPage = page === React.Children.count(children) - 1
     const isFirstPage = page === 0
     return (
@@ -45,6 +46,8 @@ class FormSteps extends React.Component<Props> {
             {this.props.Buttons({
               isFirstPage,
               isLastPage,
+              page: page + 1,
+              totalPage,
               previous: this.previous,
               ...rest,
             })}
