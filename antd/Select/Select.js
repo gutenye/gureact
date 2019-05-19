@@ -16,7 +16,10 @@ class AntdSelect extends React.Component {
   }
 
   render() {
-    var { options, field, onChange, onSearch, ...rest } = this.props
+    var { options, field, onChange, onSearch, value, ...rest } = this.props
+    // Fix placeholder is showed when value is undefined, not ''
+    // react-final-form, set initialValue to undefined, but value becomes ''.
+    value = value === '' ? undefined : value
     if (isFunction(options)) {
       options = options()
     }
@@ -24,7 +27,7 @@ class AntdSelect extends React.Component {
       options = options.map(v => v[field])
     }
     return (
-      <Select onChange={this.onChange} {...rest}>
+      <Select value={value} onChange={this.onChange} {...rest}>
         {options.map(v => (
           <Select.Option key={v} value={v}>
             {v}
