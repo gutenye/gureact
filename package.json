@@ -2,9 +2,6 @@
   "name": "gureact",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "babel-loader": "^8.2.2"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -14,10 +11,10 @@
     "build-storybook": "build-storybook"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "guten-react",
+    "rules": {
+      "import/no-extraneous-dependencies": false
+    }
   },
   "browserslist": {
     "production": [
@@ -30,6 +27,36 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "babel-jest",
+      "\\.css$": "jest-transforms/css",
+      "^(?!.*\\.(js|jsx|css|json)$)": "jest-transforms/file"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
+  },
+  "bin": {
+    "gureact": "./bin/gureact.js"
+  },
+  "dependencies": {
+    "babel-loader": "^8.2.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.1.11",
@@ -44,6 +71,9 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "husky": "^4.3.7",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
