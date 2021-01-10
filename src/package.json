@@ -1,0 +1,99 @@
+{
+  "name": "gureact",
+  "version": "1.1.6",
+  "main": "",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "./ake build",
+    "watch": "./ake watch",
+    "prepublish": "echo 'PLEASE RUN in build folder'",
+    "build:docs": "NODE_ENV=production styleguidist build",
+    "test": "jest"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "guten-react",
+    "rules": {
+      "import/no-extraneous-dependencies": false
+    }
+  },
+  "jest": {
+    "transform": {
+      "\\.js$": "babel-jest",
+      "\\.css$": "jest-transforms/css",
+      "^(?!.*\\.(js|jsx|css|json)$)": "jest-transforms/file"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
+  },
+  "bin": {
+    "gureact": "./bin/gureact.js"
+  },
+  "devDependencies": {
+    "@gutenye/babel-plugin-transform-imports": "^1.1.12",
+    "@gutenye/react-svg-loader": "^2.0.8",
+    "@types/history": "^4.7.0",
+    "antd": "^3.9.2",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-import": "^1.8.0",
+    "babel-plugin-styled-components": "^1.7.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "classnames": "^2.2.6",
+    "compression-webpack-plugin": "^2.0.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.5.0",
+    "eslint-config-guten-react": "2.0.1",
+    "formik": "^1.3.0",
+    "husky": "^1.3.1",
+    "jest": "^23.6.0",
+    "jest-transforms": "^1.0.0",
+    "lint-staged": "^8.1.0",
+    "lodash": "^4.17.10",
+    "node-sass": "^4.9.3",
+    "pdjs": "^1.0.6",
+    "prettier": "^1.15.3",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-icons": "^3.0.5",
+    "react-router-dom": "^4.3.1",
+    "react-styleguidist": "^7.3.7",
+    "recompose": "^0.30.0",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
+    "styled-components": "^3.4.6",
+    "url-search-params": "^1.1.0",
+    "webpack": "^4.18.0",
+    "webpack-dev-server": "^3.1.8"
+  },
+  "dependencies": {
+    "@navjobs/upload": "^3.1.3",
+    "query-string": "^6.2.0",
+    "react-ga": "^2.5.3",
+    "yup": "^0.26.5"
+  }
+}
