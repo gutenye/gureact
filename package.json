@@ -52,7 +52,13 @@
     "setupTestFrameworkScriptFile": "<rootDir>/src/setupTest.js"
   },
   "dependencies": {
-    "babel-loader": "^8.2.2"
+    "@types/lodash": "^4.14.167",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/styled-components": "^5.1.7",
+    "babel-loader": "^8.2.2",
+    "lodash": "^4.17.20",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.1.11",
