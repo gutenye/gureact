@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs/blocks'
 import Button from './Button'
 
 <Meta title="Core/Button.mdx" component={Button} />
@@ -8,28 +8,11 @@ import Button from './Button'
 With `MDX` we can define a story for `Checkbox` right in the middle of our
 Markdown documentation.
 
-export const Template = (args) => <Button {...args} />
-
-<Canvas>
-  <Story name="Default" args={{ children: 'Default' }}>
-    {Template.bind({})}
-  </Story>
-  <Story name="Primary" args={{ children: 'Primary' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-<Story name="Default1" args={{ children: 'Default1' }}>
-  {Template.bind({})}
-</Story>
-
-<Canvas>
-  <Story name="Primary1" args={{ children: 'Primary1' }}>
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
 <Canvas>
   <Button>foo</Button>
   <Button>bar</Button>
 </Canvas>
+
+## API
+
+<ArgsTable of={Button} />
