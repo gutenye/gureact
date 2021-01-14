@@ -1,8 +1,11 @@
+## gureact
+
+[documentation](https://60003f79acfc0b00219273be-qbiusrtdmc.chromatic.com/?path=/docs/introduction--page)
+
 Philosophy: each compnent is independent.
 
 Temp fix from https://github.com/storybookjs/storybook/issues/13593#issuecomment-757427590
 Don't forget to remove it after it's get fixed
-
 
 ```
 import { Button } from 'gureact'
