@@ -1,5 +1,9 @@
 Philosophy: each compnent is independent.
 
+Temp fix from https://github.com/storybookjs/storybook/issues/13593#issuecomment-757427590
+Don't forget to remove it after it's get fixed
+
+
 ```
 import { Button } from 'gureact'
 import { TextField } from 'gureact/antd'
