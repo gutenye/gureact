@@ -4,6 +4,7 @@
 /public
 node_modules
 yarn.lock
+storybook-static
 
 *.swp
 .DS_Store
