@@ -18,6 +18,12 @@ import { TextField } from 'gureact/antd'
 const theme = { primary }
 ```
 
+## With git submodule
+
+```
+git submodule add git@github.com:gutenye/gureact src/gureact
+```
+
 ## Install
 
 ```
@@ -81,4 +87,3 @@ class App extends React.Component {
     }
   }
 ```
-
