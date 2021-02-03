@@ -5,6 +5,7 @@
 node_modules
 yarn.lock
 storybook-static
+.bitmap
 
 *.swp
 .DS_Store
