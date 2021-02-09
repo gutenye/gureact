@@ -2,17 +2,20 @@ import React from 'react'
 import { Form as FinalForm, FormProps } from 'react-final-form'
 
 /**
+ * Issues
+ *  - no initalValues: rerender cause the values to reset. Solution: next button form.change(key, value)
  *
  * <FormSteps
  *   page: 0, onPageChange, onSubmit
  *   totalPage      // will loop if totalPage > children count
  *   Form: styled('form'),
  *   ButtonsPosition: 'after'
- *   Buttons: ({ isFirstPage, isLastPage, page, totalPage, previous, next, submitting, ...rest }) => (
+ *   Buttons: ({ isFirstPage, isLastPage, page, totalPage, previous, next, submitting, ...form }) => (
  *     <div>
  *       {!isFirstPage && <button type="button" onClick={previous}>Previous</button>}
  *       {!isLastPage && <button type="button" onClick={next}>Next</button>}
  *       {isLastPage && <button type="submit" disabled={submitting}>Submit</button>}
+ *       // can not use <button type={isLastPage ? 'submit' : 'button'} .. /> cause the page before the last one call next and submit at the same time.
  *     </div>
  *   )
  * >
@@ -39,43 +42,53 @@ class FormSteps extends React.Component<Props> {
     ButtonsPosition: 'after',
   }
 
+  state = {
+    // fix initalValues, re-render will reset initialValues if you use this.props.initialValues directly
+    initialValues: this.props.initialValues,
+  }
+
   render() {
     const { Form, page, ButtonsPosition, ...rest } = this.props
+    const { initialValues } = this.state
     const activePage = this.activePage()
     const totalPage = this.totalPage()
     const isLastPage = page === totalPage - 1
     const isFirstPage = page === 0
-    const buttons = this.props.Buttons({
-      isFirstPage,
-      isLastPage,
-      page,
-      totalPage,
-      previous: this.previous,
-      next: this.next,
-      ...rest,
-    })
     return (
       <FinalForm
         {...rest}
+        initialValues={initialValues}
         validate={this.validate}
         onSubmit={this.props.onSubmit}
       >
-        {({ handleSubmit, ...renderRest }) => (
-          <Form onSubmit={handleSubmit}>
-            {ButtonsPosition === 'before' && buttons}
-            {renderComponent({
-              isFirstPage,
-              isLastPage,
-              page,
-              totalPage,
-              previous: this.previous,
-              next: this.next,
-              ...activePage.props,
-              ...renderRest,
-            })}
-            {ButtonsPosition === 'after' && buttons}
-          </Form>
-        )}
+        {({ handleSubmit, ...renderRest }) => {
+          const buttons = this.props.Buttons({
+            isFirstPage,
+            isLastPage,
+            page,
+            totalPage,
+            previous: this.previous,
+            next: this.next,
+            ...renderRest,
+          })
+
+          return (
+            <Form onSubmit={handleSubmit}>
+              {ButtonsPosition === 'before' && buttons}
+              {renderComponent({
+                isFirstPage,
+                isLastPage,
+                page,
+                totalPage,
+                previous: this.previous,
+                next: this.next,
+                ...activePage.props,
+                ...renderRest,
+              })}
+              {ButtonsPosition === 'after' && buttons}
+            </Form>
+          )
+        }}
       </FinalForm>
     )
   }
