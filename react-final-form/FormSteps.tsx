@@ -122,7 +122,7 @@ class FormSteps extends React.Component<Props> {
    * functions once the form has been defined.
    */
 
-  validate = values => {
+  validate = (values) => {
     const activePage = this.activePage()
     return activePage.props.validate ? activePage.props.validate(values) : {}
   }
