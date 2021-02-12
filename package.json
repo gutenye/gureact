@@ -13,7 +13,7 @@
   "eslintConfig": {
     "extends": "guten-react",
     "rules": {
-      "import/no-extraneous-dependencies": false
+      "import/no-extraneous-dependencies": "off"
     }
   },
   "browserslist": {
