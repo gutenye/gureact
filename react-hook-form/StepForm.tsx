@@ -28,7 +28,7 @@ const StepForm: React.FC<StepFormProps> = ({
   defaultValues = {},
   totalStep: origTotalStep,
 }) => {
-  const { register, handleSubmit, getValues } = useForm()
+  const { register, handleSubmit, getValues, setValue } = useForm()
   const [step, setStep] = useState(0)
   const [isSuccessStep, setIsSuccessStep] = useState(false)
   const [totalValues, setTotalValues] = useState(defaultValues)
@@ -80,11 +80,12 @@ const StepForm: React.FC<StepFormProps> = ({
     totalStep,
     next,
     prev,
+    setValue,
   }
 
   return (
     <form onSubmit={handleSubmit(newOnSubmit)}>
-      <Step {...stepProps} />
+      <Step key={step} {...stepProps} />
     </form>
   )
 }

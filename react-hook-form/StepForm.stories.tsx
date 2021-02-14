@@ -1,15 +1,15 @@
-import React from "react";
-import StepForm from "./StepForm";
+import React from 'react'
+import StepForm from './StepForm'
 
 export default {
-  title: "React_Hook_Form/StepForm",
+  title: 'React_Hook_Form/StepForm',
   component: StepForm,
-};
+}
 
-const onSubmit = (values) => console.log(JSON.stringify(values, null, 2));
+const onSubmit = (values) => console.log(JSON.stringify(values, null, 2))
 
-const Step1 = ({ next }) => <button onClick={next}>step1</button>;
-const SuccessStep = () => <div>Success</div>;
+const Step1 = ({ next }) => <button onClick={next}>step1</button>
+const SuccessStep = () => <div>Success</div>
 
 const StepLoop = ({
   step,
@@ -20,9 +20,9 @@ const StepLoop = ({
   values,
   register,
 }) => {
-  const key = `step${step}`;
+  const key = `step${step}`
   return (
-    <div key={key}>
+    <div>
       <input
         name={key}
         placeholder={key}
@@ -32,10 +32,10 @@ const StepLoop = ({
       <button type="button" onClick={prev} disabled={isFirstStep}>
         Prev
       </button>
-      <button type="submit">{isLastStep ? "Submit" : "Next"}</button>
+      <button type="submit">{isLastStep ? 'Submit' : 'Next'}</button>
     </div>
-  );
-};
+  )
+}
 
 export const Basic = () => (
   <StepForm
@@ -44,4 +44,4 @@ export const Basic = () => (
     totalStep={4}
     SuccessStep={SuccessStep}
   />
-);
+)
