@@ -4,6 +4,8 @@
 
 Philosophy: each compnent is independent.
 
+- package.json.bak // create react app src/gureact can not detect a.tsx as a typescript file
+
 Temp fix from https://github.com/storybookjs/storybook/issues/13593#issuecomment-757427590
 Don't forget to remove it after it's get fixed
 

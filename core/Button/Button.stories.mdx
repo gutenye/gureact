@@ -1,11 +1,11 @@
-import { Meta, Canvas, ArgsTable, Story } from '@storybook/addon-docs/blocks'
-import Button from './Button'
+import { Meta, Canvas, ArgsTable, Story } from "@storybook/addon-docs/blocks";
+import Button from "./Button";
 
 <Meta title="Core/Button" component={Button} />
 
-export const Template = (args) => <Button {...args} />
+export const Template = (args) => <Button {...args} />;
 
-<Story name="Playground" args={{ children: 'Button' }}>
+<Story name="Playground" args={{ children: "Button" }}>
   {Template.bind({})}
 </Story>
 
