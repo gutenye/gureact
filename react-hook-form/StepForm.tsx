@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-
-const LAST_STEP = 999;
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 export interface StepFormProps {
-  onSubmit: Function;
-  Steps: Array<any>;
-  SuccessStep?: any;
+  onSubmit: Function
+  Steps: Array<any>
+  SuccessStep?: any
 
   /**
    * will loop if totalStep > Steps.length
    */
-  totalStep?: number;
+  totalStep?: number
 }
 
 /**
@@ -30,48 +28,48 @@ const StepForm: React.FC<StepFormProps> = ({
   defaultValues = {},
   totalStep: origTotalStep,
 }) => {
-  const { register, handleSubmit, getValues } = useForm();
-  const [step, setStep] = useState(0);
-  const [isSuccessStep, setIsSuccessStep] = useState(false);
-  const [totalValues, setTotalValues] = useState(defaultValues);
+  const { register, handleSubmit, getValues } = useForm()
+  const [step, setStep] = useState(0)
+  const [isSuccessStep, setIsSuccessStep] = useState(false)
+  const [totalValues, setTotalValues] = useState(defaultValues)
 
-  const totalStep = origTotalStep || Steps.length;
-  const isFirstStep = step === 0;
-  const isLastStep = step === totalStep - 1;
+  const totalStep = origTotalStep || Steps.length
+  const isFirstStep = step === 0
+  const isLastStep = step === totalStep - 1
 
   let Step = isSuccessStep
     ? SuccessStep
-    : Steps[Math.min(step, Steps.length - 1)];
+    : Steps[Math.min(step, Steps.length - 1)]
 
   const next = () => {
-    const nextStep = step + 1;
+    const nextStep = step + 1
     if (nextStep > totalStep - 1) {
-      return;
+      return
     }
-    setStep(nextStep);
-  };
+    setStep(nextStep)
+  }
 
   const prev = () => {
-    const prevStep = step - 1;
+    const prevStep = step - 1
     if (prevStep < 0) {
-      return;
+      return
     }
-    setTotalValues({ ...totalValues, ...getValues() });
-    setStep(prevStep);
-  };
+    setTotalValues({ ...totalValues, ...getValues() })
+    setStep(prevStep)
+  }
 
-  const newOnSubmit = async (stepValues) => {
-    const newValues = { ...totalValues, ...stepValues };
-    setTotalValues(newValues);
+  const newOnSubmit = async stepValues => {
+    const newValues = { ...totalValues, ...stepValues }
+    setTotalValues(newValues)
     if (isLastStep) {
-      await onSubmit(newValues);
+      await onSubmit(newValues)
       if (SuccessStep) {
-        setIsSuccessStep(true);
+        setIsSuccessStep(true)
       }
     } else {
-      next();
+      next()
     }
-  };
+  }
 
   const stepProps = {
     values: totalValues,
@@ -82,13 +80,13 @@ const StepForm: React.FC<StepFormProps> = ({
     totalStep,
     next,
     prev,
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit(newOnSubmit)}>
       <Step {...stepProps} />
     </form>
-  );
-};
+  )
+}
 
-export default StepForm;
+export default StepForm
