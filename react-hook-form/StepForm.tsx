@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 export interface StepFormProps {
   onSubmit: Function
   Steps: Array<any>
-  SuccessStep?: any
+  StepSuccess?: any
 
   /**
    * will loop if totalStep > Steps.length
@@ -13,32 +13,26 @@ export interface StepFormProps {
 }
 
 /**
- * <StepForm
- *   onSubmit,
- *   defaultValues,
- *   FirstStep,
- *   Steps,
- *   LastStep,
- * />
+ * - Don't forget `<input defaultValue />`
  */
 const StepForm: React.FC<StepFormProps> = ({
   onSubmit,
   Steps,
-  SuccessStep,
+  StepSuccess,
   defaultValues = {},
   totalStep: origTotalStep,
 }) => {
   const { register, handleSubmit, getValues, setValue } = useForm()
   const [step, setStep] = useState(0)
-  const [isSuccessStep, setIsSuccessStep] = useState(false)
+  const [isStepSuccess, setIsStepSuccess] = useState(false)
   const [totalValues, setTotalValues] = useState(defaultValues)
 
   const totalStep = origTotalStep || Steps.length
   const isFirstStep = step === 0
   const isLastStep = step === totalStep - 1
 
-  let Step = isSuccessStep
-    ? SuccessStep
+  let Step = isStepSuccess
+    ? StepSuccess
     : Steps[Math.min(step, Steps.length - 1)]
 
   const next = () => {
@@ -63,8 +57,8 @@ const StepForm: React.FC<StepFormProps> = ({
     setTotalValues(newValues)
     if (isLastStep) {
       await onSubmit(newValues)
-      if (SuccessStep) {
-        setIsSuccessStep(true)
+      if (StepSuccess) {
+        setIsStepSuccess(true)
       }
     } else {
       next()

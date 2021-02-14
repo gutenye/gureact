@@ -7,10 +7,8 @@ export default {
 }
 
 const onSubmit = (values) => console.log(JSON.stringify(values, null, 2))
-
 const Step1 = ({ next }) => <button onClick={next}>step1</button>
-const SuccessStep = () => <div>Success</div>
-
+const StepSuccess = () => <div>Success</div>
 const StepLoop = ({
   step,
   isFirstStep,
@@ -41,7 +39,7 @@ export const Basic = () => (
   <StepForm
     onSubmit={onSubmit}
     Steps={[Step1, StepLoop]}
+    StepSuccess={StepSuccess}
     totalStep={4}
-    SuccessStep={SuccessStep}
   />
 )
