@@ -18,7 +18,7 @@ const StepLoop = ({
   values,
   register,
 }) => {
-  const key = `step${step}`
+  const key = `steps[${step}]`
   return (
     <div>
       <input

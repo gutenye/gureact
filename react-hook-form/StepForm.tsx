@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import { merge } from 'lodash'
+
 import { useForm } from 'react-hook-form'
 
 export interface StepFormProps {
   onSubmit: Function
   Steps: Array<any>
+
   StepSuccess?: any
+
+  defaultValues?: Object
 
   /**
    * will loop if totalStep > Steps.length
@@ -40,6 +45,7 @@ const StepForm: React.FC<StepFormProps> = ({
     if (nextStep > totalStep - 1) {
       return
     }
+    setTotalValues(merge({}, totalValues, getValues()))
     setStep(nextStep)
   }
 
@@ -48,14 +54,14 @@ const StepForm: React.FC<StepFormProps> = ({
     if (prevStep < 0) {
       return
     }
-    setTotalValues({ ...totalValues, ...getValues() })
+    setTotalValues(merge({}, totalValues, getValues()))
     setStep(prevStep)
   }
 
   const newOnSubmit = async (stepValues) => {
-    const newValues = { ...totalValues, ...stepValues }
-    setTotalValues(newValues)
     if (isLastStep) {
+      const newValues = merge({}, totalValues, stepValues)
+      setTotalValues(newValues)
       await onSubmit(newValues)
       if (StepSuccess) {
         setIsStepSuccess(true)
