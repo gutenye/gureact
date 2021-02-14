@@ -10,14 +10,7 @@ Temp fix from https://github.com/storybookjs/storybook/issues/13593#issuecomment
 Don't forget to remove it after it's get fixed
 
 ```
-import { Button } from 'gureact'
-import { TextField } from 'gureact/antd'
-
-<ThemeProvider theme={theme}>
-  <Button />
-</ThemeProvider>
-
-const theme = { primary }
+import StepForm from 'gureact/react-hook-form/StepForm'
 ```
 
 ## With git submodule
