@@ -58,7 +58,7 @@ const StepForm: React.FC<StepFormProps> = ({
     setStep(prevStep)
   }
 
-  const newOnSubmit = async stepValues => {
+  const newOnSubmit = async (stepValues) => {
     const newValues = { ...totalValues, ...stepValues }
     setTotalValues(newValues)
     if (isLastStep) {
