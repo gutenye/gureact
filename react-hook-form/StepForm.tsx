@@ -15,6 +15,8 @@ export interface StepFormProps {
    * will loop if totalStep > Steps.length
    */
   totalStep?: number
+
+  onNext?: Function
 }
 
 /**
@@ -24,6 +26,7 @@ const StepForm: React.FC<StepFormProps> = ({
   onSubmit,
   Steps,
   StepSuccess,
+  onNext,
   defaultValues = {},
   totalStep: origTotalStep,
 }) => {
@@ -45,7 +48,9 @@ const StepForm: React.FC<StepFormProps> = ({
     if (nextStep > totalStep - 1) {
       return
     }
-    setTotalValues(merge({}, totalValues, getValues()))
+    const newTotalValues = merge({}, totalValues, getValues())
+    setTotalValues(newTotalValues)
+    if (onNext) onNext({ values: newTotalValues })
     setStep(nextStep)
   }
 
