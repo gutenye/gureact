@@ -3,6 +3,19 @@ import { merge } from 'lodash'
 
 import { useForm } from 'react-hook-form'
 
+/**
+ *
+ * <StepForm
+ *   onSubmit={onSubmit}
+ *   Steps={[Step1, StepLoop]}
+ *   StepSuccess={StepSuccess}
+ *   totalStep={4}
+ * />
+ *
+ * - don't forget <input defaultValue />
+ * - Uncontrolled Comonent makes thing complex, onNext call `merge({}, totalValues, getValues())`, user click next, not click an option, still update the values
+ */
+
 export interface StepFormProps {
   onSubmit: Function
   Steps: Array<any>
@@ -19,9 +32,6 @@ export interface StepFormProps {
   onNext?: Function
 }
 
-/**
- * - Don't forget `<input defaultValue />`
- */
 const StepForm: React.FC<StepFormProps> = ({
   onSubmit,
   Steps,
