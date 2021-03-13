@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
  *   totalStep={4}
  * />
  *
+ * - each step is a new <form>, so totalValues is combile of all forms. getValues return only one form values
  * - don't forget <input defaultValue />
  * - Uncontrolled Comonent makes thing complex, onNext call `merge({}, totalValues, getValues())`, user click next, not click an option, still update the values
  */
@@ -40,7 +41,8 @@ const StepForm: React.FC<StepFormProps> = ({
   defaultValues = {},
   totalStep: origTotalStep,
 }) => {
-  const { register, handleSubmit, getValues, setValue } = useForm()
+  const formProps = useForm()
+  const { register, handleSubmit, getValues, setValue } = formProps
   const [step, setStep] = useState(0)
   const [isStepSuccess, setIsStepSuccess] = useState(false)
   const [totalValues, setTotalValues] = useState(defaultValues)
@@ -87,15 +89,14 @@ const StepForm: React.FC<StepFormProps> = ({
   }
 
   const stepProps = {
-    values: totalValues,
-    register,
+    ...formProps,
+    totalValues,
     step,
     isFirstStep,
     isLastStep,
     totalStep,
     next,
     prev,
-    setValue,
   }
 
   return (
