@@ -1,6 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bun
 
-case "$1" in
-  # "" ) yarn storybook
-  "" ) start-storybook -p 3010
-esac
+import { app, $ } from "@gutenye/script.js";
+
+app.cmd().add(async ({ argv }) => {
+  if (argv.length === 0) {
+    // yarn storybook
+    await $`start-storybook -p 3010`;
+  }
+});
